@@ -4,10 +4,11 @@
 ##' Calculate maximum likelihood estimate of a parameter and its 95\% confidence
 ##'  interval using the profile log-likelihood method, for a given
 ##'  negative log-likelihood function and its arguments (other parameters and data).
-##' TODO Will likely give warnings that can safely be ignored (see
-##'  `suppress.warnings` description below). Decide what to do, maybe like for hdiAnalysis.
-##' This should be a general function, i.e. not just applicable to size
-##'  spectra. TODO check that I did that.
+##'
+##' Often give warnings that can safely be ignored (see
+##'  `suppress.warnings` description below).
+##' This is a general function that is applicable for any likelihood function,
+##' not just related to size spectra.
 ##'
 ##' @param this_neg_ll_fn negative log-likelihood function that take arguments
 ##'  (parameters and data) in ... and returns a negative
@@ -25,7 +26,7 @@
 ##'  to construct the confidence interval. Default is 0.5 and a symmetric
 ##'  range is tested for fitting size spectra, since for movement data
 ##'  sets in Table 2 of Edwards (2011; 92(6):1247-1257) the intervals were
-##'  symmetric, so symmetric seems a good start. TODO may need updating
+##'  symmetric, so symmetric seems a good start.
 ##' @param vec_inc if `vec` is `NULL`, the increments of the vector to calculate
 ##'   the negative log-likelihood to construct the confidence interval. The
 ##'   accuracy of the resulting bounds
@@ -58,7 +59,6 @@ calc_mle_conf <- function(this_neg_ll_fn,   # needed to avoid partial matching
                           suppress_warnings = FALSE,
                           ...){
 
-  # calcLike was:  TODO decide about the warnings
   if(suppress_warnings){
     min_neg_ll <- suppressWarnings(nlm(f = this_neg_ll_fn,
                                        p=p,
@@ -79,11 +79,6 @@ calc_mle_conf <- function(this_neg_ll_fn,   # needed to avoid partial matching
 
   conf <- calc_confidence_interval(this_neg_ll_fn = this_neg_ll_fn,
                                    min_neg_ll_value = min_neg_ll$minimum,
-                                     # x = x,
-                                     # n = n,
-                                     # x_min = x_min,
-                                     # x_max = x_max,
-                                     # sum_log_x = sum_log_x,
                                      vec = vec,
                                      ...)
 
@@ -93,13 +88,9 @@ calc_mle_conf <- function(this_neg_ll_fn,   # needed to avoid partial matching
                  max(vec) + 0.5,
                  vec_inc)
 
-    conf <- calc_confidence_interval(this_neg_ll_fn = this_neg_ll_fn,  # TODO same as above
+    # Has to be the same as above:
+    conf <- calc_confidence_interval(this_neg_ll_fn = this_neg_ll_fn,
                                        min_neg_ll_value = min_neg_ll$minimum,
-#                                       x = x,
-#                                       n = n,
-#                                       x_min = x_min,
-#                                       x_max = x_max,
-#                                       sum_log_x = sum_log_x,
                                        vec = vec,
                                        ...)
   }
