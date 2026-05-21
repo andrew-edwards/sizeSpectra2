@@ -38,13 +38,7 @@ width can also be specified.
 }
 \examples{
 \dontrun{
-# TODO
-# calc_bin_breaks(mediterranean_data, represents = "max") # etc.
-calc_max_of_bin(c(1:5, 7, 9.83, 11.24)) \%>\% a()
-calc_max_of_bin(c(1:5, 7, 9.83, 11.24), bin_widths = c(0.01, 1))  \%>\% a()
-calc_max_of_bin(c(1:5, 7, 9.83, 11.24), vec_represents_bin_mid = FALSE)  \%>\% a()
-calc_max_of_bin(c(1:5, 7, 9.83, 11.24), vec_represents_bin_mid = FALSE, bin_widths = c(0.01, 1))  \%>\% a()
-
+calc_bin_breaks(mediterranean_data)
 }
 }
 \author{

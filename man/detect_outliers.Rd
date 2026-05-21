@@ -3,36 +3,40 @@
 \name{detect_outliers}
 \alias{detect_outliers}
 \title{Analyse gaps to look for outliers (large values with gaps from remaining
-continuous values) from MLEbins (TODO others to come) results object}
+continuous values) from using the MLEbins method.}
 \usage{
-detect_outliers(dat, ...)
+detect_outliers(res, ...)
 }
 \arguments{
 \item{res}{One of:
 \itemize{
-\item \code{sizespectrum_mlebins} object.
-\code{gap_ratio} is gap divided by second largest gapTODO list containing two tibbles plus two numerics. Each tibble contains just the data values needed for
-calculations, which are \code{species}, \code{bin_min}, \code{bin_max}, and
-\code{bin_count}. \code{count_gte_bin_min} etc. will be recalculated in the new
-analysis. They are:
-\item \code{dat-keep} records that are being kept
-\item \code{dat-removed} records that are removed
-Numeric values are:
-\item \code{bin_count_removed} sum of the counts in bins that have been removed
-\item \code{bin_count_removed_prop} proportion of the counts in bins that have been
-removed (total counts removed divided by total counts in original data set).
+\item \code{size_spectrum_mlebins} object
+\item \code{determine_xmin_and_fit_mlebins} object
+\code{gap_ratio} is gap divided by second largest gap
 }}
 }
-\description{
-If already run through remove_outliers.size_spectrum_mlebins then it wil
-use \code{detect_outliers.remove_outliers.mlebins()} and can keep iterating that.
+\value{
+tibble containing just the data values needed for
+calculations, which are the original four columns:
+\itemize{
+\item \code{species}
+\item \code{bin_min}
+\item \code{bin_max}
+\item \code{bin_count}
+plus
+\item \code{gap} which is \code{bin_min} minus the previous \code{bin_min}
+\item \code{gap_ratio} which is the ratio of \code{gap} to the second largest gap, so makes
+it easy to see if the largest gap is much much larger than the second largest.
 }
-\details{
-TODO:
+}
+\description{
+If already run through \code{remove_outliers.size_spectrum_mlebins()} then it wil
+use \code{detect_outliers.remove_outliers.mlebins()} and can keep iterating
+that. See \code{\link[=remove_outliers]{remove_outliers()}} for further details and example code.
 }
 \examples{
 \dontrun{
-detect_outliers(todo)
+# See ?remove_outliers for link to example code
 }
 }
 \author{

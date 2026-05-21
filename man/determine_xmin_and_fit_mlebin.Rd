@@ -12,8 +12,14 @@ determine_xmin_and_fit_mlebin(dat, x_min = NULL, ...)
 using MLEbin method; see \code{\link[=fit_size_spectrum]{fit_size_spectrum()}}.}
 }
 \value{
-list of class \code{determine_xmin_and_fit_mlebin} for plotting, containing TODO
-see \code{\link[=determine_xmin_and_fit]{determine_xmin_and_fit()}} also
+object of class \code{determine_xmin_and_fit_mlebin}, such that
+\code{\link[=plot.determine_xmin_and_fit_mlebin]{plot.determine_xmin_and_fit_mlebin()}} gets used for plotting; a list containing
+two list objects
+\itemize{
+\item \code{mlebin_fit} object of class \code{size_spectrum_mlebin} from using MLEbin
+method; see \code{\link[=fit_size_spectrum.mlebin]{fit_size_spectrum.mlebin()}}
+\item \code{h} histogram object, as used to determine \code{x_min}
+}
 }
 \description{
 Given data for MLEbin calculation, determine a common binning and use that
@@ -21,7 +27,10 @@ to calculate \code{x_min} and then fit using MLEbin.
 }
 \examples{
 \dontrun{
- TODO
+sim_vec_binned_2 <- sim_vec_binned
+sim_vec_binned_2[1, "bin_count"] <- 100  # lower count for first bin
+res_binned_2 <- determine_xmin_and_fit_mlebin(sim_vec_binned_2)
+plot(res_binned_2)
 }
 }
 \author{

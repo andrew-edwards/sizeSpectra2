@@ -46,25 +46,13 @@ fit_size_spectrum(dat, ...)
 \itemize{
 \item \code{numeric} vector of values (such as individual body masses or lengths), which uses
 the MLE method (via the function \code{\link[=fit_size_spectrum.numeric]{fit_size_spectrum.numeric()}};
-\item \code{data.frame} that can be either:
-\itemize{
-\item count data for MLEbin method. At a minimum this has to include the columns:
+\item \code{data.frame} of count data for the MLEbin method. At a minimum this has to include the columns:
 \itemize{
 \item \code{bin_min}
 \item \code{bin_max}
 \item \code{bin_count}.
-}
-\item individual measurements for a strata (such as a year) TODO and might change, for which column
-names are given by \code{strata} (user has to specify TODO or make it year and
-check other columns ) and \code{x} for the measurements. More column
-names can be in the data.frame but will not be used. In this case the MLE
-method \code{fit_size_spectrum.numeric()} will be applied separately to each
-year. TODO - need the functions OR
-If \code{species} is in \code{names(dat)} then uses the MLEbins method, RISKY THOUGH
-and need length-weight coefficients also, so do something different. else uses
-MLEbin for which we do not care about the species. TODO
-\code{bin_min} and \code{bin_max} in a row correspond to \code{w_sj} for that species and
-bin in MEPS supp infor -- see other help that spells it out.
+The values \code{bin_min} and \code{bin_max} in each row correspond to the min and max
+bounds of that bin, with \code{bin_count} being the count of individuals in that bin.
 }
 }}
 
@@ -93,92 +81,56 @@ used as the \code{vec} argument of \code{calc_mle_conf()}}
 used as the \code{vec_inc} argument of \code{calc_mle_conf()}}
 }
 \value{
-data tibble can have \code{bin_sum}, \code{bin_sum_norm}, \code{low_count}, \code{high_count},
-and maybe more from MLEbin method, if the data are individuals and were
-then binned using, say, \code{x_binned <- bin_data(res_vec$x, bin_width = "2k")}. For true binned data we only have some of these.
 \itemize{
 \item If \code{dat} is numeric then returns a list object of class
 \code{size_spectrum_numeric} (such that we can plot it
-with \code{\link[=plot.size_spectrum_numeric]{plot.size_spectrum_numeric()}}, with objects.... (adapt below), also
-mention that data output can change with MLEbin method due to x_min and
-x_max; though could still keep them I guess. Prob best to keep.
-:
+with \code{\link[=plot.size_spectrum_numeric]{plot.size_spectrum_numeric()}}, with objects
 \itemize{
-\item TODOintervals: one-row tibble with columns:
-\itemize{
-\item median: median of the data
-\item eti_lower: lower end of the ETI
-\item eti_upper: upper end of the ETI
-\item hdi_lower: lower end of the HDI
-\item hdi_upper: upper end of the HDI
-\item width_eti: width of the ETI
-\item width_hdi: width of the HDI
-\item width_diff: difference in widths, how much smaller (more certain) the
-HDI is than the ETI
-\item i_eti_lower: index for which \code{eti_lower} is between
-\code{dens$x[i_eti_lower]} and \code{dens$x[i_eti_lower + 1]}
-\item y_eti_lower: linearly interpolated value based on \code{i_eti_lower}
-corresponding to the density at \code{eti_lower}
-\item i_eti_upper, y_eti_upper: similar to \code{...lower} but for \code{upper}
-\item i_hdi_lower: index for which \code{dens$x[i_hdi_lower] = hdi_lower}. The
-theoretical true value of the lower bound of HDI will lie between
-\code{dens$x[i_hdi_lower - 1]} and \code{dens$x[i_hdi_lower]}, but the high \code{n} used
-should make this range small enough
-\item y_hdi_lower: the density at \code{dens$y[i_hdi_lower]} corresponding to \code{hdi_lower}
-\item i_hdi_upper: index for which \code{dens$x[i_hdi_upper] = hdi_upper}. The
-theoretical true value of the upper bound of HDI will lie between
-\code{dens$x[i_hdi_upper]} and \code{dens$x[i_hdi_upper + 1]} (note the asymmetry to
-\code{i_hdi_lower}), but the high \code{n} used should make this range small enough
-\item y_hdi_upper: the density at \code{dens$y[i_hdi_upper]} corresponding to \code{hdi_upper}
-\item hdi_height: the height of the pdf returned from \code{HDInterval::hdi()},
-corresponding to either \code{y_hdi_lower} or \code{y_hdi_upper} (depending on which
-is the first \code{dens$x} value to push the integrated sum of the sorted
-cumulative \code{dens$y} values over \code{credibility}; see
-\code{HDInterval::hdi.density()}. Is \code{NA} if \code{density = FALSE}.
-\item warning: logical, if \code{TRUE} then a warning was produced during the
-\code{HDInterval::hdi()} calculation. If no warning printed then this warning
-was "The HDI is discontinuous but allowSplit = FALSE; the result is a
-valid CrI but not HDI.", else the new warning "New type of warning in
-create_intervals()." is printed and needs investigating. See
-\code{plot.intervals_density()} with \code{show_discontinuity = TRUE} to plot the
-discontinuities in the HDI.
-\item allow_hdi_zero: logical of \code{allow_hdi_zero} used
+\item \code{b_mle} maximum likelihood estimate of $b$
+\item \code{b_conf} vector giving 95\% confidence interval for $b$
+\item \code{x} vector of original values of \code{dat}
+\item \code{x_min} the \code{x_min} value used for the fitting
+\item \code{x_max} the \code{x_max} value used for the fitting
+\item \code{method} to describe the fitting method used, in this case \code{MLE}
 }
-}
-\item If \code{dat} is a data frame then return a list object of class
-\code{intervals_density_list} with:
+\item If \code{dat} is a data.frame then returns a list object of class
+\code{size_spectrum_mlebin} with same objects as above, except for
 \itemize{
-\item element \verb{[[i]]} corresponding to column \code{i} of the \code{dat_mcmc}. Each
-\verb{[[i]]} element is itself a list of the form described above (since the
-intervals are calculated for each column in turn), plus also the
-\verb{$name} element which is the name of column \code{i} of \code{dat_mcmc}.
-\item intervals_all_years tibble of all the intervals, with the first column,
-\code{quantity}, corresponding to each column of \code{dat_mcmc}, such that row \code{i}
-corresponds to column \code{i} of \code{dat_mcmc}. \code{quantity} is numeric if no
-column names of \code{dat_mcmc} contain non-digits (e.g. represents years).
+\item \code{data} but instead of \code{x} it is the original \code{data.frame}, arranged by
+the increasing values of \code{bin_min}, and also has the columns
+\itemize{
+\item \code{count_gte_bin_min} total count of values in bins for which \code{bin_min}
+$\geq$ the value of \code{bin_min} for this row
+\item \code{low_count} total count of values in bins for which \code{bin_min}
+$\geq$ the value of \code{bin_max} for this row, so the lowest possible count of
+values above this bin
+\item \code{high_count} total count of values in bins for which \code{bin_max}
+$\geq$ the value of \code{bin_min} for this row, so the highest possible count of
+values above this bin; for non-overlapping bins will be the same as
+\code{count_gte_bin_min} (but is needed for plotting).
+Note that if \code{x_min} and/or \code{x_max}
+are prescribed such that some data are not included in the fit (e.g. \code{x_min}
+is greater than the \code{bin_max} of the smallest bin), then they are omitted in \code{data}.
+}
 }
 }
 }
 \description{
-The function automatically uses the appropriate method depending on the data...
-For tibble, need \code{strata} if the data are different, and TODO check species
-if MLEbins.
+The function automatically uses the appropriate method depending on the data
+class. For a simple \code{numeric} vector, the MLE method will be used. For a
+\code{data.frame} with the appropriate columns (see below) the MLEbin method will
+be used. To use the MLEbins method for species-specific bins, please use
+\code{\link[=fit_size_spectrum_mlebins]{fit_size_spectrum_mlebins()}}. See appropriate vignettes.
 }
 \examples{
 \dontrun{
-fit_size_spectrum(sim_vec)
+res_vec <- fit_size_spectrum(sim_vec)
+plot(res_vec)
 
+x_binned <- bin_data(res_vec$x, bin_width = "2k")`
+res_mlebin <- fit_size_spectrum(x_binned)
+plot(res_mlebin)
 # See the vignettes for further details and refinements.
-# Create intervals from the vector MCMC samples for hake recruitment in 2021:
-res_vec <- create_intervals(rec_2021)
-res_vec
-plot(res_vec)    # Plot the default density plot showing the HDI
-
-# Create intervals from the data frame of MCMC samples for hake recruitment,
-#  with each column representing a year:
-res_df <- create_intervals(dplyr::select(hake_recruitment_mcmc, -"Virgin"))
-res_df
-plot(res_df)     # Plot the time series of calculated intervals
 }
 }
 \author{

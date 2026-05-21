@@ -42,6 +42,7 @@ plot, essentially the recommended Fig. 6 of MEE paper where the top panel
 is bins of normalized biomass (but improved here by showing bins in the top
 panel rather than points) and the \code{"log_y_axis"} plot described above.
 TODO prob have to make that consistent in other plotting function
+Note that the x-axis is always logarithmic.
 }}
 
 \item{xlab}{ylab x/y labels, explicitly given default values here which can

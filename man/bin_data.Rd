@@ -91,7 +91,7 @@ maximum, and width, respectively, of the bin
 Takes either a \code{numeric} vector of values (e.g. body masses) or a \code{data.frame}
 of counts of values, and bins the values or counts into bins. In particular
 needed for
-MLEbin method (TODO function is ??) and the goodness-of-fit tests.
+MLEbin method \code{\link[=fit_size_spectrum_mlebin]{fit_size_spectrum_mlebin()}} and the goodness-of-fit tests.
 The counts can take non-integer values, which can occur when standardising field
 measurements.
 }

@@ -24,8 +24,7 @@ interval (regardless of whether it was manually specified or \code{NULL}).}
 \item{...}{further arguments (including parameters and data) to \code{negll_fn()}}
 }
 \description{
-Gets called from [calc_mle_conf(). TODO may need to be explicit
-about the help. Might be simpler as fitting function gets more complex.
+Gets called from \code{\link[=calc_mle_conf]{calc_mle_conf()}}.
 }
 \examples{
 \dontrun{

@@ -13,7 +13,8 @@ add_ticks_to_one_axis(
   big_ticks_labels,
   small_ticks,
   small_ticks_by,
-  small_ticks_labels
+  small_ticks_labels,
+  small_ticks_per_big = 10
 )
 }
 \arguments{

@@ -2,19 +2,20 @@
 % Please edit documentation in R/remove-outliers.R
 \name{remove_outliers}
 \alias{remove_outliers}
-\title{Remove outliers (large values with gaps from remaining continuous values)
-from MLEbins (TODO others to come) results object}
+\title{Remove outliers (large values with gaps from the subsequent remaining continuous values)
+from MLEbins results object}
 \usage{
 remove_outliers(dat, ...)
 }
 \arguments{
 \item{res}{One of:
 \itemize{
-\item \code{sizespectrum_mlebins} object.
+\item \code{size_spectrum_mlebins} object
+\item \code{determine_xmin_and_fit_mlebins} object
 }}
 
 \item{number}{numeric value for how many of the top measurements to remove;
-calculate it manually for now}
+user should determine manually from a plot.}
 }
 \value{
 list containing two tibbles plus two numerics. Each tibble contains just the data values needed for
@@ -31,11 +32,16 @@ removed (total counts removed divided by total counts in original data set).
 }
 }
 \description{
-TODO
+If there is a gap between roughly-continuous body sizes and a larger group,
+then it is useful to test if removing the larger group affects the results.
+Used for Sensitivity Example B in Quevedo et al. (2026), see p34 of Supp
+Material B. The relevant code is at
+https://github.com/andrew-edwards/sizeSpectraFit/tree/main/report/mediterranean/mediterranean-analysis-15
 }
 \examples{
 \dontrun{
-remove_outliers(**)
+# See example code at
+# https://github.com/andrew-edwards/sizeSpectraFit/tree/main/report/mediterranean/mediterranean-analysis-15
 }
 }
 \author{

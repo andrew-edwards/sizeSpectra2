@@ -37,8 +37,9 @@ Can then use \code{plot()} which calls \code{plot.histogram()}. Without the 0 co
 }
 \examples{
 \dontrun{
-TODO counts_per_bin_example
-make_hist(counts_per_bin_example)
+x <- 1:10
+make_hist(x)
+
 TODO for test do
 x <- 1:49
 and make up other ones

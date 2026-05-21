@@ -35,7 +35,7 @@ negative log-likelihood
 to construct the confidence interval. Default is 0.5 and a symmetric
 range is tested for fitting size spectra, since for movement data
 sets in Table 2 of Edwards (2011; 92(6):1247-1257) the intervals were
-symmetric, so symmetric seems a good start. TODO may need updating}
+symmetric, so symmetric seems a good start.}
 
 \item{vec_inc}{if \code{vec} is \code{NULL}, the increments of the vector to calculate
 the negative log-likelihood to construct the confidence interval. The
@@ -48,7 +48,7 @@ the stated upper bounds. So reduce \code{vec_inc} if further accuracy is
 needed. Also used even if \code{vec} is specified by the user but then needs to
 be expanded (see \code{vec}).}
 
-\item{suppress_warnings}{TODO decide. If TRUE then suppress warnings from the \code{nlm()}
+\item{suppress_warnings}{If TRUE then suppress warnings from the \code{nlm()}
 calculations; for the \code{MEPS_IBTS_MLEbins} vignette these occur a lot, and
 are always:
 \verb{Warning in nlm(f = negll.fn, p = p, ...) : NA/Inf replaced by maximum positive value}. The same warning often happens in other
@@ -69,10 +69,12 @@ presumably when searching some very very very unlikely region of paramater space
 Calculate maximum likelihood estimate of a parameter and its 95\\% confidence
 interval using the profile log-likelihood method, for a given
 negative log-likelihood function and its arguments (other parameters and data).
-TODO Will likely give warnings that can safely be ignored (see
-\code{suppress.warnings} description below). Decide what to do, maybe like for hdiAnalysis.
-This should be a general function, i.e. not just applicable to size
-spectra. TODO check that I did that.
+}
+\details{
+Often give warnings that can safely be ignored (see
+\code{suppress.warnings} description below to hide warnings).
+This is a general function that is applicable for any likelihood function,
+not just related to size spectra.
 }
 \author{
 Andrew Edwards
