@@ -1,28 +1,20 @@
 ##' Fit a size spectrum to data using maximum likelihood
 ##'
-##' The function automatically uses the appropriate method depending on the data...
-##' For tibble, need `strata` if the data are different, and TODO check species
-##' if MLEbins.
+##' The function automatically uses the appropriate method depending on the data
+##' class. For a simple `numeric` vector, the MLE method will be used. For a
+##' `data.frame` with the appropriate columns (see below) the MLEbin method will
+##' be used. To use the MLEbins method for species-specific bins, please use
+##' [fit_size_spectrum_mlebins()]. See appropriate vignettes.
 ##'
 ##' @param dat One of:
 ##' * `numeric` vector of values (such as individual body masses or lengths), which uses
 ##'   the MLE method (via the function [fit_size_spectrum.numeric()];
-##' * `data.frame` that can be either:
-##'   * count data for MLEbin method. At a minimum this has to include the columns:
-##'     * `bin_min`
-##'     * `bin_max`
-##'     * `bin_count`.
-##'   * individual measurements for a strata (such as a year) TODO and might change, for which column
-##'   names are given by `strata` (user has to specify TODO or make it year and
-##'   check other columns ) and `x` for the measurements. More column
-##'   names can be in the data.frame but will not be used. In this case the MLE
-##'   method `fit_size_spectrum.numeric()` will be applied separately to each
-##'   year. TODO - need the functions OR
-##' If `species` is in `names(dat)` then uses the MLEbins method, RISKY THOUGH
-##'   and need length-weight coefficients also, so do something different. else uses
-##'   MLEbin for which we do not care about the species. TODO
-##'   `bin_min` and `bin_max` in a row correspond to `w_sj` for that species and
-##'   bin in MEPS supp infor -- see other help that spells it out.
+##' * `data.frame` of count data for the MLEbin method. At a minimum this has to include the columns:
+##'   * `bin_min`
+##'   * `bin_max`
+##'   * `bin_count`.
+##' The values `bin_min` and `bin_max` in each row correspond to the min and max
+##' bounds of that bin, with `bin_count` being the count of individuals in that bin.
 ##' @param x_min minimum value of data to fit the PLB distribution to. If `NULL`
 ##'   (the default) then it is set to the minimum value of the data (if `dat` is
 ##'   `numeric`), else to the minimum bin break of the lowest bin. If not `NULL`
@@ -43,84 +35,44 @@
 ##' @param b_start for the MLEbin method, the starting estimate for numerical
 ##'   search for the MLE, since there is no analytical value.
 ##' @return
-##'
-##' data tibble can have `bin_sum`, `bin_sum_norm`, `low_count`, `high_count`,
-##'   and maybe more from MLEbin method, if the data are individuals and were
-##'   then binned using, say, `x_binned <- bin_data(res_vec$x, bin_width =
-##'   "2k")`. For true binned data we only have some of these.
 
 ##' * If `dat` is numeric then returns a list object of class
 ##'   `size_spectrum_numeric` (such that we can plot it
-##'   with [plot.size_spectrum_numeric()], with objects.... (adapt below), also
-##'   mention that data output can change with MLEbin method due to x_min and
-##'   x_max; though could still keep them I guess. Prob best to keep.
-##' :
-##'   * TODOintervals: one-row tibble with columns:
-##'     * median: median of the data
-##'     * eti_lower: lower end of the ETI
-##'     * eti_upper: upper end of the ETI
-##'     * hdi_lower: lower end of the HDI
-##'     * hdi_upper: upper end of the HDI
-##'     * width_eti: width of the ETI
-##'     * width_hdi: width of the HDI
-##'     * width_diff: difference in widths, how much smaller (more certain) the
-##'   HDI is than the ETI
-##'     * i_eti_lower: index for which `eti_lower` is between
-##'   `dens$x[i_eti_lower]` and `dens$x[i_eti_lower + 1]`
-##'     * y_eti_lower: linearly interpolated value based on `i_eti_lower`
-##'   corresponding to the density at `eti_lower`
-##'     * i_eti_upper, y_eti_upper: similar to `...lower` but for `upper`
-##'     * i_hdi_lower: index for which `dens$x[i_hdi_lower] = hdi_lower`. The
-##'   theoretical true value of the lower bound of HDI will lie between
-##'   `dens$x[i_hdi_lower - 1]` and `dens$x[i_hdi_lower]`, but the high `n` used
-##'   should make this range small enough
-##'     * y_hdi_lower: the density at `dens$y[i_hdi_lower]` corresponding to `hdi_lower`
-##'     * i_hdi_upper: index for which `dens$x[i_hdi_upper] = hdi_upper`. The
-##'   theoretical true value of the upper bound of HDI will lie between
-##'   `dens$x[i_hdi_upper]` and `dens$x[i_hdi_upper + 1]` (note the asymmetry to
-##'   `i_hdi_lower`), but the high `n` used should make this range small enough
-##'     * y_hdi_upper: the density at `dens$y[i_hdi_upper]` corresponding to `hdi_upper`
-##'     * hdi_height: the height of the pdf returned from `HDInterval::hdi()`,
-##'   corresponding to either `y_hdi_lower` or `y_hdi_upper` (depending on which
-##'   is the first `dens$x` value to push the integrated sum of the sorted
-##'   cumulative `dens$y` values over `credibility`; see
-##'   `HDInterval::hdi.density()`. Is `NA` if `density = FALSE`.
-##'     * warning: logical, if `TRUE` then a warning was produced during the
-##'   `HDInterval::hdi()` calculation. If no warning printed then this warning
-##'   was "The HDI is discontinuous but allowSplit = FALSE; the result is a
-##'   valid CrI but not HDI.", else the new warning "New type of warning in
-##'   create_intervals()." is printed and needs investigating. See
-##'   `plot.intervals_density()` with `show_discontinuity = TRUE` to plot the
-##'   discontinuities in the HDI.
-##'     * allow_hdi_zero: logical of `allow_hdi_zero` used
+##'   with [plot.size_spectrum_numeric()], with objects
+##'   * `b_mle` maximum likelihood estimate of $b$
+##'   * `b_conf` vector giving 95% confidence interval for $b$
+##'   * `x` vector of original values of `dat`
+##'   * `x_min` the `x_min` value used for the fitting
+##'   * `x_max` the `x_max` value used for the fitting
+##'   * `method` to describe the fitting method used, in this case `MLE`
+##' * If `dat` is a data.frame then returns a list object of class
+##'   `size_spectrum_mlebin` with same objects as above, except for
+##'   * `data` but instead of `x` it is the original `data.frame`, arranged by
+##' the increasing values of `bin_min`, and also has the columns
+##'     * `count_gte_bin_min` total count of values in bins for which `bin_min`
+##' $\geq$ the value of `bin_min` for this row
+##'     * `low_count` total count of values in bins for which `bin_min`
+##' $\geq$ the value of `bin_max` for this row, so the lowest possible count of
+##' values above this bin
+##'     * `high_count` total count of values in bins for which `bin_max`
+##' $\geq$ the value of `bin_min` for this row, so the highest possible count of
+##' values above this bin; for non-overlapping bins will be the same as
+##' `count_gte_bin_min` (but is needed for plotting).
+##' Note that if `x_min` and/or `x_max`
+##' are prescribed such that some data are not included in the fit (e.g. `x_min`
+##' is greater than the `bin_max` of the smallest bin), then they are omitted in `data`.
 ##'
-##' * If `dat` is a data frame then return a list object of class
-##'   `intervals_density_list` with:
-##'   * element `[[i]]` corresponding to column `i` of the `dat_mcmc`. Each
-##'    `[[i]]` element is itself a list of the form described above (since the
-##'    intervals are calculated for each column in turn), plus also the
-##'    `$name` element which is the name of column `i` of `dat_mcmc`.
-##'   * intervals_all_years tibble of all the intervals, with the first column,
-##'    `quantity`, corresponding to each column of `dat_mcmc`, such that row `i`
-##'    corresponds to column `i` of `dat_mcmc`. `quantity` is numeric if no
-##'    column names of `dat_mcmc` contain non-digits (e.g. represents years).
 ##' @export
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##' fit_size_spectrum(sim_vec)
+##' res_vec <- fit_size_spectrum(sim_vec)
+##' plot(res_vec)
 ##'
+##' x_binned <- bin_data(res_vec$x, bin_width = "2k")`
+##' res_mlebin <- fit_size_spectrum(x_binned)
+##' plot(res_mlebin)
 ##' # See the vignettes for further details and refinements.
-##' # Create intervals from the vector MCMC samples for hake recruitment in 2021:
-##' res_vec <- create_intervals(rec_2021)
-##' res_vec
-##' plot(res_vec)    # Plot the default density plot showing the HDI
-##'
-##' # Create intervals from the data frame of MCMC samples for hake recruitment,
-##' #  with each column representing a year:
-##' res_df <- create_intervals(dplyr::select(hake_recruitment_mcmc, -"Virgin"))
-##' res_df
-##' plot(res_df)     # Plot the time series of calculated intervals
 ##' }
 fit_size_spectrum <- function(dat,
                              ...){

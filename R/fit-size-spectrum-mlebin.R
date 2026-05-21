@@ -14,10 +14,7 @@ fit_size_spectrum_mlebin <- function(dat,
                                    # restricted in next lines
   df <- dplyr::arrange(df,
                        bin_min)
- # TODO also combine repeated bins like doing for MLEbins
 
-  # TODO might have to take out 0 counts in end bins. Check here or reduce the
-  # bins. And add to help.
   if(!is.null(x_min)){
     df <- dplyr::filter(df,
                         bin_min >= x_min)
@@ -38,16 +35,14 @@ fit_size_spectrum_mlebin <- function(dat,
   stopifnot("Need x_min < x_max (if not NULL)" =
               x_min < x_max)
 
-  # To match equations, especially for internal tricky computations, but stick
-  # with bin_min and bin_max for user code. TODO though I replace wmin and wmax
-  # maybe with bin_min and bin_max, but not sure if the former was actually a
-  # thing. w is actually all the bin breaks.
+  # w is actually all the bin breaks to match MEPS equations. (bin_min and
+  # bin_max bit more readable than w_min and w_max though)
   w <- c(df$bin_min,
          max(df$bin_max))
 
   d <- df$bin_count
   J <- length(d)             # Number of bins
-  n <- sum(d)     # TODO check if can be non-integer, think maybe. Check GoF stuff.
+  n <- sum(d)
 
   if(x_min <= 0 | x_min >= x_max | d[1] == 0 | d[J] == 0 | min(d) < 0){
     stop("Parameters out of bounds in fit_size_spectrum.data.frame() for MLEbin method")
@@ -73,8 +68,7 @@ fit_size_spectrum_mlebin <- function(dat,
   # count_gte_bin_min is, for a given bin, the total counts >= than that bin's minimum.
 
   count_gte_bin_min <- rep(NA, length = J)
-  low_count <- count_gte_bin_min    # TODO might want this more descriptive, now
-                                    # adding stuff later
+  low_count <- count_gte_bin_min
   high_count <- count_gte_bin_min
 
   # yRange = c(min(data_year$lowCount), max(data_year$highCount))
@@ -86,7 +80,6 @@ fit_size_spectrum_mlebin <- function(dat,
     count_gte_bin_min[iii] <- sum( (df$bin_min >= df$bin_min[iii]) * df$bin_count)
     low_count[iii] <- sum( (df$bin_min >= df$bin_max[iii]) * df$bin_count)
     high_count[iii] <- sum( (df$bin_max > df$bin_min[iii]) * df$bin_count)
-    # TODO understand high_count again
   }
 
   df$count_gte_bin_min <- count_gte_bin_min
@@ -99,8 +92,6 @@ fit_size_spectrum_mlebin <- function(dat,
               x_min = x_min,
               x_max = x_max,
               method = "MLEbin")
-          # TODO mention data can be different to dat, document,
-                            # including low_count etc.
 
   class(res) = c("size_spectrum_mlebin",
                  class(res))

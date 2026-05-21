@@ -21,7 +21,7 @@ fit_size_spectrum.numeric <- function(dat,
 
   n <- length(x)
 
-  stopifnot("Need x_min < x_max (if not NULL) and at least TODO values between them" =
+  stopifnot("Need x_min < x_max (if not NULL) and some values between them" =
               x_min < x_max & n >= 2)
 
   sum_log_x  <- sum(log(x))

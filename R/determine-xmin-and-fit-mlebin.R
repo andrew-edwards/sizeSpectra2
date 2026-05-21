@@ -3,13 +3,20 @@
 ##'
 ##' @param dat tibble of data in the format required for fitting
 ##'   using MLEbin method; see [fit_size_spectrum()].
-##' @return list of class `determine_xmin_and_fit_mlebin` for plotting, containing TODO
-##'   see [determine_xmin_and_fit()] also
+##' @return object of class `determine_xmin_and_fit_mlebin`, such that
+##' [plot.determine_xmin_and_fit_mlebin()] gets used for plotting; a list containing
+##' two list objects
+##' * `mlebin_fit` object of class `size_spectrum_mlebin` from using MLEbin
+##' method; see [fit_size_spectrum.mlebin()]
+##' * `h` histogram object, as used to determine `x_min`
 ##' @export
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##'  TODO
+##' sim_vec_binned_2 <- sim_vec_binned
+##' sim_vec_binned_2[1, "bin_count"] <- 100  # lower count for first bin
+##' res_binned_2 <- determine_xmin_and_fit_mlebin(sim_vec_binned_2)
+##' plot(res_binned_2)
 ##' }
 determine_xmin_and_fit_mlebin <- function(dat,
                                            x_min = NULL,

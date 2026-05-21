@@ -1,31 +1,32 @@
 ##' Analyse gaps to look for outliers (large values with gaps from remaining
-##' continuous values) from MLEbins (TODO others to come) results object
+##' continuous values) from using the MLEbins method.
 ##'
-##' If already run through remove_outliers.size_spectrum_mlebins then it wil
-##' use `detect_outliers.remove_outliers.mlebins()` and can keep iterating that.
-##'
-##' TODO:
+##' If already run through `remove_outliers.size_spectrum_mlebins()` then it wil
+##' use `detect_outliers.remove_outliers.mlebins()` and can keep iterating
+##' that. See [remove_outliers()] for further details and example code.
 ##'
 ##' @param res One of:
-##' * `sizespectrum_mlebins` object.
-##' `gap_ratio` is gap divided by second largest gapTODO list containing two tibbles plus two numerics. Each tibble contains just the data values needed for
-##' calculations, which are `species`, `bin_min`, `bin_max`, and
-##' `bin_count`. `count_gte_bin_min` etc. will be recalculated in the new
-##' analysis. They are:
-##'  * `dat-keep` records that are being kept
-##'  * `dat-removed` records that are removed
-##' Numeric values are:
-##'  * `bin_count_removed` sum of the counts in bins that have been removed
-##'  * `bin_count_removed_prop` proportion of the counts in bins that have been
-##' removed (total counts removed divided by total counts in original data set).
+##' * `size_spectrum_mlebins` object
+##' * `determine_xmin_and_fit_mlebins` object
+##' `gap_ratio` is gap divided by second largest gap
 ##'
+##' @return tibble containing just the data values needed for
+##' calculations, which are the original four columns:
+##' * `species`
+##' * `bin_min`
+##' * `bin_max`
+##' * `bin_count`
+##' plus
+##' * `gap` which is `bin_min` minus the previous `bin_min`
+##' * `gap_ratio` which is the ratio of `gap` to the second largest gap, so makes
+##' it easy to see if the largest gap is much much larger than the second largest.
 ##' @export
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##' detect_outliers(todo)
+##' # See ?remove_outliers for link to example code
 ##' }
-detect_outliers <- function(dat,
+detect_outliers <- function(res,
                             ...){
   UseMethod("detect_outliers")
 }

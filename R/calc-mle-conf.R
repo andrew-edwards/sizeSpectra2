@@ -6,7 +6,7 @@
 ##'  negative log-likelihood function and its arguments (other parameters and data).
 ##'
 ##' Often give warnings that can safely be ignored (see
-##'  `suppress.warnings` description below).
+##'  `suppress.warnings` description below to hide warnings).
 ##' This is a general function that is applicable for any likelihood function,
 ##' not just related to size spectra.
 ##'
@@ -37,7 +37,7 @@
 ##'  the stated upper bounds. So reduce `vec_inc` if further accuracy is
 ##'   needed. Also used even if `vec` is specified by the user but then needs to
 ##'   be expanded (see `vec`).
-##' @param suppress_warnings TODO decide. If TRUE then suppress warnings from the `nlm()`
+##' @param suppress_warnings If TRUE then suppress warnings from the `nlm()`
 ##'   calculations; for the `MEPS_IBTS_MLEbins` vignette these occur a lot, and
 ##'   are always:
 ##'   `Warning in nlm(f = negll.fn, p = p, ...) :
