@@ -19,7 +19,8 @@ add_ticks_to_one_axis <- function(log_scale,
                                   big_ticks_labels,
                                   small_ticks,
                                   small_ticks_by,
-                                  small_ticks_labels){
+                                  small_ticks_labels,
+                                  small_ticks_per_big = 10){
   ll = 1:9
 
   if(log_scale & !is.null(small_ticks_by)){
@@ -141,16 +142,17 @@ add_ticks_to_one_axis <- function(log_scale,
           add_these_ticks <- FALSE
         }
       } else {       # small_ticks_by is NULL and so is small_ticks, so create ticks
-        small_ticks_by <- (big_ticks[2] - big_ticks[1])/10 # TODO small_ticks_per_big
+        small_ticks_by <- (big_ticks[2] - big_ticks[1])/small_ticks_per_big
         small_ticks <-  seq(min(big_ticks),
                             max(big_ticks),
-                            small_ticks_by) # Could maybe check divisible
+                            small_ticks_by) # Should be divisible, assuming
+        # big_ticks equally spaced
         # Then extend 20% of number of values each way to ensure full coverage.
-          small_ticks <- seq(min(small_ticks) - floor(0.2 * length(small_ticks)) *
+        small_ticks <- seq(min(small_ticks) - floor(0.2 * length(small_ticks)) *
                              small_ticks_by,
-                             max(small_ticks) + floor(0.2 * length(small_ticks)) *
+                           max(small_ticks) + floor(0.2 * length(small_ticks)) *
                              small_ticks_by,
-                             small_ticks_by)
+                           small_ticks_by)
       }
 
       if(add_these_ticks){

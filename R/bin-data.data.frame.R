@@ -38,8 +38,7 @@ bin_data.data.frame <- function(dat,
         bin_breaks <- 2^( floor(log2(min_x)) : ceiling(log2(max_x)) )
       } else {
         stop("start_integer needs to be TRUE when
-                   bin_width = 2k")     # TODO think about, may want min to
-                                        # start at min_x
+                   bin_width = 2k")
       }
     } else {    # If not "2k"
       if(!is.numeric(bin_width)){
