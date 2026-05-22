@@ -6,7 +6,12 @@
 to new equal bins based on \code{bin_min}, summing the original counts (which can
 be non-integer).}
 \usage{
-make_hist_for_binned_counts(dat, bin_width = 1, bin_start = NULL)
+make_hist_for_binned_counts(
+  dat,
+  bin_width = 1,
+  bin_start = NULL,
+  x_name = NULL
+)
 }
 \arguments{
 \item{dat}{tibble of data in the format required for fitting
@@ -18,7 +23,12 @@ using MLEbins methods; i.e. at a minimum has to include the columns:
 \item{bin_width}{numeric bin width to fit a histogram to help determine xmin}
 
 \item{bin_start}{numeric value for the first bin to start at; if \code{NULL} then
-is set to the highest multiple of \code{bin_width} value below \code{min(dat$bin_min)}.}
+is set to the highest multiple of \code{bin_width} value below
+\code{min(dat$bin_min)}.}
+
+\item{x_name}{character to use for the histogram x-axis when plotted
+(\code{xname} component of a histogram list); if \code{NULL} (the default) then
+\verb{Total counts in each bin} is used.}
 }
 \value{
 a histogram list object with components (see \code{?hist}):
@@ -33,19 +43,18 @@ a histogram list object with components (see \code{?hist}):
 \description{
 Called from
 \code{\link[=determine_xmin_and_fit_mlebins]{determine_xmin_and_fit_mlebins()}} to determine xmin for MLEbins
-method. Adapting from \code{sizeSpectraFit::make_hist()} and the old
-sizeSpectraHake::make_hist()`. TODO can delete that sentence once satisfied
-}
-\details{
+method.
+Counts for an original bin are assigned to the new bin for which the
+original \code{bin_min} falls into.
 Gives values as a histogram list object and creates 0 counts for missing bins.
 Can then use \code{plot()} which calls \code{plot.histogram()}. Without the 0 counts for missing bins
 \code{plot.histogram()} does not plot counts because bins appear to have unequal widths.
 }
 \examples{
 \dontrun{
-TODO counts_per_bin_example
-make_hist(counts_per_bin_example)
-TODO for test do
+hh <- make_hist_for_binned_counts(sim_vec_binned)
+hh
+plot(hh)
 }
 }
 \author{

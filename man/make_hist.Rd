@@ -4,7 +4,7 @@
 \alias{make_hist}
 \title{Convert a vector of body sizes into a histogram list object and create 0 counts for missing bins.}
 \usage{
-make_hist(x, bin_width = 1, bin_start = NULL)
+make_hist(x, bin_width = 1, bin_start = NULL, x_name = NULL)
 }
 \arguments{
 \item{x}{numeric vector of values.}
@@ -12,10 +12,13 @@ make_hist(x, bin_width = 1, bin_start = NULL)
 \item{bin_width}{numeric bin width for the data set.}
 
 \item{bin_start}{numeric value for the first bin to start at; if \code{NULL} then
-set to the next \code{bin_width} value below \code{min(x)}. If \code{bin_width = 1} then this will
-be the integer below \code{min(x)} (i.e. \code{min(x) \%/\% 1} TODO add to tests). If,
-say, \code{min(x) = 10.6} and \code{bin_width = 0.5} then \code{bin_start = 10.5}. TODO
-lots of tests.}
+set to the next multiple of \code{bin_width} below \code{min(x)}. If \code{bin_width = 1} then this will
+be the integer below \code{min(x)} (i.e. \code{min(x) \%/\% 1}). If,
+say, \code{min(x) = 10.6} and \code{bin_width = 0.5} then \code{bin_start = 10.5}.}
+
+\item{x_name}{character to use for the histogram x-axis when plotted
+(\code{xname} component of a histogram list); if \code{NULL} (the default) then
+\verb{Body length (x), mm} is used.}
 }
 \value{
 a histogram list object with components (see \code{?hist}):
@@ -23,15 +26,11 @@ a histogram list object with components (see \code{?hist}):
 \item \code{breaks}
 \item \code{mids}
 \item \code{counts}
-\item \code{xname}  TODO make this the default \code{"Body length (x), mm"},
+\item \code{xname}
 \item \code{equidist} TRUE since have equal bin widths
 }
 }
 \description{
-TODO See R/sizeSpectraHake/make_hist.R if want to do a tibble; then prob
-have to make generic functions, so this would become make_hist.numeric.
-}
-\details{
 Can then use \code{plot()} which calls \code{plot.histogram()}. Without the 0 counts for missing bins
 \code{plot.histogram()} does not plot counts because bins appear to have unequal widths.
 }
@@ -39,10 +38,6 @@ Can then use \code{plot()} which calls \code{plot.histogram()}. Without the 0 co
 \dontrun{
 x <- 1:10
 make_hist(x)
-
-TODO for test do
-x <- 1:49
-and make up other ones
 }
 }
 \author{

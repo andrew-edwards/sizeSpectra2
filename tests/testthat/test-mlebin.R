@@ -71,6 +71,10 @@ test_that("MLEbin fitting and plotting works and matches original results", {
   expect_equal(make_hist(1:10)$breaks[10],
                10)
 
+  expect_equal(make_hist(c(10.6, 10.8, 14),
+                         bin_width = 0.5)$breaks[1],
+               10.5)
+
   # Check what happens when only one bin gets fit
   sim_vec_binned_3 <- sim_vec_binned
   sim_vec_binned_3[9, "bin_count"] <- 1000000  # big count for last bin (gets normalised)

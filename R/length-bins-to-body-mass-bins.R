@@ -54,14 +54,20 @@
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##'  # Example using the first 1000 lines of the Mediterranean data in the
-##'   package, copy from vignette:
-##' med_subset <- mediterranean_data[1:1000, ]
-##' # TODO need to functionalise the conversion of lengths to length bins
-##'  mediterranean_example <-
-##'   length_bins_to_body_mass_bins(med_subset,
-##'                                 mediterranean_length_weight_coefficients,
-##' TODO, ...)
+##' # Non crustaceans in Mediterranean data were all measured to 1 mm (med-analysis-4.Rmd)
+##' non_crust <- dplyr::filter(mediterranean_data,
+##'                            group != "Crustacea")
+##' non_crust_with_breaks <- calc_bin_breaks(non_crust,
+##'                                          bin_width = 1) %>%
+##'   dplyr::rename(bin_count = number)
+##'
+##' non_crust_with_breaks        # has length_bin_min, length_bin_max, bin_count
+##'                              # as as required for length_bins_to_body_mass_bins()
+##' res <- length_bins_to_body_mass_bins(non_crust_with_breaks,
+##'                                      mediterranean_length_weight_coefficients,
+##'                                      length_data_unit = "mm")
+##' res
+##' res[1:10, ] %>% a()          # to see weight_bin_min and weight_bin_max
 ##' }
 length_bins_to_body_mass_bins <- function(dat,
                                           coefficients,
@@ -95,9 +101,7 @@ length_bins_to_body_mass_bins <- function(dat,
                                   alpha = 1000 * alpha)
   }
 
-  if(length_data_unit == "mm"){   # need it in cm    TODO need to test if
-                                  # correct with this and length_relatinships
-                                  # both mm
+  if(length_data_unit == "mm"){
     dat <- dplyr::mutate(dat,
                          length_bin_min = length_bin_min / 10,
                          length_bin_max = length_bin_max / 10)

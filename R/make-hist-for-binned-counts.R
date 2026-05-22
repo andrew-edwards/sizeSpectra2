@@ -4,9 +4,9 @@
 ##'
 ##' Called from
 ##' [determine_xmin_and_fit_mlebins()] to determine xmin for MLEbins
-##' method. Adapting from `sizeSpectraFit::make_hist()` and the old
-##' sizeSpectraHake::make_hist()`. TODO can delete that sentence once satisfied
-##'
+##' method.
+##' Counts for an original bin are assigned to the new bin for which the
+##' original `bin_min` falls into.
 ##' Gives values as a histogram list object and creates 0 counts for missing bins.
 ##' Can then use `plot()` which calls `plot.histogram()`. Without the 0 counts for missing bins
 ##' `plot.histogram()` does not plot counts because bins appear to have unequal widths.
@@ -18,7 +18,11 @@
 ##'     * `bin_count`.
 ##' @param bin_width numeric bin width to fit a histogram to help determine xmin
 ##' @param bin_start numeric value for the first bin to start at; if `NULL` then
-##'   is set to the highest multiple of `bin_width` value below `min(dat$bin_min)`.
+##'   is set to the highest multiple of `bin_width` value below
+##' `min(dat$bin_min)`.
+##' @param x_name character to use for the histogram x-axis when plotted
+##' (`xname` component of a histogram list); if `NULL` (the default) then
+##' `Total counts in each bin` is used.
 ##' @return a histogram list object with components (see `?hist`):
 ##'  - `breaks`
 ##'  - `mids`
@@ -29,17 +33,22 @@
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##' TODO counts_per_bin_example
-##' make_hist(counts_per_bin_example)
-##' TODO for test do
+##' hh <- make_hist_for_binned_counts(sim_vec_binned)
+##' hh
+##' plot(hh)
 ##' }
 make_hist_for_binned_counts <- function(dat,
                                         bin_width = 1,
-                                        bin_start = NULL){
+                                        bin_start = NULL,
+                                        x_name = NULL){
 
   if(is.null(bin_start)){
     bin_start <- min(dat$bin_min) -
       min(dat$bin_min) %% bin_width
+  }
+
+  if(is.null(x_name)){
+    x_name = "Total counts in each bin"
   }
 
   # Vector of histogram bin breaks that we want to ascribe data to:
@@ -77,7 +86,7 @@ make_hist_for_binned_counts <- function(dat,
                      by = "hist_bin_min") %>%
     tidyr::replace_na(list(total_count = 0))
 
-  # TODO may need to think about this for MLEbin, do some tests. Keep all this
+  # May need to think about this for MLEbin, do some tests. Keep all this
   # thinking in case we find an edge case for MLEbins; see -mlebin.R also.
   # From sizeSpectra::fitting() to do with LBNbiom method.
   # Don't think need this, but might for MLEbin  if the function needs
@@ -104,15 +113,14 @@ make_hist_for_binned_counts <- function(dat,
   #                                          max(counts_per_bin$binMid),
   #                                          bin_width))
 
-
-  # Don't think it matters if first or final bins have zero counts (latter
+  # It does not matter if first or final bins have zero counts (latter
   # should probably not happen anyway given how bins are constructed, though
   # might do in edge cases). This is just for determining xmin, not actually fitting.
 
   hist_res_list <- list(breaks = hist_breaks,
                    mids = hist_bin_min + bin_width/2,
                    counts = hist_bin_all_bins$total_count,
-                   xname = "Total counts in each bin",
+                   xname = x_name,
                    equidist = TRUE)
 
   class(hist_res_list) <- "histogram"
