@@ -7,7 +7,7 @@
 ##' [plot.determine_xmin_and_fit_mlebin()] gets used for plotting; a list containing
 ##' two list objects
 ##' * `mlebin_fit` object of class `size_spectrum_mlebin` from using MLEbin
-##' method; see [fit_size_spectrum.mlebin()]
+##' method; see [fit_size_spectrum()]
 ##' * `h` histogram object, as used to determine `x_min`
 ##' @export
 ##' @author Andrew Edwards

@@ -2,27 +2,28 @@
 ##' determine a common binning and use that to calculate `x_min` and then fit
 ##' using MLEbins.
 ##'
+##' See
+##' [fit-data-mlebins vignette](https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data-mlebins.html)
+##' for explanation.
+##'
 ##' @param dat_for_mlebins tibble of data in the format required for fitting
-##'   using MLEbins method. TODO
-##' @return list of class `determine_xmin_and_fit_mlebins` for plotting, containing TODO
-##'   see [determine_xmin_and_fit()] also
+##'   using MLEbins method; see [fit_size_spectrum()].
+##' @return list of class `determine_xmin_and_fit_mlebins` for plotting, containing
+##' * `mlebins_fit` object of class `size_spectrum_mlebins` from using MLEbins
+##' method; see [fit_size_spectrum()]
+##' * `h` histogram object, as used to determine `x_min`
 ##' @export
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##'  TODO
+##' # See fit-data-mlebins vignette, rendered at
+##' #  https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data-mlebins.html
 ##' }
 determine_xmin_and_fit_mlebins <- function(dat_for_mlebins,
                                            bin_width = 1,
                                            bin_start = 0,
                                            x_min = NULL,
                                            ...){
-
-  # TODO need to amalgamate repeated combinations of bin_min, bin_max, and then
-  # sum the bin_counts. Have done this somewhere maybe a vignette, so need to check where and
-  # ensure it gets done for all fitting, and recommend to do early in the
-  # analyses (would save a little computation time, but more important
-  # here). Prob best to do in fit_size_spectrum_mlebins() than here.
 
   # Need to be pragmatic, since have overlapping bins. Since assuming a power
   # law, kind of expect counts to be shifted to the low end of the bin. Use this
@@ -39,7 +40,7 @@ determine_xmin_and_fit_mlebins <- function(dat_for_mlebins,
     # Now set x_min to be the minimum value that is above x_min_based_on_hist,
     #  because the latter is based on histograms bin breaks (which are somewhat
     #  arbitrary, though likely integers). This will also work for the case
-    #  where x_min_based_on_hist comes outt as 0.
+    #  where x_min_based_on_hist comes out as 0.
     x_min = min(dplyr::filter(dat_for_mlebins,
                               bin_min >= x_min_based_on_hist)$bin_min)
   }

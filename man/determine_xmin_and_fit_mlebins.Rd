@@ -16,20 +16,25 @@ determine_xmin_and_fit_mlebins(
 }
 \arguments{
 \item{dat_for_mlebins}{tibble of data in the format required for fitting
-using MLEbins method. TODO}
+using MLEbins method; see \code{\link[=fit_size_spectrum]{fit_size_spectrum()}}.}
 }
 \value{
-list of class \code{determine_xmin_and_fit_mlebins} for plotting, containing TODO
-see \code{\link[=determine_xmin_and_fit]{determine_xmin_and_fit()}} also
+list of class \code{determine_xmin_and_fit_mlebins} for plotting, containing
+\itemize{
+\item \code{mlebins_fit} object of class \code{size_spectrum_mlebins} from using MLEbins
+method; see \code{\link[=fit_size_spectrum]{fit_size_spectrum()}}
+\item \code{h} histogram object, as used to determine \code{x_min}
+}
 }
 \description{
-Given data for MLEbins calculation, with species-specific weight bins,
-determine a common binning and use that to calculate \code{x_min} and then fit
-using MLEbins.
+See
+\href{https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data-mlebins.html}{fit-data-mlebins vignette}
+for explanation.
 }
 \examples{
 \dontrun{
- TODO
+# See fit-data-mlebins vignette, rendered at
+#  https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data-mlebins.html
 }
 }
 \author{

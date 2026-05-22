@@ -17,7 +17,7 @@ object of class \code{determine_xmin_and_fit_mlebin}, such that
 two list objects
 \itemize{
 \item \code{mlebin_fit} object of class \code{size_spectrum_mlebin} from using MLEbin
-method; see \code{\link[=fit_size_spectrum.mlebin]{fit_size_spectrum.mlebin()}}
+method; see \code{\link[=fit_size_spectrum]{fit_size_spectrum()}}
 \item \code{h} histogram object, as used to determine \code{x_min}
 }
 }

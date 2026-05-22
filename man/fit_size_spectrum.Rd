@@ -100,12 +100,12 @@ with \code{\link[=plot.size_spectrum_numeric]{plot.size_spectrum_numeric()}}, wi
 the increasing values of \code{bin_min}, and also has the columns
 \itemize{
 \item \code{count_gte_bin_min} total count of values in bins for which \code{bin_min}
-$\geq$ the value of \code{bin_min} for this row
+\eqn{\geq} the value of \code{bin_min} for this row
 \item \code{low_count} total count of values in bins for which \code{bin_min}
-$\geq$ the value of \code{bin_max} for this row, so the lowest possible count of
+\eqn{\geq} the value of \code{bin_max} for this row, so the lowest possible count of
 values above this bin
 \item \code{high_count} total count of values in bins for which \code{bin_max}
-$\geq$ the value of \code{bin_min} for this row, so the highest possible count of
+\eqn{\geq} the value of \code{bin_min} for this row, so the highest possible count of
 values above this bin; for non-overlapping bins will be the same as
 \code{count_gte_bin_min} (but is needed for plotting).
 Note that if \code{x_min} and/or \code{x_max}

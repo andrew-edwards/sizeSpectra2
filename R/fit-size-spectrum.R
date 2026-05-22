@@ -50,12 +50,12 @@
 ##'   * `data` but instead of `x` it is the original `data.frame`, arranged by
 ##' the increasing values of `bin_min`, and also has the columns
 ##'     * `count_gte_bin_min` total count of values in bins for which `bin_min`
-##' $\geq$ the value of `bin_min` for this row
+##' \eqn{\geq} the value of `bin_min` for this row
 ##'     * `low_count` total count of values in bins for which `bin_min`
-##' $\geq$ the value of `bin_max` for this row, so the lowest possible count of
+##' \eqn{\geq} the value of `bin_max` for this row, so the lowest possible count of
 ##' values above this bin
 ##'     * `high_count` total count of values in bins for which `bin_max`
-##' $\geq$ the value of `bin_min` for this row, so the highest possible count of
+##' \eqn{\geq} the value of `bin_min` for this row, so the highest possible count of
 ##' values above this bin; for non-overlapping bins will be the same as
 ##' `count_gte_bin_min` (but is needed for plotting).
 ##' Note that if `x_min` and/or `x_max`
