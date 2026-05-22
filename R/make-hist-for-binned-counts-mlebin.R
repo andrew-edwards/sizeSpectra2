@@ -25,9 +25,9 @@
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##' TODO counts_per_bin_example
-##' make_hist(counts_per_bin_example)
-##' TODO for test do
+##' sim_vec_binned
+##' hh <- make_hist_for_binned_counts_mlebin(sim_vec_binned)
+##' plot(hh)
 ##' }
 make_hist_for_binned_counts_mlebin <- function(dat){
 
