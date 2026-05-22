@@ -1,22 +1,44 @@
 ##' Extract and format the required Mediterranean data for MLEbins analysis, for
 ##'  a given strata and group
 ##'
-##' See `zabala-data-analysis.Rmd`. This is specific to this data set, but can
-##'   easily be adapted/generalised for others TODO mention that sums rows that
-##' are the same
-##' @param dat tibble of data already with certain columns TODO
-##' @param group_name group to analyse, if not specified then use all  TODO
-##'   think if can be vector, is.null might not work
-##' @param strata_name strata to analyse, if not specified then use all
+##' This is specific for the Mediterranean data set, but can
+##'   easily be adapted/generalised for others. It amalgamates rows that are
+##' identical (counts of the same length of the same species measured in the same strata).
+##' @param dat tibble of data already with certain columns, namely must include
+##'  `strata`, `group`, `species`, `length_bin_min`, `bin_count`, `weight_bin_min`, `weight_bin_max`
+##'
+##' @param group_name `character` the group(s) to analyse (can be a vector of
+##' group names), if not specified then use all
+##' @param strata_name `character` the strata to analyse (can be a vector of
+##' strata names), if not specified then use all
 ##' @param minimum_length remove fish shorter than this
-##' @param maximum_length  remove fish longer than this  TODO not incorporated yet
-##' @return tibble to go into [fit_size_spectrum()], including the species
-##'   column so it uses MLEbins method TODO double check that flow through
+##' @param maximum_length  remove fish longer than this (note: this was based on
+##' `length` column but just switched it to `length_bin_min` column which is
+##' more correct; may change some older results if rerunning anything; 22/5/26.
+##' @return tibble with columns `species`, `bin_min`, `bin_max`, `bin_count`, to
+##' go into [determine_xmin_and_fit_mlebins()], or maybe just
+##' [fit_size_spectrum_mlebins()], including the `species` column, to use the
+##' MLEbins method
 ##' @export
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
+##' dat <- dplyr::filter(mediterranean_data,
+##'                      group == "Cephalopoda",
+##'                      strata == "fg")
 ##'
+##' dat_with_breaks <- calc_bin_breaks(dat,
+##'                                   bin_width = 1) %>%
+##' dplyr::rename(bin_count = number)
+##' dat_joined <-
+##'   length_bins_to_body_mass_bins(dat_with_breaks,
+##'                                 mediterranean_length_weight_coefficients,
+##'                                 length_data_unit = "mm")
+##' dat_joined
+##' dat_needed <- mediterranean_for_mlebins(dat_joined) %>%
+##'   dplyr::filter(bin_min < 20)
+##' dat_needed
+##' res <- determine_xmin_and_fit_mlebins(dat_needed)
 ##' }
 mediterranean_for_mlebins <- function(dat,
                                       group_name = NULL,
@@ -31,14 +53,14 @@ mediterranean_for_mlebins <- function(dat,
     strata_name <- unique(dat$strata)
   }
 
-
   temp <- dplyr::filter(dat,
                         group %in% group_name,
                         strata %in% strata_name)
 
   if(!is.null(minimum_length)){
     temp <- dplyr::filter(temp,
-                          length >= minimum_length)
+                          length_bin_min >= minimum_length)  # was length, may
+    # change some old results?
   }
 
   temp <- dplyr::select(temp,
