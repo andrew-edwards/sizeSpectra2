@@ -7,8 +7,7 @@
 ##'  the MLEbins method derived as equations (S.18) and (S.26) in MEPS paper.
 ##'  Returns the negative log-likelihood.
 ##' Will be called by `calc_mle_conf()` via
-##' `fit_size_spectrum_mlebins()` which gets called from
-##' `fit_size_spectrum.data.frame()`, but `x_min` and `x_max`
+##' `fit_size_spectrum_mlebins()`, but `x_min` and `x_max`
 ##' will just be estimated as the minimum of lowest bin and maximum of the
 ##' largest bin, respectively, (since they are the MLEs), no need to do
 ##' numerically. See Supplementary Material of MEPS paper for derivation, and
@@ -24,11 +23,15 @@
 ##'  * `bin_max`: upper bound of the bin, `w_\{s, j+1\}`
 ##'  * `bin_count`: count in that bin for that species, `d_\{sj\}`
 ##'  For each species the first and last bins must be non-empty, i.e.
-##'   `w_\{s1\}, w_\{s,J_s +1\} > 0`.   TODO add a check for that
+##'   `w_\{s1\}, w_\{s,J_s +1\} > 0`. Actually, I think it's just for the
+##' species-bin combinations which have
+##' the overall minimum value of `w_\{s1\}` and the maximum value of `w_\{s,J_s
+##' +1\}` as these define `x_min` and `x_max`. Have added an error message in
+##' [fit_size_spectrum_mlebins()] if this is not the case.
 ##' @param n total number of counts `n = \sum_\{sj\} d_\{sj\}` over all `s` and `j`
-##' @param xmin maximum likelihood estimate for `xmin`, `xmin = min_\{sj\}
+##' @param x_min maximum likelihood estimate for `x_min`, `x_min = min_\{sj\}
 ##'   w_\{s, 1\}`, as an input to avoid repeatedly calculating.
-##' @param xmax maximum likelihood estimate for `xmax`, `xmax = max_\{sj\}
+##' @param x_max maximum likelihood estimate for `x_max`, `x_max = max_\{sj\}
 ##'   w_\{s, J_s+1\}`, as an input to avoid repeatedly calculating
 ##' @return  negative log-likelihood of the parameters given the data
 ##' @author Andrew Edwards

@@ -14,29 +14,50 @@ mediterranean_for_mlebins(
 )
 }
 \arguments{
-\item{dat}{tibble of data already with certain columns TODO}
+\item{dat}{tibble of data already with certain columns, namely must include
+\code{strata}, \code{group}, \code{species}, \code{length_bin_min}, \code{bin_count}, \code{weight_bin_min}, \code{weight_bin_max}}
 
-\item{group_name}{group to analyse, if not specified then use all  TODO
-think if can be vector, is.null might not work}
+\item{group_name}{\code{character} the group(s) to analyse (can be a vector of
+group names), if not specified then use all}
 
-\item{strata_name}{strata to analyse, if not specified then use all}
+\item{strata_name}{\code{character} the strata to analyse (can be a vector of
+strata names), if not specified then use all}
 
 \item{minimum_length}{remove fish shorter than this}
 
-\item{maximum_length}{remove fish longer than this  TODO not incorporated yet}
+\item{maximum_length}{remove fish longer than this (note: this was based on
+\code{length} column but just switched it to \code{length_bin_min} column which is
+more correct; may change some older results if rerunning anything; 22/5/26.}
 }
 \value{
-tibble to go into \code{\link[=fit_size_spectrum]{fit_size_spectrum()}}, including the species
-column so it uses MLEbins method TODO double check that flow through
+tibble with columns \code{species}, \code{bin_min}, \code{bin_max}, \code{bin_count}, to
+go into \code{\link[=determine_xmin_and_fit_mlebins]{determine_xmin_and_fit_mlebins()}}, or maybe just
+\code{\link[=fit_size_spectrum_mlebins]{fit_size_spectrum_mlebins()}}, including the \code{species} column, to use the
+MLEbins method
 }
 \description{
-See \code{zabala-data-analysis.Rmd}. This is specific to this data set, but can
-easily be adapted/generalised for others TODO mention that sums rows that
-are the same
+This is specific for the Mediterranean data set, but can
+easily be adapted/generalised for others. It amalgamates rows that are
+identical (counts of the same length of the same species measured in the same strata).
 }
 \examples{
 \dontrun{
+dat <- dplyr::filter(mediterranean_data,
+                     group == "Cephalopoda",
+                     strata == "fg")
 
+dat_with_breaks <- calc_bin_breaks(dat,
+                                  bin_width = 1) \%>\%
+dplyr::rename(bin_count = number)
+dat_joined <-
+  length_bins_to_body_mass_bins(dat_with_breaks,
+                                mediterranean_length_weight_coefficients,
+                                length_data_unit = "mm")
+dat_joined
+dat_needed <- mediterranean_for_mlebins(dat_joined) \%>\%
+  dplyr::filter(bin_min < 20)
+dat_needed
+res <- determine_xmin_and_fit_mlebins(dat_needed)
 }
 }
 \author{

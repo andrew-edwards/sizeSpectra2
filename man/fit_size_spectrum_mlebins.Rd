@@ -25,19 +25,22 @@ bounds of that bin, with \code{bin_count} being the count of individuals in that
 bin. Note that \code{bin_count} can be non-integer, which, in particular, happens
 when integer counts are scaled by effort. An extra column may well be
 \code{species} identification, though this is not needed for the analysis (extra
-columns are preserved in the output).
+columns are preserved in the output). The bin with the smallest \code{bin_min}
+value and the bin with the largest \code{bin_max} value must both have non-zero
+\code{bin_count} unless you explicitly specify \code{x_min} and/or \code{x_max} as appropriate.
 }}
 
 \item{x_min}{minimum value of data to fit the PLB distribution to. If \code{NULL}
 (the default) then it is set to the minimum bin break of the lowest
-bin. If not \code{NULL}
+bin (which must have non-zero \code{bin_count} as mentioned above). If not \code{NULL}
 then the fitting is restricted to values greater than or equal to
 \code{x_min}, which for the MLEbins method is the first full bin equal to or above \code{x_min}
 (i.e. first bin with \code{bin_min >= x_min}). Similarly for \code{x_max} (fitting
 is restricted to including the largest bin for which \code{bin_max <= x_max}).}
 
 \item{x_max}{maximum value of data to fit the PLB distribution to. If \code{NULL}
-(the default) then it is set to the maximum bin break of the highest bin}
+(the default) then it is set to the maximum bin break of the highest bin
+(which must have non-zero \code{bin_count} as mentioned above.)}
 
 \item{b_start}{for the MLEbins method, the starting estimate for numerical
 search for the MLE; since there is no analytical value that can be
@@ -79,8 +82,9 @@ is greater than the \code{bin_max} of the smallest bin), then they are omitted i
 The MLEbins method calculates the maximum likelihood estimate
 of the size-spectrum exponent, $b$, when the data are collected as lengths and
 we have species-specific length-weight coefficients. So individual body masses
-are not available. Or, ff you have binned body masses but the bins overlap,
-then you also need to use MLEbins. The method is desribed in our MEPS paper.
+are not available. Or, if you have binned body masses but the bins overlap,
+then you also need to use MLEbins. The method is described in our MEPS
+paper.
 }
 \examples{
 \dontrun{

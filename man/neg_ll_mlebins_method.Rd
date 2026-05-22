@@ -10,6 +10,10 @@ neg_ll_mlebins_method(b, x_min, x_max, data_for_mlebins, n)
 \arguments{
 \item{b}{value of b for which to calculate the negative log-likelihood}
 
+\item{x_min}{maximum likelihood estimate for \code{x_min}, \verb{x_min = min_\\\{sj\\\} w_\\\{s, 1\\\}}, as an input to avoid repeatedly calculating.}
+
+\item{x_max}{maximum likelihood estimate for \code{x_max}, \verb{x_max = max_\\\{sj\\\} w_\\\{s, J_s+1\\\}}, as an input to avoid repeatedly calculating}
+
 \item{data_for_mlebins}{tibble where each row is the count (can be
 non-integer) in a bin
 of a species, and columns (and corresponding mathematical notation in MEPS
@@ -20,14 +24,13 @@ Supplementary Material) are:
 \item \code{bin_max}: upper bound of the bin, \verb{w_\\\{s, j+1\\\}}
 \item \code{bin_count}: count in that bin for that species, \verb{d_\\\{sj\\\}}
 For each species the first and last bins must be non-empty, i.e.
-\verb{w_\\\{s1\\\}, w_\\\{s,J_s +1\\\} > 0}.   TODO add a check for that
+\verb{w_\\\{s1\\\}, w_\\\{s,J_s +1\\\} > 0}. Actually, I think it's just for the
+species-bin combinations which have
+the overall minimum value of \verb{w_\\\{s1\\\}} and the maximum value of \verb{w_\\\{s,J_s +1\\\}} as these define \code{x_min} and \code{x_max}. Have added an error message in
+\code{\link[=fit_size_spectrum_mlebins]{fit_size_spectrum_mlebins()}} if this is not the case.
 }}
 
 \item{n}{total number of counts \verb{n = \\sum_\\\{sj\\\} d_\\\{sj\\\}} over all \code{s} and \code{j}}
-
-\item{xmin}{maximum likelihood estimate for \code{xmin}, \verb{xmin = min_\\\{sj\\\} w_\\\{s, 1\\\}}, as an input to avoid repeatedly calculating.}
-
-\item{xmax}{maximum likelihood estimate for \code{xmax}, \verb{xmax = max_\\\{sj\\\} w_\\\{s, J_s+1\\\}}, as an input to avoid repeatedly calculating}
 }
 \value{
 negative log-likelihood of the parameters given the data
@@ -39,8 +42,7 @@ species-specific. This is
 the MLEbins method derived as equations (S.18) and (S.26) in MEPS paper.
 Returns the negative log-likelihood.
 Will be called by \code{calc_mle_conf()} via
-\code{fit_size_spectrum_mlebins()} which gets called from
-\code{fit_size_spectrum.data.frame()}, but \code{x_min} and \code{x_max}
+\code{fit_size_spectrum_mlebins()}, but \code{x_min} and \code{x_max}
 will just be estimated as the minimum of lowest bin and maximum of the
 largest bin, respectively, (since they are the MLEs), no need to do
 numerically. See Supplementary Material of MEPS paper for derivation, and

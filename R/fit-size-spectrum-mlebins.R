@@ -3,8 +3,10 @@
 ##' The MLEbins method calculates the maximum likelihood estimate
 ##' of the size-spectrum exponent, $b$, when the data are collected as lengths and
 ##' we have species-specific length-weight coefficients. So individual body masses
-##' are not available. Or, ff you have binned body masses but the bins overlap,
-##' then you also need to use MLEbins. The method is desribed in our MEPS paper.
+##' are not available. Or, if you have binned body masses but the bins overlap,
+##' then you also need to use MLEbins. The method is described in our MEPS
+##' paper.
+##'
 ##' @param dat `data.frame` of the data to be fit using MLEbins, where each row represents a
 ##' bin. At a minimum this has to include the columns:
 ##'   * `bin_min`
@@ -15,16 +17,19 @@
 ##' bin. Note that `bin_count` can be non-integer, which, in particular, happens
 ##' when integer counts are scaled by effort. An extra column may well be
 ##' `species` identification, though this is not needed for the analysis (extra
-##' columns are preserved in the output).
+##' columns are preserved in the output). The bin with the smallest `bin_min`
+##' value and the bin with the largest `bin_max` value must both have non-zero
+##' `bin_count` unless you explicitly specify `x_min` and/or `x_max` as appropriate.
 ##' @param x_min minimum value of data to fit the PLB distribution to. If `NULL`
 ##'   (the default) then it is set to the minimum bin break of the lowest
-##' bin. If not `NULL`
+##' bin (which must have non-zero `bin_count` as mentioned above). If not `NULL`
 ##'   then the fitting is restricted to values greater than or equal to
 ##'   `x_min`, which for the MLEbins method is the first full bin equal to or above `x_min`
 ##'   (i.e. first bin with `bin_min >= x_min`). Similarly for `x_max` (fitting
 ##'   is restricted to including the largest bin for which `bin_max <= x_max`).
 ##' @param x_max maximum value of data to fit the PLB distribution to. If `NULL`
 ##'   (the default) then it is set to the maximum bin break of the highest bin
+##' (which must have non-zero `bin_count` as mentioned above.)
 ##' @param b_vec vector of values for the confidence interval calculation, to be
 ##'   used as the `vec` argument of `calc_mle_conf()`
 ##' @param b_vec_inc increment value for the confidence interval calculation, to be
@@ -85,14 +90,26 @@ fit_size_spectrum_mlebins <- function(dat,
     df <- dplyr::filter(df,
                         bin_min >= x_min)
   } else {
-    x_min <- min(df$bin_min)
+    if(df[1, "bin_count"] == 0){
+      # already arranged in order above; if 0 then do not want to use to calculate
+      # x_min; have not fully thought about if the lowest is 0 but equal lowest
+      # (has the same bin_min) is non-zero
+      stop("Need to have a non-zero bin_count for the bin with the smallest bin_min when not specifying x_min; remove such a bin and rerun.")
+    } else {
+      x_min <- min(df$bin_min)
+    }
   }
 
   if(!is.null(x_max)){
     df <- dplyr::filter(df,
                         bin_max <= x_max)
   } else {
+    if(df[which.max(df$bin_max), "bin_count"] == 0){   # might error if multiple
+      # but that's okay
+      stop("Need to have a non-zero bin_count for the bin with the largest bin_max when not specifying x_max; remove such a bin and rerun.")
+    } else {
     x_max <- max(df$bin_max)
+    }
   }
 
   if(x_min <= 0 | x_min >= x_max){
@@ -144,5 +161,4 @@ fit_size_spectrum_mlebins <- function(dat,
                  class(res))
 
   return(res)
-
 }
