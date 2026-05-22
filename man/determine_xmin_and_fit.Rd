@@ -7,34 +7,21 @@
 determine_xmin_and_fit(dat, bin_width = 1, bin_start = NULL, ...)
 }
 \arguments{
-\item{dat}{\code{numeric} vector of values (such as individual body masses or lengths), which uses
-the MLE method.}
+\item{dat}{\code{numeric} vector of values (such as individual body masses or
+lengths), for which we want to use the MLE method, but first want to
+determine \code{x_min}.}
 
-\item{...}{arguments to pass onto fit....}
+\item{...}{arguments to pass onto \code{\link[=fit_size_spectrum.numeric]{fit_size_spectrum.numeric()}}}
 }
 \value{
-list of class \code{determine_xmin_and_fit} for plotting, containing (see
-above for details) TODO
-\describe{
-\item{bin_width}{argument of function}
-\item{x_min}{as determined}
-\item{x_max}{TODO}
-\item{n}{sample size (length) of \code{dat}}
-\item{counts_per_bin}{TODO}
-\item{counts_per_bin_desc}{counts in the descending limb, including the
-peak}
-\item{b_l}{TODO}
-\item{b_l_confMin}{TODO}
-\item{b_l_confMax}{TODO}
+list of class \code{determine_xmin_and_fit} for plotting, containing two objects:
+\itemize{
+\item \code{mle_fit} object of class \code{size_spectrum_numeric} from using MLE
+method; see \code{\link[=fit_size_spectrum]{fit_size_spectrum()}}
+\item \code{h} histogram object, as used to determine \code{x_min}
 }
 }
 \description{
-TODO can't make a generic function because for mlebins we don't
-have a class of input.  Seems better to explicitly specify the method to be
-used, either mle, mlebin or mlebins.
-TODO going to see if mlebins code will work for mlebin
-}
-\details{
 The \code{x_min} value is determined by constructing a histogram of bin width
 \code{bin_width}, starting from \code{bin_start} (for the \code{NULL} default see
 \code{\link[=make_hist]{make_hist()}}), and selecting the bin with the highest count. \code{x_min} is
@@ -48,7 +35,7 @@ spectrum to the data using \code{\link[=fit_size_spectrum.numeric]{fit_size_spec
 data <- c(runif(100, 0.1, 10),
           rPLB(1000, -2, xmin = 10))     #a few values then a PLB
 res <- determine_xmin_and_fit(data)
-plot(res)
+plot(res)     # histogram shows the grey values that are not used for fitting
 
 }
 }
