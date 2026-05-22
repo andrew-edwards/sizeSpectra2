@@ -21,7 +21,15 @@ Given histogram object of counts and bins (and maybe density) , determine the mo
 }
 \examples{
 \dontrun{
- TODO
+sim_vec_binned_2 <- sim_vec_binned
+sim_vec_binned_2[1, "bin_count"] <- 100  # lower count for first bin
+hh <- make_hist_for_binned_counts_mlebin(sim_vec_binned)
+x_min <- determine_xmin_based_on_hist(hh)
+x_min
+
+# The above gets calculated automatically within:
+res_binned_2 <- determine_xmin_and_fit_mlebin(sim_vec_binned_2)
+plot(res_binned_2)
 }
 }
 \author{

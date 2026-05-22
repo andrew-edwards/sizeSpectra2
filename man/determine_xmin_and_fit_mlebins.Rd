@@ -16,13 +16,13 @@ determine_xmin_and_fit_mlebins(
 }
 \arguments{
 \item{dat_for_mlebins}{tibble of data in the format required for fitting
-using MLEbins method; see \code{\link[=fit_size_spectrum]{fit_size_spectrum()}}.}
+using MLEbins method; see \code{\link[=fit_size_spectrum_mlebins]{fit_size_spectrum_mlebins()}}.}
 }
 \value{
 list of class \code{determine_xmin_and_fit_mlebins} for plotting, containing
 \itemize{
 \item \code{mlebins_fit} object of class \code{size_spectrum_mlebins} from using MLEbins
-method; see \code{\link[=fit_size_spectrum]{fit_size_spectrum()}}
+method; see \code{\link[=fit_size_spectrum_mlebins]{fit_size_spectrum_mlebins()}}
 \item \code{h} histogram object, as used to determine \code{x_min}
 }
 }

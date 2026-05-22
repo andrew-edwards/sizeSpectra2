@@ -31,6 +31,20 @@ sim_vec_binned_2 <- sim_vec_binned
 sim_vec_binned_2[1, "bin_count"] <- 100  # lower count for first bin
 res_binned_2 <- determine_xmin_and_fit_mlebin(sim_vec_binned_2)
 plot(res_binned_2)
+
+# An example showing the code still works even if you end up with
+#  only two bins (though you should not really do such an analysis on real data):
+sim_vec_binned_4 <- sim_vec_binned
+sim_vec_binned_4[8:9, "bin_count"] <- c(100000,
+                                        100000)
+      # big counts for penultimate and final bin (that will get normalised),
+      #  such that x_min gets set to only have the two final bins
+
+res_binned_4 <- determine_xmin_and_fit_mlebin(sim_vec_binned_4)
+res_binned_4$mlebin_fit$b_mle     # is essentially -1, (question for
+                                  #  audience: why?)
+# And plotting still works, even for only two bins
+plot(res_binned_4)
 }
 }
 \author{

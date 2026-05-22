@@ -71,11 +71,6 @@ fit_size_spectrum_mlebin <- function(dat,
   low_count <- count_gte_bin_min
   high_count <- count_gte_bin_min
 
-  # yRange = c(min(data_year$lowCount), max(data_year$highCount))
-  # The above does not work because first val is 0 which is not permissable on
-  #  log axis_ Which also means that the rectangle that goes to 0 has to be
-  #  added manually (below)_ Picking the y-axis to go down to 0_75 of the
-  #  minimum value of CountGTEwmin_
   for(iii in 1:length(count_gte_bin_min)){
     count_gte_bin_min[iii] <- sum( (df$bin_min >= df$bin_min[iii]) * df$bin_count)
     low_count[iii] <- sum( (df$bin_min >= df$bin_max[iii]) * df$bin_count)

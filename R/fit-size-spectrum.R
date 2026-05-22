@@ -9,7 +9,8 @@
 ##' @param dat One of:
 ##' * `numeric` vector of values (such as individual body masses or lengths), which uses
 ##'   the MLE method (via the function [fit_size_spectrum.numeric()];
-##' * `data.frame` of count data for the MLEbin method. At a minimum this has to include the columns:
+##' * `data.frame` of count data for the MLEbin method, where each row represents a
+##' bin. At a minimum this has to include the columns:
 ##'   * `bin_min`
 ##'   * `bin_max`
 ##'   * `bin_count`.
@@ -35,7 +36,6 @@
 ##' @param b_start for the MLEbin method, the starting estimate for numerical
 ##'   search for the MLE, since there is no analytical value.
 ##' @return
-
 ##' * If `dat` is numeric then returns a list object of class
 ##'   `size_spectrum_numeric` (such that we can plot it
 ##'   with [plot.size_spectrum_numeric()], with objects
