@@ -9,7 +9,7 @@
 ##'
 ##' Here we construct the resulting probability density function, `dPLB_agg()`,
 ##' and cumulative distribution function, `pPLB_agg()`, based on math worked out
-##' in `aggregatging-size-spectra.Rmd` (TODO for now, obviously update if
+##' in `aggregating-size-spectra.Rmd` (TODO for now, obviously update if
 ##' becomes part of a manuscript, or vignette). `pPLB_agg()` then feeds into
 ##' TODO `MLE.plot_agg()` to generate the plot -- the resulting fitted aggregate
 ##' distribution is different to the simple approach of fitting one PLB to the

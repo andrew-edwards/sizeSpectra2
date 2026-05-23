@@ -135,8 +135,7 @@ plot_isd_binned <- function(res_mlebin,
                mgp = mgp_val) # TODO
 
   # Add tickmarks and labels, replacing what was in ISD_bin_plot with this
-  add_ticks(#x_lim = x_lim,
-    #y_lim = y_lim,
+  add_ticks(
     log = log,   # TODO make general, unless making big if switches
     tcl_small = tcl_small,
     mgp_val = mgp_val,

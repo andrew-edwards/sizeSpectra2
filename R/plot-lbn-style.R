@@ -55,8 +55,7 @@
 ##' }
 plot_lbn_style <- function(res,
                            x_plb,
-                           xlim = NULL,    # xlim for figures and x_lim for
-                                        # fitting, should adopt that
+                           xlim = NULL,
                            ylim = NULL,
                            plot_conf_ints = TRUE,
                            plot_binned_fitted = TRUE,  # plot the binned fitted version
