@@ -49,6 +49,7 @@ fit_size_spectrum.numeric <- function(dat,
               x = x,
               x_min = x_min,
               x_max = x_max,
+              n = n,
               method = "MLE")
 
   class(res) = c("size_spectrum_numeric",

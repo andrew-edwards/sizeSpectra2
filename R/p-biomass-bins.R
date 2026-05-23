@@ -1,8 +1,8 @@
 ##' Total and normalised biomass in each bin for a fitted distribution and given
 ##' bin breaks
 ##'
-##'
-##' For size_spectrum_numeric we know all the individual body sizes, so there is
+##' For an object of class `size_spectrum_numeric`, from fitting a vector of
+##' values, we know all the individual body sizes, so there is
 ##' no uncertainty in the biomass within each bin. So setting high and low
 ##' biomasses to be the same.
 ##'

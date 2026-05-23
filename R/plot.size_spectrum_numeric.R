@@ -94,7 +94,7 @@ plot.size_spectrum_numeric <- function(res,
 
   x_min <- min(x)   # or from results??? TODO
   x_max <- max(x)
-  n <- length(x)
+  n <- res$n
 
   # not sure these are needed; if xlim, ylim don't get specified won't they just
   # end up as these? TODO

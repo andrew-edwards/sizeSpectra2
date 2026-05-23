@@ -44,6 +44,7 @@
 ##'   * `x` vector of original values of `dat`
 ##'   * `x_min` the `x_min` value used for the fitting
 ##'   * `x_max` the `x_max` value used for the fitting
+##'   * `n` the total sample size used for the fit
 ##'   * `method` to describe the fitting method used, in this case `MLE`
 ##' * If `dat` is a data.frame then returns a list object of class
 ##'   `size_spectrum_mlebin` with same objects as above, except for
@@ -58,6 +59,8 @@
 ##' \eqn{\geq} the value of `bin_min` for this row, so the highest possible count of
 ##' values above this bin; for non-overlapping bins will be the same as
 ##' `count_gte_bin_min` (but is needed for plotting).
+##'   * `n` is the total sample size, calculated as the sum of the counts in the
+##' bins used for the fitting.
 ##' Note that if `x_min` and/or `x_max`
 ##' are prescribed such that some data are not included in the fit (e.g. `x_min`
 ##' is greater than the `bin_max` of the smallest bin), then they are omitted in `data`.

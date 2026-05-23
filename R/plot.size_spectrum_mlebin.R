@@ -101,7 +101,7 @@ plot.size_spectrum_mlebin <- function(res_mlebin,
   # plot_isd_binned():
 
   dat <- res_mlebin$data
-  n <- sum(dat$bin_count)
+  n <- res_mlebin$n
 
   x_min <- res_mlebin$x_min
 

@@ -47,7 +47,8 @@ columns \code{wmin} and \code{wmax} (or \code{binMin} and \code{binMax}), then
 columns \code{estBiomass} and \code{estBiomassNorm} are appended to the input tibble.
 }
 \description{
-For size_spectrum_numeric we know all the individual body sizes, so there is
+For an object of class \code{size_spectrum_numeric}, from fitting a vector of
+values, we know all the individual body sizes, so there is
 no uncertainty in the biomass within each bin. So setting high and low
 biomasses to be the same.
 }

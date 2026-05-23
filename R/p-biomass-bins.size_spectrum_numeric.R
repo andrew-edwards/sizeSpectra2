@@ -11,7 +11,7 @@ p_biomass_bins.size_spectrum_numeric <- function(res_mle   # result from MLE met
   data <- bin_data(res_mle$x,
                    bin_width = "2k")$bin_vals
 
-  n <- sum(data$bin_count)
+  n <- res_mle$n
   xmin <- res_mle$x_min
   xmax <- res_mle$x_max
 

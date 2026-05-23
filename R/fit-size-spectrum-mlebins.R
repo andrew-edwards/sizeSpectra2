@@ -57,6 +57,7 @@
 ##' is greater than the `bin_max` of the smallest bin), then they are omitted in `data`.
 ##'   * `x_min` the `x_min` value used for the fitting
 ##'   * `x_max` the `x_max` value used for the fitting
+##'   * `n` the sum of the counts in the bins used for the fitting
 ##'   * `method` to describe the fitting method used, in this case `MLEbins`
 ##' @export
 ##' @examples
@@ -155,6 +156,7 @@ fit_size_spectrum_mlebins <- function(dat,
               data = df,
               x_min = x_min,
               x_max = x_max,
+              n = n,
               method = "MLEbins")
 
   class(res) = c("size_spectrum_mlebins",

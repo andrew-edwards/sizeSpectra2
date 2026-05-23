@@ -82,6 +82,7 @@ with \code{\link[=plot.size_spectrum_numeric]{plot.size_spectrum_numeric()}}, wi
 \item \code{x} vector of original values of \code{dat}
 \item \code{x_min} the \code{x_min} value used for the fitting
 \item \code{x_max} the \code{x_max} value used for the fitting
+\item \code{n} the total sample size used for the fit
 \item \code{method} to describe the fitting method used, in this case \code{MLE}
 }
 \item If \code{dat} is a data.frame then returns a list object of class
@@ -99,10 +100,12 @@ values above this bin
 \eqn{\geq} the value of \code{bin_min} for this row, so the highest possible count of
 values above this bin; for non-overlapping bins will be the same as
 \code{count_gte_bin_min} (but is needed for plotting).
+}
+\item \code{n} is the total sample size, calculated as the sum of the counts in the
+bins used for the fitting.
 Note that if \code{x_min} and/or \code{x_max}
 are prescribed such that some data are not included in the fit (e.g. \code{x_min}
 is greater than the \code{bin_max} of the smallest bin), then they are omitted in \code{data}.
-}
 }
 }
 }

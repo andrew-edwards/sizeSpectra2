@@ -75,6 +75,7 @@ is greater than the \code{bin_max} of the smallest bin), then they are omitted i
 }
 \item \code{x_min} the \code{x_min} value used for the fitting
 \item \code{x_max} the \code{x_max} value used for the fitting
+\item \code{n} the sum of the counts in the bins used for the fitting
 \item \code{method} to describe the fitting method used, in this case \code{MLEbins}
 }
 }

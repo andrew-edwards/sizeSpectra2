@@ -1,12 +1,12 @@
 ##' @rdname p_biomass_bins
-##' @param ... arguments to pass onto ????
+##' @param ... arguments to pass onto ????TODO
 ##' @export
 p_biomass_bins.size_spectrum_mlebin <- function(res_mlebin){   # result from mlebin
 
   # TODO put some checks in, though given we have the class defined it should be good
   data <- res_mlebin$data %>%
     dplyr::mutate(bin_width = bin_max - bin_min)   # might already exist
-  n <- sum(data$bin_count)
+  n <- res_mlebin$n
   xmin <- res_mlebin$x_min
   xmax <- res_mlebin$x_max
 

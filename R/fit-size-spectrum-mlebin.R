@@ -86,6 +86,7 @@ fit_size_spectrum_mlebin <- function(dat,
               data = df,
               x_min = x_min,
               x_max = x_max,
+              n = n,
               method = "MLEbin")
 
   class(res) = c("size_spectrum_mlebin",
