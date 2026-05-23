@@ -5,7 +5,7 @@
 ##' values using the MLE method, we create new bins and calculated the biomass
 ##' in each. The bins are defined as doubling in size (as per
 ##' the traditional size spectrum approach) using `bin_data(res$x, bin_width =
-##' "2k")` in [p_biomass_bins.size_spectrum.numeric()]. We know all the individual body sizes, so there is
+##' "2k")` in `p_biomass_bins.size_spectrum.numeric()`. We know all the individual body sizes, so there is
 ##' no uncertainty in the biomass within each bin, and we set `low_biomass =
 ##' `high_biomass` and `low_biomass_norm high_biomass_norm` in the output.
 ##'
@@ -16,7 +16,7 @@
 ##' Need MLEbins version (Issue #11).
 ##'
 ##' Output can then be used for plotting LBN biomass type plots; it is used
-##' automatically in [plot-lbn-style()] which is called if `style = "biomass"`
+##' automatically in [plot_lbn_style()] which is called if `style = "biomass"`
 ##' in calls to plot results.
 ##'
 ##' @param bin_vals either a `numeric` vector of bin breaks, or a `data.frame` that

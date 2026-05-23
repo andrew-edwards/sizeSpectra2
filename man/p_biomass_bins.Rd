@@ -50,7 +50,7 @@ value of the 95\% confidence interval for $b$
 For an object of class \code{size_spectrum_numeric}, from fitting a vector of
 values using the MLE method, we create new bins and calculated the biomass
 in each. The bins are defined as doubling in size (as per
-the traditional size spectrum approach) using \code{bin_data(res$x, bin_width = "2k")} in \code{\link[=p_biomass_bins.size_spectrum.numeric]{p_biomass_bins.size_spectrum.numeric()}}. We know all the individual body sizes, so there is
+the traditional size spectrum approach) using \code{bin_data(res$x, bin_width = "2k")} in \code{p_biomass_bins.size_spectrum.numeric()}. We know all the individual body sizes, so there is
 no uncertainty in the biomass within each bin, and we set \verb{low_biomass = }high_biomass\code{and}low_biomass_norm high_biomass_norm` in the output.
 }
 \details{
@@ -61,7 +61,7 @@ data, the range of possible biomass in a bin is \eqn{`bin_count` *
 Need MLEbins version (Issue #11).
 
 Output can then be used for plotting LBN biomass type plots; it is used
-automatically in \code{\link[=plot-lbn-style]{plot-lbn-style()}} which is called if \code{style = "biomass"}
+automatically in \code{\link[=plot_lbn_style]{plot_lbn_style()}} which is called if \code{style = "biomass"}
 in calls to plot results.
 }
 \examples{
