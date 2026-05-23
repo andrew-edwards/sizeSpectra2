@@ -11,10 +11,13 @@
 ##' group names), if not specified then use all
 ##' @param strata_name `character` the strata to analyse (can be a vector of
 ##' strata names), if not specified then use all
-##' @param minimum_length remove fish shorter than this
-##' @param maximum_length  remove fish longer than this (note: this was based on
-##' `length` column but just switched it to `length_bin_min` column which is
-##' more correct; may change some older results if rerunning anything; 22/5/26.
+##' @param minimum_length, maximum_length remove fish shorter/longer  than this, in the units of
+##' `length_bin_min` (which may be different to the original `length`
+##' one. Note: this was originally based on
+##' `length` column which used a different example and does not need to be in
+##' `dat`, but I just switched it to `length_bin_min` column which is
+##' more correct; may change some older results if rerunning anything; broke a
+##' test making me realise the change in units. 22/5/26.
 ##' @return tibble with columns `species`, `bin_min`, `bin_max`, `bin_count`, to
 ##' go into [determine_xmin_and_fit_mlebins()], or maybe just
 ##' [fit_size_spectrum_mlebins()], including the `species` column, to use the
@@ -60,7 +63,7 @@ mediterranean_for_mlebins <- function(dat,
   if(!is.null(minimum_length)){
     temp <- dplyr::filter(temp,
                           length_bin_min >= minimum_length)  # was length, may
-    # change some old results?
+    # change some old results? Did break a test, since need to tweak units also
   }
 
   temp <- dplyr::select(temp,

@@ -24,7 +24,7 @@ test_that("MLEbins fitting and plotting works and matches original results", {
     dplyr::filter(bin_min < 20)
 
   expect_equal(nrow(mediterranean_for_mlebins(dat_joined, minimum_length =
-                                                            100)),
+                                                            10)),
                48)
 
   # Some extra tests for options
