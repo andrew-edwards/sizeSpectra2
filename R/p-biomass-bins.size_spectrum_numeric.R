@@ -1,13 +1,10 @@
 ##' @rdname p_biomass_bins
-##' @param ... arguments to pass onto bin_data at least
 ##' @export
 p_biomass_bins.size_spectrum_numeric <- function(res_mle   # result from MLE method
                                                  ){
 
-  # TODO put some checks in, though given we have the class defined it should be
-  # good
 
-      # Need to create bins manually
+  # Need to create bins manually
   data <- bin_data(res_mle$x,
                    bin_width = "2k")$bin_vals
 
@@ -16,7 +13,7 @@ p_biomass_bins.size_spectrum_numeric <- function(res_mle   # result from MLE met
   xmax <- res_mle$x_max
 
   # There is no uncertainty in the biomass in each bin, because we know the
-  # individual body masses. So setting low_biomass and high_biomass to be the
+  # individual body masses. So setting low_biomass and high_biomass to be bin_sum_norm
   res <- dplyr::mutate(data,
                        low_biomass = bin_sum,
                        high_biomass = bin_sum,
@@ -58,6 +55,5 @@ p_biomass_bins.size_spectrum_numeric <- function(res_mle   # result from MLE met
                        mle_biomass_norm = mle_biomass / bin_width,
                        mle_conf_1_biomass_norm = mle_conf_1_biomass / bin_width,
                        mle_conf_2_biomass_norm = mle_conf_2_biomass / bin_width)
- # TODO think about cases of xmax - think have done, just need to do tests
 return(res)
 }

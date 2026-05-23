@@ -50,8 +50,9 @@
 ##'   bin-generating definition. Usually have it FALSE, but using TRUE for doing
 ##'   LBN plot when we have the raw individual data.
 ##' @return list containing:
-##'   * bin_for_each_x: tibble with a row for each `counts_df$x` value, with columns:
-##'      + `x`: original `x` or `counts_df$x` values (depending on the input)
+##'   * bin_for_each_x: tibble with a row for each `dat` (if `dat` is a
+##' `numeric` vector) or `dat$x` (if `dat` is a `data.frame`) value, with columns:
+##'      + `x`: original `x` or `dat$x` values (depending on the input)
 ##'      + `bin_mid`, `bin_min`, `bin_max`, `bin_width`: midpoint, minimum,
 ##'      maximum, and width, respectively, of the bin within
 ##'      which the `x` value falls.  If bin_for_each_x has `>=10^6` rows then it isn't

@@ -1,9 +1,7 @@
 ##' @rdname p_biomass_bins
-##' @param ... arguments to pass onto ????TODO
 ##' @export
 p_biomass_bins.size_spectrum_mlebin <- function(res_mlebin){   # result from mlebin
 
-  # TODO put some checks in, though given we have the class defined it should be good
   data <- res_mlebin$data %>%
     dplyr::mutate(bin_width = bin_max - bin_min)   # might already exist
   n <- res_mlebin$n
@@ -11,9 +9,7 @@ p_biomass_bins.size_spectrum_mlebin <- function(res_mlebin){   # result from mle
   xmax <- res_mlebin$x_max
 
   # for binned data, the range of possible biomass in a bin is the count in bin
-  #  * bin_min to count * bin_max. If individual values are known we also have
-  # low_count and high_count and exact biomass. But I think we wouldn't really
-  # do that (once we bin it we assume that's all we know). TODO clarify that
+  #  * bin_min to count * bin_max.
   res <- dplyr::mutate(data,
                        low_biomass = bin_min * bin_count,
                        high_biomass = bin_max * bin_count,
@@ -55,6 +51,5 @@ p_biomass_bins.size_spectrum_mlebin <- function(res_mlebin){   # result from mle
                        mle_biomass_norm = mle_biomass / bin_width,
                        mle_conf_1_biomass_norm = mle_conf_1_biomass / bin_width,
                        mle_conf_2_biomass_norm = mle_conf_2_biomass / bin_width)
- # TODO think about cases of xmax
-return(res)
+  return(res)
 }

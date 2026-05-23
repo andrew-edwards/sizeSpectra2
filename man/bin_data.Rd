@@ -66,9 +66,10 @@ LBN plot when we have the raw individual data.}
 \value{
 list containing:
 \itemize{
-\item bin_for_each_x: tibble with a row for each \code{counts_df$x} value, with columns:
+\item bin_for_each_x: tibble with a row for each \code{dat} (if \code{dat} is a
+\code{numeric} vector) or \code{dat$x} (if \code{dat} is a \code{data.frame}) value, with columns:
 \itemize{
-\item \code{x}: original \code{x} or \code{counts_df$x} values (depending on the input)
+\item \code{x}: original \code{x} or \code{dat$x} values (depending on the input)
 \item \code{bin_mid}, \code{bin_min}, \code{bin_max}, \code{bin_width}: midpoint, minimum,
 maximum, and width, respectively, of the bin within
 which the \code{x} value falls.  If bin_for_each_x has \verb{>=10^6} rows then it isn't

@@ -6,8 +6,8 @@
 \alias{p_biomass_bins}
 \alias{p_biomass_bins.size_spectrum_mlebin}
 \alias{p_biomass_bins.size_spectrum_numeric}
-\title{Total and normalised biomass in each bin for a fitted distribution and given
-bin breaks}
+\title{Calculate total and normalised biomass in each bin for a fitted distribution and given
+bin breaks, with uncertainty if appropriate.}
 \usage{
 p_biomass_bins(res)
 
@@ -24,50 +24,55 @@ contains columns \code{bin_min} and \code{bin_max} (and possibly more; e.g. the
 format of the \code{bin_vals} component output from \code{\link[=bin_data]{bin_data()}}.
 Either \code{p_biomass_bins.numeric()} or \code{p_biomass_bins.data.frame()} gets called
 appropriately.}
-
-\item{n}{total number of individuals in the system (needed to calculate
-biomass), TODO change when resolve #5 as n will be in results.}
-
-\item{...}{arguments to pass onto bin_data at least}
 }
 \value{
-tibble like that returned in \verb{$data} object from
-\code{\link[=fit_size_spectrum.data.frame]{fit_size_spectrum.data.frame()}}  (TODO if just size_spectrum_numeric
-entered then columns are a bit less), with extra columns appended here
-giving, for each bin:
+tibble if \code{res} is of class \code{size_spectrum_numeric} then it is the
+\verb{$bin_vals$ component of the output of }bin_data(res$x, bin_width = "2k")\verb{with extra columns added. If}res\verb{is of class}size_spectrum_mlebin\verb{then it is the}res$data\verb{tibble with a column}bin_width` added plus extra columns. The extra columns
+for both cases are:
 \itemize{
-\item median: median of the data
-\item eti_lower: lower end of the ETI
+\item \code{low_biomass}: the lowest possible biomass in that bin based on the
+possible individual body weights that individuals in that bin can have
+\item \code{high_biomass}: the highest possible biomass in that bin; equals
+\code{low-biomass} when \code{class(res) = size_spectrum_numeric}.
+\item \code{low_biomass_norm}: \code{low_biomass / bin_width}
+\item \code{high_biomass_norm}: \code{high_biomass / bin_width}
+\item \code{mle_biomass}: the expected biomass in that bin using the MLE value of $b$
+\item \code{mle_conf_1_biomass} the expected biomass in that bin using the lowest
+value of the 95\% confidence interval for $b$
+\item \code{mle_conf_2_biomass} the expected biomass in that bin using the highest
+value of the 95\% confidence interval for $b$
+\item \code{mle_biomass_norm}: \code{mle_biomass / bin_width}
+\item \code{mle_conf_1_biomass_norm}: \code{mle_conf_1_biomass / bin_width}
+\item \code{mle_conf_2_biomass_norm}: \code{mle_conf_2_biomass / bin_width}
 }
-
-TODO: somethin like:
-then  with each row corresponding to a bin, and columns \code{wmin},
-\code{wmax},  \code{binWidth}, \code{estBiomass}, and \code{estBiomassNorm}. If the input is a tibble with
-columns \code{wmin} and \code{wmax} (or \code{binMin} and \code{binMax}), then
-columns \code{estBiomass} and \code{estBiomassNorm} are appended to the input tibble.
 }
 \description{
 For an object of class \code{size_spectrum_numeric}, from fitting a vector of
-values, we know all the individual body sizes, so there is
-no uncertainty in the biomass within each bin. So setting high and low
-biomasses to be the same.
+values using the MLE method, we create new bins and calculated the biomass
+in each. The bins are defined as doubling in size (as per
+the traditional size spectrum approach) using \code{bin_data(res$x, bin_width = "2k")} in \code{\link[=p_biomass_bins.size_spectrum.numeric]{p_biomass_bins.size_spectrum.numeric()}}. We know all the individual body sizes, so there is
+no uncertainty in the biomass within each bin, and we set \verb{low_biomass = }high_biomass\code{and}low_biomass_norm high_biomass_norm` in the output.
 }
 \details{
-HERE HERE
-TODO TODO - actually, input the results list (since we have b and conf ints
-and data all in there), and then do two different methods dependent upon the
-class of the results.
+For an object of class \code{size_spectrum_mlebin} where we have only binned
+data, the range of possible biomass in a bin is \eqn{`bin_count` *
+`bin_min`} to \eqn{`bin_count` * `bin_max`}. The existing bin breaks are used.
+
+Need MLEbins version (Issue #11).
+
+Output can then be used for plotting LBN biomass type plots; it is used
+automatically in \code{\link[=plot-lbn-style]{plot-lbn-style()}} which is called if \code{style = "biomass"}
+in calls to plot results.
 }
 \examples{
 \dontrun{
-# TODO
-binBreaks = c(1, 10, 20, 50, 100)
-pBiomassBins(binBreaks = binBreaks) # uses default pBiomass() values
+res <- fit_size_spectrum(sim_vec)
+p_biomass_bins(res)
+plot(res, style = "biomass")
 
-# Same data as a tibble:
-testTibble <- dplyr::tibble(binMin = binBreaks[-length(binBreaks)],
-                            binMax = binBreaks[-1])
-pBiomassBins(binValsTibble = testTibble)
+res_mle <- fit_size_spectrum(sim_vec_binned)
+p_biomass_bins(res_mle)
+plot(res_mle, style = "biomass")
 }
 
 }
