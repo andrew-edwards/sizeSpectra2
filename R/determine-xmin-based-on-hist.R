@@ -1,4 +1,4 @@
-##' Given histogram object of counts and bins (and maybe density) , determine the mode and return min of that bin as xmin
+##' Given histogram object of counts and bins (and maybe density) , determine the mode and return min of that bin as x_min
 ##'
 ##' @param h histogram object, e.g. from running [make_hist()] on a vector, or
 ##' [make_hist_for_binned_counts()] or

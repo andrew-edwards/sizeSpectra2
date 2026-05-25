@@ -3,7 +3,7 @@
 ##' be non-integer).
 ##'
 ##' Called from
-##' [determine_xmin_and_fit_mlebins()] to determine xmin for MLEbins
+##' [determine_xmin_and_fit_mlebins()] to determine x_min for MLEbins
 ##' method.
 ##' Counts for an original bin are assigned to the new bin for which the
 ##' original `bin_min` falls into.
@@ -16,7 +16,7 @@
 ##'     * `bin_min`
 ##'     * `bin_max`
 ##'     * `bin_count`.
-##' @param bin_width numeric bin width to fit a histogram to help determine xmin
+##' @param bin_width numeric bin width to fit a histogram to help determine x_min
 ##' @param bin_start numeric value for the first bin to start at; if `NULL` then
 ##'   is set to the highest multiple of `bin_width` value below
 ##' `min(dat$bin_min)`.
@@ -115,7 +115,7 @@ make_hist_for_binned_counts <- function(dat,
 
   # It does not matter if first or final bins have zero counts (latter
   # should probably not happen anyway given how bins are constructed, though
-  # might do in edge cases). This is just for determining xmin, not actually fitting.
+  # might do in edge cases). This is just for determining x_min, not actually fitting.
 
   hist_res_list <- list(breaks = hist_breaks,
                    mids = hist_bin_min + bin_width/2,

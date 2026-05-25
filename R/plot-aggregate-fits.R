@@ -22,7 +22,7 @@
 ##' @param xlim, ylim vectors for axes limits; if NULL (the default) they get
 ##'   calculated automatically, but users likely want to then manually adjust
 ##'   them, especially `ylim` to be able to see all fits asymptoting at their
-##'   xmin values, but the
+##'   x_min values, but the
 ##'   default axis will go way too low (it is hard to automate this, so just
 ##'   refine `ylim` to celarly show the aymptotes).
 ##' @param inset_text passed onto [legend()]
@@ -128,7 +128,7 @@ plot_aggregate_fits <- function(agg_list,
     #  corresponds to x_max for that strata, but then gives warning when
     #  plotting on log axes, so just tweak it
     #  to be 1/10 of the next largest value (which should be the penultimate
-    #  one, but might not be if xmax for that strata is much smaller).
+    #  one, but might not be if x_max for that strata is much smaller).
     if(agg_fit_y_norm[[i]][length(agg_fit_y_norm[[i]])] == 0){
       agg_fit_y_norm[[i]][ agg_fit_y_norm[[i]] == 0 ] <-
         min(agg_fit_y_norm[[i]][agg_fit_y_norm[[i]] > 0]) / 10

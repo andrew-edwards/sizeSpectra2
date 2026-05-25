@@ -1,36 +1,36 @@
 ##' Biomass cumulative distribution function from MEE equations A.4 and A.8
 ##'
-##' Total biomass between `xmin` and `x`, assuming a bounded power-law
-##' distribution of body masses between `xmin` and `xmax` and a given value of
+##' Total biomass between `x_min` and `x`, assuming a bounded power-law
+##' distribution of body masses between `x_min` and `x_max` and a given value of
 ##' exponent `b`, and a total of `n` individuals.
 ##'
 ##' Given by MEE equations A.4 and A.8. Can then be called by [p_biomass_bins()]
 ##' to give total biomass (and normalised biomass) in each bin.
 ##'
 ##' @param x vector of values for which to calculate the total biomass between
-##' `xmin` and the value
+##' `x_min` and the value
 ##' @param b estimated exponent of the PLB distribution
-##' @param xmin minimum bound of the distribution, `xmin > 0`
-##' @param xmax maximum bound for bounded distribution, `xmax > xmin`
+##' @param x_min minimum bound of the distribution, `x_min > 0`
+##' @param x_max maximum bound for bounded distribution, `x_max > x_min`
 ##' @param n number of individuals (or total counts)
-##' @return return vector of total biomass between `xmin` and each value of `x`
+##' @return return vector of total biomass between `x_min` and each value of `x`
 ##' @export
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
 ##' p_biomass(x = c(1, 5, 10, 20, 50, 100),
 ##'           b = -2,
-##'           xmin = 1,
-##'           xmax = 100,
+##'           x_min = 1,
+##'           x_max = 100,
 ##'           n = 1000)
 ##' }
 p_biomass <- function(x,
                       b,
-                      xmin,
-                      xmax,
+                      x_min,
+                      x_max,
                       n){
 
-  if(xmin <= 0 | xmin >= xmax | n <= 0){
+  if(x_min <= 0 | x_min >= x_max | n <= 0){
     stop("Parameters out of bounds in p_biomass")
   }
 
@@ -38,22 +38,22 @@ p_biomass <- function(x,
   #  and > x_max.
 
   if(b != -1){
-    C <- (b+1) / ( xmax^(b+1) - xmin^(b+1) )
+    C <- (b+1) / ( x_max^(b+1) - x_min^(b+1) )
   } else {
-    C <- 1/ ( log(xmax) - log(xmin) )
+    C <- 1/ ( log(x_max) - log(x_min) )
   }
 
   if(b != -2){
-    biomass <- n * C * (x^(b+2) - xmin^(b+2)) / (b + 2)
-    biomass_for_xmax <- n * C * (xmax^(b+2) - xmin^(b+2)) / (b + 2)  # might not
+    biomass <- n * C * (x^(b+2) - x_min^(b+2)) / (b + 2)
+    biomass_for_xmax <- n * C * (x_max^(b+2) - x_min^(b+2)) / (b + 2)  # might not
                                         # be one of x
   } else {
-    biomass <- n * C * (log(x) - log(xmin))
-    biomass_for_xmax <- n * C * (log(xmax) - log(xmin))
+    biomass <- n * C * (log(x) - log(x_min))
+    biomass_for_xmax <- n * C * (log(x_max) - log(x_min))
   }
 
-  biomass[x < xmin] <- 0         # so have zeros where x < xmin
-  biomass[x > xmax] <- biomass_for_xmax
+  biomass[x < x_min] <- 0         # so have zeros where x < x_min
+  biomass[x > x_max] <- biomass_for_xmax
 
   return(biomass)
 }

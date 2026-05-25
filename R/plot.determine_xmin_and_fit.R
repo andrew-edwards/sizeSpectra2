@@ -1,4 +1,4 @@
-##' Plot results from determining xmin by mode method and then fitting use MLE hake spectra results
+##' Plot results from determining x_min by mode method and then fitting use MLE hake spectra results
 ##'
 ##' TODO check if want features from plot.determine_xmin_and_fit_mlebins(),
 ##' which was adapted and improved from this. TODO combine help files.
@@ -24,9 +24,9 @@ plot.determine_xmin_and_fit <- function(res,
 
   # Global xlim, might want to add functionality at some point
   #xlim_global <- c(min(unlist(lapply(res, '[[',
-  #                                   "xmin"))[years_indices]),
+  #                                   "x_min"))[years_indices]),
   #                 max(unlist(lapply(res, '[[',
-  #                                 "xmax"))[years_indices]))
+  #                                 "x_max"))[years_indices]))
 
   par_orig <- par(no.readonly = TRUE)
   on.exit(par(par_orig))

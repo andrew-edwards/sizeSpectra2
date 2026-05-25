@@ -199,8 +199,8 @@ plot_lbn_style <- function(res,
   lines(x_plb,
         dPLB(x_plb,
              b = res$b_mle,
-             xmin = min(x_plb),
-             xmax = max(x_plb)) * n * x_plb,
+             x_min = min(x_plb),
+             x_max = max(x_plb)) * n * x_plb,
         col="red")   # TODO generalise once working
 
   if(plot_conf_ints){
@@ -208,16 +208,16 @@ plot_lbn_style <- function(res,
     lines(x_plb,
           dPLB(x_plb,
                b = res$b_conf[1],
-               xmin = min(x_plb),
-               xmax = max(x_plb)) * n * x_plb,
+               x_min = min(x_plb),
+               x_max = max(x_plb)) * n * x_plb,
           col="red",
           lty=2)
 
     lines(x_plb,
           dPLB(x_plb,
                b = res$b_conf[2],
-               xmin = min(x_plb),
-               xmax = max(x_plb)) * n * x_plb,
+               x_min = min(x_plb),
+               x_max = max(x_plb)) * n * x_plb,
           col="red",
           lty=2)
   }

@@ -243,8 +243,8 @@ plot_aggregate_mlebin <- function(res_list,
                       log10(xmax_agg),
                       length = 1000)     # x values to plot PLB
 
-  #  Need to insert value close to xmax to make log-log curve go down further;
-  #   since log(1 - pPLB(xmax, ...)) = log(0) = -Inf   we need to force the asymptopte
+  #  Need to insert value close to x_max to make log-log curve go down further;
+  #   since log(1 - pPLB(x_max, ...)) = log(0) = -Inf   we need to force the asymptopte
   x_plb_agg_length <- length(x_plb_agg)
 
   x_plb_agg <- c(x_plb_agg[-x_plb_agg_length],
@@ -257,8 +257,8 @@ plot_aggregate_mlebin <- function(res_list,
   y_plb_agg = (1 - pPLB_agg(x = x_plb_agg,
                             b_vec = b_vec,
                             n_vec = n_vec,
-                            xmin = xmin_vec,
-                            xmax = xmax_vec)) * sum(n_vec)
+                            x_min = xmin_vec,
+                            x_max = xmax_vec)) * sum(n_vec)
   # Above can give negative value due to rounding, so change any negative value
   #  to a small value. Pretty sure it's just numerical errors close to 0; just
   #  set to the minimum one.
@@ -311,8 +311,8 @@ plot_aggregate_mlebin <- function(res_list,
                     log10(xmax_vec[s]),
                     length = 1000)     # x values to plot PLB
 
-    #  Need to insert value close to xmax to make log-log curve go down further;
-    #   since log(1 - pPLB(xmax, ...)) = log(0) = -Inf   we need to force the asymptopte
+    #  Need to insert value close to x_max to make log-log curve go down further;
+    #   since log(1 - pPLB(x_max, ...)) = log(0) = -Inf   we need to force the asymptopte
     x_plb_length <- length(x_plb)
 
     x_plb <- c(x_plb[-x_plb_length],
@@ -322,8 +322,8 @@ plot_aggregate_mlebin <- function(res_list,
     lines(x_plb,
           (1 - pPLB(x = x_plb,
                     b = b_vec[s],
-                    xmin = xmin_vec[s],
-                    xmax = xmax_vec[s])) * n_vec[s],
+                    x_min = xmin_vec[s],
+                    x_max = xmax_vec[s])) * n_vec[s],
           col = col_vec[s])
   }
 

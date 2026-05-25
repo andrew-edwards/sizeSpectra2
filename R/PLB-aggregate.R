@@ -57,13 +57,13 @@ dPLB_agg <- function(x,
                  length(xmin_vec),
                  length(xmax_vec)))
 
-  y <- 0 * x     # so have zeros where x < xmin or x > xmax
+  y <- 0 * x     # so have zeros where x < x_min or x > x_max
 
   for(s in 1:length(b_vec)){
     y <- y + n_vec[s] * dPLB(x,
                              b = b_vec[s],
-                             xmin = xmin_vec[s],
-                             xmax = xmax_vec[s])
+                             x_min = xmin_vec[s],
+                             x_max = xmax_vec[s])
   }
   # dPLB returns 0's for outside of the range, so don't need explicit indicator functions
   y <- y / sum(n_vec)
@@ -83,13 +83,13 @@ pPLB_agg <- function(x,
                  length(xmin_vec),
                  length(xmax_vec)))
 
-  y <- 0 * x     # so have zeros where x < xmin
+  y <- 0 * x     # so have zeros where x < x_min
 
   for(s in 1:length(b_vec)){
     y <- y + n_vec[s] * pPLB(x,
                              b = b_vec[s],
-                             xmin = xmin_vec[s],
-                             xmax = xmax_vec[s])
+                             x_min = xmin_vec[s],
+                             x_max = xmax_vec[s])
   }
   # pPLB returns 0's and 1's for outside of the range, so don't need explicit indicator functions
   y <- y / sum(n_vec)

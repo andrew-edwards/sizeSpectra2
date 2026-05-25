@@ -9,8 +9,8 @@ p_biomass_bins.size_spectrum_numeric <- function(res_mle   # result from MLE met
                    bin_width = "2k")$bin_vals
 
   n <- res_mle$n
-  xmin <- res_mle$x_min
-  xmax <- res_mle$x_max
+  x_min <- res_mle$x_min
+  x_max <- res_mle$x_max
 
   # There is no uncertainty in the biomass in each bin, because we know the
   # individual body masses. So setting low_biomass and high_biomass to be bin_sum_norm
@@ -22,35 +22,35 @@ p_biomass_bins.size_spectrum_numeric <- function(res_mle   # result from MLE met
                        mle_biomass =
                          p_biomass(x = data$bin_max,
                                    b = res_mle$b_mle,
-                                   xmin = xmin,
-                                   xmax = xmax,
+                                   x_min = x_min,
+                                   x_max = x_max,
                                    n = n) -
                          p_biomass(x = data$bin_min,
                                    b = res_mle$b_mle,
-                                   xmin = xmin,
-                                   xmax = xmax,
+                                   x_min = x_min,
+                                   x_max = x_max,
                                    n = n),
                        mle_conf_1_biomass =
                          p_biomass(x = data$bin_max,
                                    b = res_mle$b_conf[1],
-                                   xmin = xmin,
-                                   xmax = xmax,
+                                   x_min = x_min,
+                                   x_max = x_max,
                                    n = n) -
                          p_biomass(x = data$bin_min,
                                    b = res_mle$b_conf[1],
-                                   xmin = xmin,
-                                   xmax = xmax,
+                                   x_min = x_min,
+                                   x_max = x_max,
                                    n = n),
                        mle_conf_2_biomass =
                          p_biomass(x = data$bin_max,
                                    b = res_mle$b_conf[2],
-                                   xmin = xmin,
-                                   xmax = xmax,
+                                   x_min = x_min,
+                                   x_max = x_max,
                                    n = n) -
                          p_biomass(x = data$bin_min,
                                    b = res_mle$b_conf[2],
-                                   xmin = xmin,
-                                   xmax = xmax,
+                                   x_min = x_min,
+                                   x_max = x_max,
                                    n = n),
                        mle_biomass_norm = mle_biomass / bin_width,
                        mle_conf_1_biomass_norm = mle_conf_1_biomass / bin_width,

@@ -113,8 +113,8 @@ plot.size_spectrum_mlebin <- function(res_mlebin,
                      log(x_max),
                      length = 10000))
 
-    #  Need to insert value close to xmax to make log-log curve go down further;
-    #   since log(1 - pplb(xmax, ...)) = log(0) = -Inf   we need to force the asymptopte
+    #  Need to insert value close to x_max to make log-log curve go down further;
+    #   since log(1 - pplb(x_max, ...)) = log(0) = -Inf   we need to force the asymptopte
     x_plb_length <- length(x_plb)
     x_plb <- c(x_plb[-x_plb_length],
                0.9999999999 * x_plb[x_plb_length],
@@ -123,17 +123,17 @@ plot.size_spectrum_mlebin <- function(res_mlebin,
 
   y_plb = (1 - pPLB(x = x_plb,
                     b = res_mlebin$b_mle,
-                    xmin = min(x_plb),
-                    xmax = max(x_plb))) * n
+                    x_min = min(x_plb),
+                    x_max = max(x_plb))) * n
   # To add curves for the limits of the 95% confidence interval of b:
   y_plb_conf_min = (1 - pPLB(x = x_plb,
                              b = res_mlebin$b_conf[1],
-                             xmin = min(x_plb),
-                             xmax = max(x_plb))) * n
+                             x_min = min(x_plb),
+                             x_max = max(x_plb))) * n
   y_plb_conf_max = (1 - pPLB(x = x_plb,
                              b = res_mlebin$b_conf[2],
-                             xmin = min(x_plb),
-                             xmax = max(x_plb))) * n
+                             x_min = min(x_plb),
+                             x_max = max(x_plb))) * n
 
 
   if(all(is.na(ylim))){

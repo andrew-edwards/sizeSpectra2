@@ -19,9 +19,9 @@
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##' # Make data that needs xmin determined
+##' # Make data that needs x_min determined
 ##' data <- c(runif(100, 0.1, 10),
-##'           rPLB(1000, -2, xmin = 10))     #a few values then a PLB
+##'           rPLB(1000, -2, x_min = 10))     #a few values then a PLB
 ##' res <- determine_xmin_and_fit(data)
 ##' plot(res)     # histogram shows the grey values that are not used for fitting
 ##'

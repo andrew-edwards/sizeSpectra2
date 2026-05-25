@@ -96,8 +96,8 @@ plot_isd_binned <- function(res_mlebin,
                             # decide if want to have , ...)
                             # From sizeSpectra::ISD_bin_plot, may want some
                               #        xlim = NA,
-                              #       xmin = NA,
-                              #        xmax = NA,
+                              #       x_min = NA,
+                              #        x_max = NA,
                               # xLabel.small = c(5, 50, 500, 5000),
                               #        yBig.inc = 1000,
                               #        yBig.max = 10,

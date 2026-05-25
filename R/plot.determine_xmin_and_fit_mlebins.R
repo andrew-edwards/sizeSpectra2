@@ -1,4 +1,4 @@
-##' Plot results from determining xmin by mode method and then fitting use
+##' Plot results from determining x_min by mode method and then fitting use
 ##' MLEbin or MLEbins method  TODO combine help, do all in plot.determine_xmin_and_fit
 ##'
 ##' @param res list of class `determine_xmin_for_mlebins_and_fit` as output from `determine_xmin_for_mlebins_and_fit()`
@@ -41,9 +41,9 @@ plot.determine_xmin_and_fit_mlebins <- function(res,
 
   # Global xlim, might want to add functionality at some point
   #xlim_global <- c(min(unlist(lapply(res, '[[',
-  #                                   "xmin"))[years_indices]),
+  #                                   "x_min"))[years_indices]),
   #                 max(unlist(lapply(res, '[[',
-  #                                 "xmax"))[years_indices]))
+  #                                 "x_max"))[years_indices]))
 
   par(mfrow = c(3,1))
 
