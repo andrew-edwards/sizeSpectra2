@@ -48,15 +48,15 @@ test_that("dPLB_agg() and plotting functions work with different settings", {
                         xmax_vec = 80),
                dPLB(x,
                     b = -1.5,
-                    xmin = 0.3,
-                    xmax = 80))
+                    x_min = 0.3,
+                    x_max = 80))
 
   # Examples for plotting, taken from fit-aggregated.Rmd vignette (smaller
   # sample sizes take longer, presumably to do with conf intervals, so using the same)
   set.seed(42)
   S <- 4
 
-  # For each sample, prescribe the sample size, exponent b, xmin and xmax.
+  # For each sample, prescribe the sample size, exponent b, x_min and x_max.
   n_vec <- c(6000, 6000, 1600, 2000)
   b_vec_known <- c(-1.09, -2, -3, -4)
   xmin_known <- c(0.3, 10, 100, 300)
@@ -68,8 +68,8 @@ test_that("dPLB_agg() and plotting functions work with different settings", {
   for(s in 1:S){
     x_values <- rPLB(n_vec[s],
                      b = b_vec_known[s],
-                     xmin = xmin_known[s],
-                     xmax = xmax_known[s])
+                     x_min = xmin_known[s],
+                     x_max = xmax_known[s])
 
     res_list[[s]] <- fit_size_spectrum(x_values)    # x_values get included in
     # MLE_res[[s]]

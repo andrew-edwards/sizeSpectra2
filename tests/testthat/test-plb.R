@@ -5,7 +5,7 @@ test_that("rPLB() etc. functions work with different settings", {
   set.seed(42)       # Not resetting before each line, so have to run all these
                      # in order
   expect_equal(rPLB(n = 1000,
-                    xmax = 1000),
+                    x_max = 1000),
                sim_vec)
 
   expect_equal(rPLB(),
@@ -46,9 +46,9 @@ test_that("rPLB() etc. functions work with different settings", {
   expect_error(pPL(b = -1))
   expect_error(rPL(b = -1))
 
-  expect_error(dPLB(xmin = -1))
-  expect_error(pPLB(xmin = -1))
-  expect_error(rPLB(xmin = -1))
-  expect_error(qPLB(xmin = -1))
+  expect_error(dPLB(x_min = -1))
+  expect_error(pPLB(x_min = -1))
+  expect_error(rPLB(x_min = -1))
+  expect_error(qPLB(x_min = -1))
   expect_error(qPLB(p = 1.5))
 })

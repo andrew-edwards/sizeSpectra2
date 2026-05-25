@@ -53,7 +53,7 @@ test_that("MLEbin fitting and plotting works and matches original results", {
 
 
 
-  # MLEbin determine xmin:
+  # MLEbin determine x_min:
   sim_vec_binned_2 <- sim_vec_binned
   sim_vec_binned_2[1, "bin_count"] <- 100  # lower count for first bin
 

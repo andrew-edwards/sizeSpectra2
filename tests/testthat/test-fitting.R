@@ -40,10 +40,10 @@ test_that("fit_size_spectrum() works with different settings and matches previou
                              -1.96431)))  # Not exactly same as different increments
 
 
-  # To estimate xmin from the data
+  # To estimate x_min from the data
   set.seed(42)
   sim_vec_2 <- c(runif(100, 0.1, 10),
-                 rPLB(1000, -2, xmin = 10))     #a few values then a PLB
+                 rPLB(1000, -2, x_min = 10))     #a few values then a PLB
   res_vec_2 <- determine_xmin_and_fit(sim_vec_2)
 
   expect_equal(res_vec_2$mle_fit$b_mle,
