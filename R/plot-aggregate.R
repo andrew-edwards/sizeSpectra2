@@ -116,8 +116,8 @@ plot_aggregate <- function(res_list,
   y_plb_agg = (1 - pPLB_agg(x = x_plb_agg,
                             b_vec = b_vec,
                             n_vec = n_vec,
-                            x_min = xmin_vec,
-                            x_max = xmax_vec)) * sum(n_vec)
+                            xmin_vec = xmin_vec,
+                            xmax_vec = xmax_vec)) * sum(n_vec)
   lines(x_plb_agg,
         y_plb_agg,
         col = col_agg,
