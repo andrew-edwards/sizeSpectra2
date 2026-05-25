@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.determine_xmin_and_fit.R
 \name{plot.determine_xmin_and_fit}
 \alias{plot.determine_xmin_and_fit}
-\title{Plot results from determining xmin by mode method and then fitting use MLE hake spectra results}
+\title{Plot results from determining x_min by mode method and then fitting use MLE hake spectra results}
 \usage{
 \method{plot}{determine_xmin_and_fit}(res, xlim_hist = NULL, main_hist = "", ...)
 }

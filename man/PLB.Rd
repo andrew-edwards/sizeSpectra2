@@ -12,31 +12,31 @@
 \title{Probability density and distribution functions, and random number
 generation, for the bounded power-law distribution.}
 \usage{
-dPL(x = 1, b = -2, xmin = 1)
+dPL(x = 1, b = -2, x_min = 1)
 
-pPL(x = 10, b = -2, xmin = 1)
+pPL(x = 10, b = -2, x_min = 1)
 
-rPL(n = 1, b = -2, xmin = 1)
+rPL(n = 1, b = -2, x_min = 1)
 
-dPLB(x = 1, b = -2, xmin = 1, xmax = 100)
+dPLB(x = 1, b = -2, x_min = 1, x_max = 100)
 
-pPLB(x = 10, b = -2, xmin = 1, xmax = 100)
+pPLB(x = 10, b = -2, x_min = 1, x_max = 100)
 
-rPLB(n = 1, b = -2, xmin = 1, xmax = 100)
+rPLB(n = 1, b = -2, x_min = 1, x_max = 100)
 
-qPLB(p = 0.1, b = -2, xmin = 1, xmax = 100)
+qPLB(p = 0.1, b = -2, x_min = 1, x_max = 100)
 }
 \arguments{
 \item{x}{vector of values to compute the density and distribution functions.}
 
 \item{b}{exponent of the distribution (must be <-1 for \code{\link[=dPL]{dPL()}} and related functions)}
 
-\item{xmin}{minimum bound of the distribution, \code{xmin > 0}}
+\item{x_min}{minimum bound of the distribution, \code{x_min > 0}}
 
 \item{n}{number of random numbers to be generated (if \code{length(n) > 1} then
 generate \code{length(n)} values)}
 
-\item{xmax}{maximum bound for bounded distribution, \code{xmax > xmin}}
+\item{x_max}{maximum bound for bounded distribution, \code{x_max > x_min}}
 
 \item{p}{vector of probabilities for \code{qPLB()}}
 }
@@ -68,8 +68,8 @@ are also included for completeness (except for qPL) but are likely not needed.
 \dontrun{
 rPLB(10)
 rPLB(10, b = -2.5)
-dPLB(1:10, xmin = 2)
-pPLB(1:10, xmin = 2)
+dPLB(1:10, x_min = 2)
+pPLB(1:10, x_min = 2)
 qPLB(c(0.05, 0.5, 0.95))
 }
 }

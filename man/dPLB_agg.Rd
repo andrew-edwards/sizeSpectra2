@@ -45,7 +45,7 @@ the data).
 \details{
 Here we construct the resulting probability density function, \code{dPLB_agg()},
 and cumulative distribution function, \code{pPLB_agg()}, based on math worked out
-in \code{aggregatging-size-spectra.Rmd} (TODO for now, obviously update if
+in \code{aggregating-size-spectra.Rmd} (TODO for now, obviously update if
 becomes part of a manuscript, or vignette). \code{pPLB_agg()} then feeds into
 TODO \code{MLE.plot_agg()} to generate the plot -- the resulting fitted aggregate
 distribution is different to the simple approach of fitting one PLB to the

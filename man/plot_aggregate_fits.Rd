@@ -43,7 +43,7 @@ it's maximum, so that all fits are on the same scale}
 \item{xlim, }{ylim vectors for axes limits; if NULL (the default) they get
 calculated automatically, but users likely want to then manually adjust
 them, especially \code{ylim} to be able to see all fits asymptoting at their
-xmin values, but the
+x_min values, but the
 default axis will go way too low (it is hard to automate this, so just
 refine \code{ylim} to celarly show the aymptotes).}
 

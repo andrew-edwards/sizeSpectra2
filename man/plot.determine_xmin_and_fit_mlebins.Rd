@@ -4,7 +4,7 @@
 \name{plot.determine_xmin_and_fit_mlebin}
 \alias{plot.determine_xmin_and_fit_mlebin}
 \alias{plot.determine_xmin_and_fit_mlebins}
-\title{Plot results from determining xmin by mode method and then fitting use
+\title{Plot results from determining x_min by mode method and then fitting use
 MLEbin or MLEbins method  TODO combine help, do all in plot.determine_xmin_and_fit}
 \usage{
 \method{plot}{determine_xmin_and_fit_mlebin}(res, seg_col = "black", main_hist = "", ...)
@@ -43,7 +43,7 @@ figure in current device  TODO inheritParams
 plot.size_spectrum_mlebin   did not work TODO check everything flows through
 }
 \description{
-Plot results from determining xmin by mode method and then fitting use
+Plot results from determining x_min by mode method and then fitting use
 MLEbin or MLEbins method  TODO combine help, do all in plot.determine_xmin_and_fit
 }
 \examples{

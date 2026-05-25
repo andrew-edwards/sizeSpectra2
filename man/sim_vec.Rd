@@ -15,7 +15,7 @@ sim_vec
 }
 \description{
 As used for Figures 1 and 2 of MEE paper, used as a default set of
-values. Paramaters are \code{b = -2}, \code{xmin = 1}, xmax = 1000`, and the seed was
+values. Paramaters are \code{b = -2}, \code{x_min = 1}, x_max = 1000`, and the seed was
 set to 42.
 }
 \examples{

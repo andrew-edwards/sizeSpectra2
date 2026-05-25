@@ -20,7 +20,7 @@ using MLEbins methods; i.e. at a minimum has to include the columns:
 * \code{bin_max}
 * \code{bin_count}.}
 
-\item{bin_width}{numeric bin width to fit a histogram to help determine xmin}
+\item{bin_width}{numeric bin width to fit a histogram to help determine x_min}
 
 \item{bin_start}{numeric value for the first bin to start at; if \code{NULL} then
 is set to the highest multiple of \code{bin_width} value below
@@ -42,7 +42,7 @@ a histogram list object with components (see \code{?hist}):
 }
 \description{
 Called from
-\code{\link[=determine_xmin_and_fit_mlebins]{determine_xmin_and_fit_mlebins()}} to determine xmin for MLEbins
+\code{\link[=determine_xmin_and_fit_mlebins]{determine_xmin_and_fit_mlebins()}} to determine x_min for MLEbins
 method.
 Counts for an original bin are assigned to the new bin for which the
 original \code{bin_min} falls into.

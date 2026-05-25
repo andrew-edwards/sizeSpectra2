@@ -4,26 +4,26 @@
 \alias{p_biomass}
 \title{Biomass cumulative distribution function from MEE equations A.4 and A.8}
 \usage{
-p_biomass(x, b, xmin, xmax, n)
+p_biomass(x, b, x_min, x_max, n)
 }
 \arguments{
 \item{x}{vector of values for which to calculate the total biomass between
-\code{xmin} and the value}
+\code{x_min} and the value}
 
 \item{b}{estimated exponent of the PLB distribution}
 
-\item{xmin}{minimum bound of the distribution, \code{xmin > 0}}
+\item{x_min}{minimum bound of the distribution, \code{x_min > 0}}
 
-\item{xmax}{maximum bound for bounded distribution, \code{xmax > xmin}}
+\item{x_max}{maximum bound for bounded distribution, \code{x_max > x_min}}
 
 \item{n}{number of individuals (or total counts)}
 }
 \value{
-return vector of total biomass between \code{xmin} and each value of \code{x}
+return vector of total biomass between \code{x_min} and each value of \code{x}
 }
 \description{
-Total biomass between \code{xmin} and \code{x}, assuming a bounded power-law
-distribution of body masses between \code{xmin} and \code{xmax} and a given value of
+Total biomass between \code{x_min} and \code{x}, assuming a bounded power-law
+distribution of body masses between \code{x_min} and \code{x_max} and a given value of
 exponent \code{b}, and a total of \code{n} individuals.
 }
 \details{
@@ -34,8 +34,8 @@ to give total biomass (and normalised biomass) in each bin.
 \dontrun{
 p_biomass(x = c(1, 5, 10, 20, 50, 100),
           b = -2,
-          xmin = 1,
-          xmax = 100,
+          x_min = 1,
+          x_max = 100,
           n = 1000)
 }
 }

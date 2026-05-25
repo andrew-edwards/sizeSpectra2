@@ -2,7 +2,7 @@
 % Please edit documentation in R/determine-xmin-based-on-hist.R
 \name{determine_xmin_based_on_hist}
 \alias{determine_xmin_based_on_hist}
-\title{Given histogram object of counts and bins (and maybe density) , determine the mode and return min of that bin as xmin}
+\title{Given histogram object of counts and bins (and maybe density) , determine the mode and return min of that bin as x_min}
 \usage{
 determine_xmin_based_on_hist(h)
 }
@@ -17,7 +17,7 @@ x_min to use to fit ISD, and to plot the histogram to show the full
 data and the mode.
 }
 \description{
-Given histogram object of counts and bins (and maybe density) , determine the mode and return min of that bin as xmin
+Given histogram object of counts and bins (and maybe density) , determine the mode and return min of that bin as x_min
 }
 \examples{
 \dontrun{
