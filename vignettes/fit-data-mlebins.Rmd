@@ -191,7 +191,7 @@ plot(res_cephsmall_fg)
 ```
 The top panel is a histogram of total counts of minimum body sizes, using 1-g
 body-size bins, used to determine $x_{min}$. The left-most red bin
-is the modal bin, and $x_{xmin}$ for this group-strata combination is the minimum
+is the modal bin, and $x_{x_min}$ for this group-strata combination is the minimum
 value within that 1-g bin.
 
 Middle and bottom panels (as suggested in Figure 7 of [[2]](https://www.int-res.com/abstracts/meps/v636/p19-33/)) are the fit of the

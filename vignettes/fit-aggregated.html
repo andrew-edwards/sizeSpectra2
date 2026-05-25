@@ -410,7 +410,7 @@ exponent, and range of body sizes, prescribed as vectors:</p>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="dv">4</span></span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># For each sample, prescribe the sample size, exponent b, xmin and xmax.</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># For each sample, prescribe the sample size, exponent b, x_min and x_max.</span></span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>n_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6000</span>, <span class="dv">6000</span>, <span class="dv">1600</span>, <span class="dv">2000</span>)</span>
 <span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>b_vec_known <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.09</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">4</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>xmin_known <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">300</span>)</span>
@@ -421,8 +421,8 @@ exponent, and range of body sizes, prescribed as vectors:</p>
 <span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="cf">for</span>(s <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>S){</span>
 <span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>  x_values <span class="ot">&lt;-</span> <span class="fu">rPLB</span>(n_vec[s],            <span class="co"># Simulate values for sample s</span></span>
 <span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>                   <span class="at">b =</span> b_vec_known[s],</span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>                   <span class="at">xmin =</span> xmin_known[s],</span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>                   <span class="at">xmax =</span> xmax_known[s])</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>                   <span class="at">x_min =</span> xmin_known[s],</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>                   <span class="at">x_max =</span> xmax_known[s])</span>
 <span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a></span>
 <span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>  res_list[[s]] <span class="ot">&lt;-</span> <span class="fu">fit_size_spectrum</span>(x_values)    <span class="co"># x_values get automatically saved</span></span>
 <span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>                                                  <span class="co"># as res_list[[s]]$x</span></span>
@@ -645,8 +645,8 @@ using the MLEbin method and consequent plotting.</p>
 <span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a><span class="cf">for</span>(s <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>S){</span>
 <span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>  x_values <span class="ot">&lt;-</span> <span class="fu">rPLB</span>(n_vec[s],</span>
 <span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>                   <span class="at">b =</span> b_vec_known[s],</span>
-<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>                   <span class="at">xmin =</span> xmin_known[s],</span>
-<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a>                   <span class="at">xmax =</span> xmax_known[s])</span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>                   <span class="at">x_min =</span> xmin_known[s],</span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a>                   <span class="at">x_max =</span> xmax_known[s])</span>
 <span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a></span>
 <span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a>  x_values_binned <span class="ot">&lt;-</span> <span class="fu">bin_data</span>(x_values,</span>
 <span id="cb18-12"><a href="#cb18-12" tabindex="-1"></a>                              <span class="at">bin_width =</span> <span class="dv">20</span>)<span class="sc">$</span>bin_vals</span>

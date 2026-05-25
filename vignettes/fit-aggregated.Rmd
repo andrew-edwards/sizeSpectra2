@@ -98,7 +98,7 @@ set.seed(42)
 
 S <- 4
 
-# For each sample, prescribe the sample size, exponent b, xmin and xmax.
+# For each sample, prescribe the sample size, exponent b, x_min and x_max.
 n_vec <- c(6000, 6000, 1600, 2000)
 b_vec_known <- c(-1.09, -2, -3, -4)
 xmin_known <- c(0.3, 10, 100, 300)
@@ -109,8 +109,8 @@ res_list <- list()                      # To save results
 for(s in 1:S){
   x_values <- rPLB(n_vec[s],            # Simulate values for sample s
                    b = b_vec_known[s],
-                   xmin = xmin_known[s],
-                   xmax = xmax_known[s])
+                   x_min = xmin_known[s],
+                   x_max = xmax_known[s])
 
   res_list[[s]] <- fit_size_spectrum(x_values)    # x_values get automatically saved
                                                   # as res_list[[s]]$x
@@ -350,8 +350,8 @@ res_mlebin_list <- list()                      # To save results
 for(s in 1:S){
   x_values <- rPLB(n_vec[s],
                    b = b_vec_known[s],
-                   xmin = xmin_known[s],
-                   xmax = xmax_known[s])
+                   x_min = xmin_known[s],
+                   x_max = xmax_known[s])
 
   x_values_binned <- bin_data(x_values,
                               bin_width = 20)$bin_vals

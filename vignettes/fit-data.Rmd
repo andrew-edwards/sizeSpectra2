@@ -169,7 +169,7 @@ and 10, and then a PLB distribution for values $\geq 8$:
 ```{r, mockdata}
 set.seed(42)
 mock_data <- c(runif(100, 0.25, 2),
-               rPLB(1000, -2, xmin = 2, xmax = 100))
+               rPLB(1000, -2, x_min = 2, x_max = 100))
 hist(mock_data, breaks = 40)
 ```
 So even a rudimentarly histogram shows a unimodal distribution. To fit this:
