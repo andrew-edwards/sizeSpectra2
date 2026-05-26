@@ -1,5 +1,5 @@
-##' @rdname summary_mle_table  TODO need to do all this. Uncommented as not
-##' finished and so cannot test yet.
+##' @rdname summary_mle_table
+##'
 ##' @export
 summary_mle_table.determine_xmin_and_fit <- function(res,
                                                      dig = 2){

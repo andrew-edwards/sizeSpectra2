@@ -1,10 +1,14 @@
-##' TODO Not done yet.Print a Markdown summary table of main results from...  adapting from
+##' Print a Markdown summary table of main results from fitting something, but not operational
+##' yet; see Issue 12.
+##'
+##' Started adapting from
 ##' HDIanalysis. First make a generic one from ....and-fit.R, and just keep
 ##' calling that, extracting the correct mle results from each type of object
 ##'
-##' TODO Works on MLE/MLEbin output applied to either a vector or a data
+##' Works on MLE/MLEbin output applied to either a vector or a data
 ##' frame, creating an appropriate table that renders in an R Markdown
 ##' document. See the vignettes.
+##'
 ##' @param obj result from ..., either with class
 ##' `intervals_density` if  was applied to a vector, or of
 ##' class `intervals_density_list` if ...  was applied to a data
@@ -16,7 +20,7 @@
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##' # TODO And see vignettes
+##' # This is what we want
 ##' res <- create_intervals(rec_2021)
 ##' summary_table(res)
 ##'
