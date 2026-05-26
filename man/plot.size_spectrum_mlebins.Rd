@@ -24,7 +24,8 @@ plot.size_spectrum_mlebin() help.
 }
 \examples{
 \dontrun{
-
+# See the fit-data-mlebins.html vignette for a worked example:
+# https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data-mlebins.html
 }
 }
 \author{

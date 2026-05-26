@@ -15,11 +15,7 @@ pPLB_agg(x, b_vec, n_vec, xmin_vec, xmax_vec)
 \item{b_vec}{vector of exponents of the PLB distribution, one element for each sample}
 
 \item{n_vec}{vector of known (or assumed) sample size for each sample,
-element \code{s} corresponds to sample \code{s}. If generating random numbers using
-\code{rPLB_agg()} TODO then probably should sample \code{sum(n_vec)} from the full
-distribution; need to think about. Note for rPLB we had this, which we don't
-want here: number of random numbers to be generated (if \code{length(n) > 1} then
-generate \code{length(n)} values)}
+element \code{s} corresponds to sample \code{s}.}
 
 \item{xmin_vec}{vector of minimum bounds of the distributions, each element
 is the assumed value for each sample, which will probably be defined (by
@@ -30,36 +26,46 @@ the user) as the minimum body size of the data for each sample}
 \value{
 \code{dPLB_agg} returns a vector of probability density values
 corresponding to \code{x}. \code{pPLB_agg} returns a vector of cumulative
-distribution values P(X <= x) corresponding to \code{x}. \code{rPLB_agg} (TODO when
-written) will return a vector (TODO of length \code{sum(n_vec)}) of independent
+distribution values P(X <= x) corresponding to \code{x}. \code{rPLB_agg} (when
+written) will return a vector (of length \code{sum(n_vec)}) of independent
 random draws from the full aggregated distribution.
 }
 \description{
 For data that are collected using different sampling techniques but are
 desired to be aggregated, the measured sizes can be fitted separately
-for each sample, using likelihood (see vignette - TODO make simpler one and
-refer to here). For each sample, $s = 1, 2, 3, ..., S$, we then have a
+for each sample, using likelihood. See the \href{https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-aggregated.html}{fit-aggregated vignette}. For each sample, $s = 1, 2, 3, ..., S$, we then have a
 fitted fitted exponent $b_s$, and minima and maxima of that sample (based on
 the data).
 }
 \details{
-Here we construct the resulting probability density function, \code{dPLB_agg()},
-and cumulative distribution function, \code{pPLB_agg()}, based on math worked out
-in \code{aggregating-size-spectra.Rmd} (TODO for now, obviously update if
-becomes part of a manuscript, or vignette). \code{pPLB_agg()} then feeds into
-TODO \code{MLE.plot_agg()} to generate the plot -- the resulting fitted aggregate
+Here we construct the resulting probability density function, \code{\link[=dPLB_agg]{dPLB_agg()}},
+and cumulative distribution function, \code{\link[=pPLB_agg]{pPLB_agg()}}, based on math worked out
+in Appendix B of \href{https://www.sciencedirect.com/science/article/pii/S2351989426001769}{Quevedo et al. (2026)}. \code{\link[=pPLB_agg]{pPLB_agg()}}
+. Results then feed into
+`plot_aggregate()] to generate the plot -- the resulting fitted aggregate
 distribution is different to the simple approach of fitting one PLB to the
 full data set (which is not appropriate when the samples have different
 sampling protocols, or are not comparable for other reasons).
+
+I have not written \code{rPLB()} yet as it is a bit tricky (and is not really
+needed for people fitting their data, but is useful for simulating and
+understanding). If generating random numbers using
+\code{rPLB_agg()} then probably should sample \code{sum(n_vec)} from the full
+distribution; need to think about. Note for \code{\link[=rPLB]{rPLB()}} we had this, which we don't
+want here: number of random numbers to be generated (if \code{length(n) > 1} then
+generate \code{length(n)} values).
 }
 \examples{
 \dontrun{
-x <- 1:2000
+# See
+https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-aggregated.html
+vignette for a worked example
+x <- 1:1500
 y <- dPLB_agg(x,
   b_vec = c(-1, -2, -3, -4),
   n_vec = c(6000, 6000, 1600, 2000),
   xmin_vec = c(0.3, 10, 100, 500),
-  xmax_vec = c(80, 800, 1000, 1500)
+  xmax_vec = c(80, 800, 1000, 1500))
 # Can do same example arguments for pPLB_agg()
 }
 

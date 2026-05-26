@@ -1,8 +1,13 @@
-##' Plot a single binned ISD plot, as called from `plot.size_spectrum_mlebin()`,
+##' Plot a single binned ISD plot, as called from `plot.size_spectrum_mlebin()`
+##' and `plot.size_spectrum_mlebins()`,
 ##' or used directly from `plot.size_spectrum_numeric()` to make an LBN-style
 ##' plot of individual values and MLE plot.
 ##'
-##' TODO, define boxes if used extensively below
+##' The rectangles in the plot show the bins of body size (x-axis) and the
+##' resulting uncertainty in the counts \eqn{$\geq$} values in the bin -- see
+##' [Edwards et
+##' al. (2020)](https://www.int-res.com/abstracts/meps/v636/p19-33/)) for
+##' details.
 ##'
 ##' @inheritParams plot.size_spectrum_numeric
 ##' @inheritParams plot.size_spectrum_mlebin
@@ -81,8 +86,8 @@ plot_isd_binned <- function(res_mlebin,
                             y_scaling = 0.75,
                             seg_col = "green",   # want these parsed along if
                                         # they're changed by users in original
-                                        # call - useArgs or something? TODO
-                                        # think might be automatic, these next
+                                        # call - useArgs or something?
+                                        # Seems automatic; these next
                                         # two seem to work with
                                         # plot(res_mlebin_list[[1]],
                                         # rect_border_col = "yellow") from
@@ -93,17 +98,6 @@ plot_isd_binned <- function(res_mlebin,
                             fit_lwd = 2,
                             conf_lty = 2,
                             show_fit_on_top = TRUE
-                            # decide if want to have , ...)
-                            # From sizeSpectra::ISD_bin_plot, may want some
-                              #        xlim = NA,
-                              #       x_min = NA,
-                              #        x_max = NA,
-                              # xLabel.small = c(5, 50, 500, 5000),
-                              #        yBig.inc = 1000,
-                              #        yBig.max = 10,
-                              #        ySmall.inc = NA,
-                              #        ySmall.tcl = -0.2,
-                            #mgp.vals = c(1.6,0.5,0),
                             ){
   # Not sure if needed, see plot_isd() also and plot_lbn_style.
   stopifnot("Cannot define both x_small_ticks and x_small_ticks_by" =
@@ -117,12 +111,12 @@ plot_isd_binned <- function(res_mlebin,
 
   dat <- res_mlebin$data %>%
     dplyr::arrange(desc(bin_min))
-                                   # Should overlay rectangles like in MEPS
+                                  # Should overlay rectangles like in MEPS
                                   # Fig. 7, and not matter for
-                                  # non-overlapping. TODO check.
+                                  # non-overlapping. check.
 
 
-    # y-axis not logged
+  # y-axis not logged
   plot.default(dat$bin_min,      #    nothing plotted anyway as type = "n"
                dat$count_gte_bin_min,
                log = log,
@@ -132,11 +126,11 @@ plot_isd_binned <- function(res_mlebin,
                ylim = ylim,
                type = "n",
                axes = FALSE,
-               mgp = mgp_val) # TODO
+               mgp = mgp_val)
 
   # Add tickmarks and labels, replacing what was in ISD_bin_plot with this
   add_ticks(
-    log = log,   # TODO make general, unless making big if switches
+    log = log,
     tcl_small = tcl_small,
     mgp_val = mgp_val,
     x_big_ticks = x_big_ticks,
@@ -172,8 +166,7 @@ plot_isd_binned <- function(res_mlebin,
            y1 = dat$count_gte_bin_min,
            col = seg_col)
 
-  if(log == "xy"){    # TODO didn't have for MLEbin plot, think if we need it
-                      # for that, need to test
+  if(log == "xy"){
     # Need to manually draw the rectangle with low_count = 0 since it doesn't
     #  get plotted on log-log plot
     extra_rect <- dplyr::filter(dat,
@@ -202,21 +195,20 @@ plot_isd_binned <- function(res_mlebin,
     }
   }
 
-# TODO fix the legend
-
+  # Had a not to fix legend, but seems okay
   if(!is.null(legend_label)){   # plot_isd has as.character
     legend("topright",
            legend_label,
            bty = "n",
            inset = inset_label)
   }
-# TODO if needed
-#  if(!is.na(year)){  # might need if keep strata/year in there
-#    legend("topright",
-#           legend = year,
-#           bty = "n",
-#           inset = inset_year)
-#  }
+
+  #  if(!is.na(year)){  # would need if keep strata/year in there
+  #    legend("topright",
+  #           legend = year,
+  #           bty = "n",
+  #           inset = inset_year)
+  #  }
 
   if(!is.null(legend_text)){
   legend("topright",

@@ -8,7 +8,7 @@
 ##' plot; it is hard to automate all of them, see the arguments available.
 ##'
 ##' This creates the first plot using `plot.size_spectrum_mlebin()` or
-##' `plot.size_spectrum_mlebins()`, depending on `class(res_list[[1]]). It then
+##' `plot.size_spectrum_mlebins()`, depending on `class(res_list[[1]]`). It then
 ##' makes the subsequent rectangles and lines here.
 ##'
 ##' @inheritParams plot_aggregate

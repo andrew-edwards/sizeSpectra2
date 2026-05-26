@@ -2,7 +2,8 @@
 % Please edit documentation in R/plot-isd-binned.R
 \name{plot_isd_binned}
 \alias{plot_isd_binned}
-\title{Plot a single binned ISD plot, as called from \code{plot.size_spectrum_mlebin()},
+\title{Plot a single binned ISD plot, as called from \code{plot.size_spectrum_mlebin()}
+and \code{plot.size_spectrum_mlebins()},
 or used directly from \code{plot.size_spectrum_numeric()} to make an LBN-style
 plot of individual values and MLE plot.}
 \usage{
@@ -109,7 +110,10 @@ single panel plot of the ISD with data in binned form like in
 Fig. 7a or 7b of MEPS paper, but with nonoverlapping bins; returns nothing.
 }
 \description{
-TODO, define boxes if used extensively below
+The rectangles in the plot show the bins of body size (x-axis) and the
+resulting uncertainty in the counts \eqn{$\geq$} values in the bin -- see
+\href{https://www.int-res.com/abstracts/meps/v636/p19-33/}{Edwards et al. (2020)}) for
+details.
 }
 \examples{
 \dontrun{

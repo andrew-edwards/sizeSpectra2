@@ -16,6 +16,7 @@ plot_aggregate_fits(
   ylim = NULL,
   inset_text = c(0, 0.04),
   legend_text_second_row_multiplier = 2,
+  xlab = expression(paste("Body mass, ", italic(x), "(g)")),
   ...
 )
 }
@@ -55,13 +56,15 @@ row of legend text to space it out, especially for smaller panel plots.}
 \item{...}{additional arguments passed onto \code{\link[=plot]{plot()}}}
 }
 \description{
-Uses the results from \code{\link[=plot_aggregate_mlebin]{plot_aggregate_mlebin()}} to plot aggregated size
+Uses the results from \code{\link[=plot_aggregate]{plot_aggregate()}} or \code{\link[=plot_aggregate_mlebin]{plot_aggregate_mlebin()}} to plot aggregated size
 spectra for several strata on a single rank/frequency style plot. Has options
 for normalising and restricting x range to give justifiable comparisons.
 }
 \examples{
 \dontrun{
-# See aggregating-size-spectra.Rmd TODO copy something to here maybe
+##' # See fit-aggregated.html vignette at
+# https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-aggregated.html
+# for a worked example
 }
 
 }

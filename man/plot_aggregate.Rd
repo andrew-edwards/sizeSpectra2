@@ -11,41 +11,62 @@ plot_aggregate(
   col_agg = "magenta",
   xlim_global = NULL,
   ylim_global = NULL,
-  return_agg_x_y = TRUE
+  return_agg_x_y = TRUE,
+  ...
 )
 }
 \arguments{
-\item{res_list}{list of results, with each component a list object of a
-given type TODO first doing for \code{size_spectrum_numeric}, might be somewhat
-automatic to generalise. Am making plot_aggregate_mlebins() and prob
-plot_aggregate_mlebin(); could check the class here and keep this as the
-user outfacing function, or also make plot_aggregate_numeric and just call
-the right one. Some of the details could be shared here maybe.}
+\item{res_list}{list of results, with each component a list object of either
+(it is hard to automate this):
+\itemize{
+\item class \code{size_spectrum_numeric} from applying \code{\link[=fit_size_spectrum]{fit_size_spectrum()}} to a
+vector of individual body sizes; use \code{plot_aggregate()}
+\item class \code{size_spectrum_mlebin} from using the MLEbin method for binned
+data, or class \code{size_spectrum_mlebins} from using the MLEbins method; use
+\code{plot_aggregate_mlebin()}
+}}
 
-\item{col_vec}{vector of colours to assign for each group}
+\item{col_vec}{vector of colours, one for each of the fits}
 
-\item{col_agg}{TODO}
+\item{col_agg}{colour for the aggregated fit}
 
-\item{xlim_global}{TODO}
+\item{xlim_global}{two-component vector to specify the global \code{xlim}; if
+\code{NULL} (the default) then calculated automatically}
 
-\item{ylim_global}{TODO}
+\item{ylim_global}{as \code{ylim_global} for the global \code{ylim}}
 
 \item{return_agg_x_y}{logical, whether to return the aggregated x and y for plotting
 values of the aggregated fit}
+
+\item{...}{additional arguments to pass onto
+\code{plot.size_spectrum.numeric(...)} or \code{plot.size_spectrum_mlebin()} or
+\code{plot.size_spectrum_mlebins()} as appropriate.}
 }
 \value{
-nothing TODO, should this return something?
+if \code{return_agg_x_y} is \code{TRUE} then return a list with two objects, \code{x_plb_agg} and \code{y_plb_agg}, which are the
+fitted x and y values used to plot the aggregated size spectrum (which does not
+have a simple exponent). These can then be use for plotting multiple
+strata in \code{\link[=plot_aggregate_fits]{plot_aggregate_fits()}}.
 }
 \description{
-Given a list of MLE results (TODO check how many different types), combine
-the data and show an aggregated distribtuion, as well as the individual
+Given a list of MLE results obtained from vectors of data (each component of
+the list should have class \code{size_spectrum_numeric}), combine
+the data and show an aggregated distribution, as well as the individual
 fits. Return the x and y values of the aggregated plot. The calculations use
 the ranges of the axes, which is why calculations and plotting is combined
-here in the same function.
+here in the same function. For results from using the MLEbin and MLEbins methods use
+\code{\link[=plot_aggregate_mlebin]{plot_aggregate_mlebin()}} (it works for both types).
+}
+\details{
+The default is to plot logarithmic x and y axes; should presumably work with
+some of the options of \code{style} in \code{plot.size_spectrum_mlebin()} and
+\code{plot.size_spectrum_mlebins()}, but I have not tried them all.
 }
 \examples{
 \dontrun{
-# See fit-aggregated.Rmd vignette
+# See fit-aggregated.html vignette at
+# https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-aggregated.html
+# for a worked example
 }
 
 }

@@ -19,11 +19,19 @@ plot_aggregate_mlebin(
 )
 }
 \arguments{
-\item{res_list}{list of results, with each component a list object of a
-given type TODO share help with plot-aggregate.}
+\item{res_list}{list of results, with each component a list object of either
+(it is hard to automate this):
+\itemize{
+\item class \code{size_spectrum_numeric} from applying \code{\link[=fit_size_spectrum]{fit_size_spectrum()}} to a
+vector of individual body sizes; use \code{plot_aggregate()}
+\item class \code{size_spectrum_mlebin} from using the MLEbin method for binned
+data, or class \code{size_spectrum_mlebins} from using the MLEbins method; use
+\code{plot_aggregate_mlebin()}
+}}
 
-\item{col_vec}{vector of colours to assign for each group, used for the
-border of the rectangles and the fitted curve.}
+\item{col_vec}{vector of colours, one for each of the fits}
+
+\item{col_agg}{colour for the aggregated fit}
 
 \item{rect_shading_equal_col_vec}{logical, if TRUE then shade in the
 rectangles with the colour for that group, else if FALSE stick with grey. Will depend
@@ -34,39 +42,34 @@ rectangles are large and the curve blends in); hard to fully automate.}
 rectangles with the colour for that group, else stick with black. Will depend
 how the figure looks; hard to fully automate.}
 
-\item{return_agg_x_y}{logical, whether to return the aggregated x and y for plotting}
-}
-\value{
-list with two objects, \code{x_plb_agg} and \code{y_plb_agg}, which are the
-fitted x and y values for the aggregated size spectrum (which does not
-have a simple exponent). To then use for plotting multiple strata in \code{\link[=plot_aggregate_fits]{plot_aggregate_fits()}}.
+\item{xlim_global}{two-component vector to specify the global \code{xlim}; if
+\code{NULL} (the default) then calculated automatically}
+
+\item{ylim_global}{as \code{ylim_global} for the global \code{ylim}}
+
+\item{return_agg_x_y}{logical, whether to return the aggregated x and y for plotting
+values of the aggregated fit}
+
+\item{...}{additional arguments to pass onto
+\code{plot.size_spectrum.numeric(...)} or \code{plot.size_spectrum_mlebin()} or
+\code{plot.size_spectrum_mlebins()} as appropriate.}
 }
 \description{
+Given a list of MLEbin or MLEbins results, combine
+the data and show an aggregated distribution, as well as the individual fits.
 Users may need to play with the colour settings to get an instructive
 plot; it is hard to automate all of them, see the arguments available.
 }
 \details{
-TODO note for me: this creates the first plot using plot... then makes the
-subsequent rectangles and lines here.
-
-TODO forcussing on MLEbins first, but should be general enough but need
-testing for MLEbin. This is copying \link{plot_aggregate} and then
-editing. Worked for Med data, so do test for simulated MLEbin data.
-isn't easy).
-
-TODO Am making plot_aggregate_mlebin() and maybe
-plot_aggregate_mlebins(), though prob best to make the latter the same,
-and don't want the green lines as a bit too confusing maybe.; could check
-the class here and have a general outfacing function,
-or also make plot_aggregate_numeric and just call
-the right one. Some of the details could be shared here maybe.
-
-Given a list of MLEbin results, combine
-the data and show an aggregated distribution, as well as the individual fits.
+This creates the first plot using \code{plot.size_spectrum_mlebin()} or
+\code{plot.size_spectrum_mlebins()}, depending on \verb{class(res_list[[1]]}). It then
+makes the subsequent rectangles and lines here.
 }
 \examples{
 \dontrun{
-# See aggregating-size-spectra.Rmd TODO copy something to here maybe
+# See fit-aggregated.html vignette at
+# https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-aggregated.html
+# for a worked example
 }
 
 }
