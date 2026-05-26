@@ -200,7 +200,7 @@ plot_lbn_style <- function(res,
            bty = "n",
            inset = inset_label)
   }
-# TODO if needed
+
 #  if(!is.na(year)){  # might need if keep strata/year in there
 #    legend("topright",
 #           legend = year,

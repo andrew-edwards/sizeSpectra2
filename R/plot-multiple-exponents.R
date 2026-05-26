@@ -31,7 +31,7 @@
 ##' @param xlim, ylim vectors for axes limits; if NULL (the default) they get
 ##'   calculated automatically.
 ##' @param x_jitter Amount to left/right jitter each strata within a group;
-##'   default works great for an example plot, needs generalising TODO
+##'   default works great for an example plot, likely needs generalising
 ##' @param legend_position character description of keyword of where to put
 ##'   legend using `legend()`, one of '"bottomright"', '"bottom"',
 ##'   '"bottomleft"', '"left"', '"topleft"', '"top"', '"topright"', '"right"'

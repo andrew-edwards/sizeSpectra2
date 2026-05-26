@@ -210,7 +210,7 @@ plot.size_spectrum_numeric <- function(res,
 
   if(style == "biomass"){
 
-    plot_lb_style(res,
+    plot_lbn_style(res,
                    x_plb = x_plb,
                    xlab = xlab,
                    inset_label = inset_label,
