@@ -36,7 +36,6 @@ plot_isd(
   y_small_ticks = NULL,
   y_small_ticks_by = NULL,
   y_small_ticks_labels = NULL,
-  y_scaling = 0.75,
   fit_col = "red",
   fit_lwd = 2,
   conf_lty = 2,
@@ -108,17 +107,14 @@ fit (and fits of confidence limits) as solid (and dashed) lines.
 }
 \description{
 Is called from \code{plot.size_spectrum_numeric()} with logarithmic or linear
-y-axis TODO.
+y-axis.
 }
 \examples{
 \dontrun{
-# TODO
 res_vec <- fit_size_spectrum(sim_vec)
-plot(res_vec)
+plot(res_vec)    # Uses plot.size_spectrum_numeric() method, which calls
+  plot_isd() with log = "xy" as the default.
 plot(res_vec, log = "x")
-plot(res_vec, log = "")
-plot(res_vec, x_small_ticks_labels = c(5, 50, 500), log = "x") # Tailor the
-  labels for a particular figure
 }
 }
 \author{

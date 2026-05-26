@@ -1,8 +1,6 @@
 ##' Plot binned ISD plots similar to MEPS Figure 7 (but with nonoverlapping
 ##' bins).
 ##'
-##' TODO need xlab here and called functions
-##'
 ##' Plots one- or two-panel plot of the ISD with data in binned form like in
 ##'   Fig. 7a or 7b (depending on settings) of MEPS paper, but with
 ##'   nonoverlapping bins. See `log_y_axis` to specify exact plot(s).
@@ -13,39 +11,18 @@
 ##' @inheritParams plot.size_spectrum_numeric
 ##' @inheritParams plot_isd_binned
 ##' @param res_mlebin size_spectrum_mlebin object resulting from running
-##'   `fit_size_spectrum()` on binned data (such that the function
-##'   `fit_size_spectrum_mlebin()` is used; see vignette TODO). # TODO link help
-##'   to plot.size_spectrum_numeric - may want to put them all together
-##' @param log_y_axis TODO delete a bunch of these params.....character either `"both"`, do two plots (like Fig. 7 of
-##'   MEPS paper), `"no"` for single plot with linear y axis (like Fig. 7a of
-##'   MEPS paper), `"yes"` for single plot with logarithmic y axis (like Fig. 7b
-##'   of MEPS paper). Legends are automatically set, but can be tailored with the
-##'   arguments defined below.
-##' @param legend_label_a character label (default `"(a)"`) to use for panel a for two-panel plot
-##'   (`log_y_axis = "both"`).
-##' @param legend_label_b character label to use for panel b for two-panel plot
-##'   (`log_y_axis = "both"`).
-##' @param legend_label_single character label to use for the only panel for a one-panel plot (`log_y_axis = "yes"` or `"no"`).
-##' @param legend_text_a text to include in the legend for panel
-##'   a for two-panel plot (`log_y_axis = "both"`), the `b = -1.58` in Fig. 7a
-##'   of MEPS paper, or the only panel for a one-panel plot (`log_y_axis =
-##'   "yes"` or `"no"`).
-##' @param legend_text_b text to include in the legend for panel
-##'   b for two-panel plot (`log_y_axis = "both"`); ignored for one-panel plot
-##' @param legend_text_a_n, legend_text_b_n as for `legend_text_a` and
-##'   `legend_text_b` but for another row of information, default being `n =
-##'   <sample size>` as in Fig. 7a of MEPS paper.
+##'   `fit_size_spectrum()` on a `data.frame` of binned data (such that the function
+##'   `fit_size_spectrum_mlebin()` is used); see the [fit-data.html vignette](https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data.html).
 ##' @return one- or two-panel plot of the ISD with data in binned form like in
 ##'   Fig. 7, 7a or 7b (depending on settings) of MEPS paper, but with nonoverlapping bins; returns nothing.
 ##' @export
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##'
+##' res_binned <- fit_size_spectrum(sim_vec_binned)
+##' plot(res_binned)
 ##' }
 plot.size_spectrum_mlebin <- function(res_mlebin,
-                                     # from plot.size_spectrum_numeric(), best
-                                      # to use these for consistency
                                       style = "log_y_axis",
                                       xlim = c(min(res_mlebin$data$bin_min),
                                                max(res_mlebin$data$bin_max)),
@@ -59,9 +36,7 @@ plot.size_spectrum_mlebin <- function(res_mlebin,
                                       mle_round = 2,
                                       legend_label_a = "(a)",
                                       legend_label_b = "(b)",
-                                      legend_label_single = NULL, # for just one
-                                      # panel
-                                      # Use the a ones for single also TODO in help
+                                      legend_label_single = NULL,
                                       legend_text_a = paste0("b=",
                                                            round(res_mlebin$b_mle,
                                                                   mle_round)),
@@ -69,16 +44,13 @@ plot.size_spectrum_mlebin <- function(res_mlebin,
                                                                round(sum(res_mlebin$data$bin_count))),
                                       legend_text_b = NULL,
                                       legend_text_b_n = NULL,
-                                      # seg_col = "black",
                                       par_mai = c(0.4, 0.5, 0.05, 0.3),
                                       par_cex = 0.7,   # only for two panel
                                          # plots, use par() as usual for single plots
-                                      seg_col = NULL,         # defined to be NULL here,
-                                                              #  but is set to black if not overridden
+                                      seg_col = NULL,         # but gets set to
+                                                              # black if not overridden
                                       ...
-                                      ){   # TODO decide if want ... yes, just
-                                        # make sure help files link to all functions
-
+                                      ){
   # Parts of this are included in plot_aggregate_mlebin() so if change things
   #  here may need to check that and change there also.
   stopifnot("style must be log_y_axis, linear_y_axis, both_y_axes, biomass, or biomass_and_log" =
@@ -144,7 +116,7 @@ plot.size_spectrum_mlebin <- function(res_mlebin,
     if(style %in% c("linear_y_axis", "log_y_axis")){
     log_axes <- ifelse(style == "log_y_axis",
                        "xy",
-                       "x")    # TODO test this
+                       "x")
 
     plot_isd_binned(res_mlebin = res_mlebin,
                     log = log_axes,
@@ -240,10 +212,9 @@ plot.size_spectrum_mlebin <- function(res_mlebin,
                     legend_text = legend_text_b,
                     legend_text_n = legend_text_b_n,
                     seg_col = seg_col,
-                    ...)  # ADD in more options maybe, see plot_isd_binned; figure out
-                          # useArgs() thing. Copy to next ones TODO. Might be okay
+                    ...)
   }
-  # par(par_orig)      # Leave as was found  commenting as think messes up plot.determine_xmin_and_fit_mlebins.R
-
+  # par(par_orig)      # Leave as was found, but  commenting as think messes
+                       #  up plot.determine_xmin_and_fit_mlebins.R
   invisible()
 }

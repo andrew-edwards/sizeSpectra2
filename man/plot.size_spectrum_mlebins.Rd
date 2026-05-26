@@ -12,7 +12,7 @@ in Fig. 7 of MEPS paper); default in \code{plot.size_spectrum_mlebin()} is NULL
 which gets converted to \code{black} in that function.}
 
 \item{...}{Further arguments for \code{plot_isd()} and then \code{plot()}, except
-cannot have \code{log} as that gets overridden. TODO check}
+cannot have \code{log} as that gets overridden.}
 }
 \value{
 one- or two-panel plot of the ISD with data in binned form like in

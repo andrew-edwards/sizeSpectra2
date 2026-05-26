@@ -31,6 +31,9 @@ and 6(b) of MEE paper and Figure 7 of MEPS paper. \code{log} argument needs to
 match the original \code{\link[=plot]{plot()}} call (this is not checked).
 }
 \details{
+Single plots are the ISD style with either logarithmic or linear y-axis. See
+the \code{style} argument.
+
 Legends are automatically set, but can be tailored with the
 arguments defined below.
 }

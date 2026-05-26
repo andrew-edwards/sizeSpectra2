@@ -19,10 +19,6 @@
 ##' @param y_plb_conf_min, y_plb_conf_max vector of values corresponding to the fit, using the
 ##'   minimum/maximum value confidence interval for exponent b, of the PLB
 ##'   distribution at each value of `x_PLB`
-##' @param y_scaling numeric scaling of y-minimum of y-axis. Axis can't go to zero on
-##'   log-log plot, but goes to the proportion `y_scaling` (<1)
-##'   of the minimum value of counts greater than the highest `bin_min` value. Do
-##'   such that can see the right-most bin in all plots.
 ##' @param plot_conf_ints logical whether to plot confidence intervals or not
 ##' @param par_mai vector of values to use for `par(mai)`
 ##' @param par_cex numeric value to use for `par(cex)` (font size)
@@ -83,7 +79,6 @@ plot_isd_binned <- function(res_mlebin,
                             y_small_ticks = NULL,
                             y_small_ticks_by = NULL,
                             y_small_ticks_labels = NULL,
-                            y_scaling = 0.75,
                             seg_col = "green",   # want these parsed along if
                                         # they're changed by users in original
                                         # call - useArgs or something?
@@ -195,8 +190,8 @@ plot_isd_binned <- function(res_mlebin,
     }
   }
 
-  # Had a not to fix legend, but seems okay
-  if(!is.null(legend_label)){   # plot_isd has as.character
+  # Had a note to fix legend maybe, but seems okay
+  if(!is.null(legend_label)){
     legend("topright",
            legend_label,
            bty = "n",

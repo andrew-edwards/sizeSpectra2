@@ -2,7 +2,7 @@
 ##' confidence intervals.
 ##'
 ##' Is called from `plot.size_spectrum_numeric()` with logarithmic or linear
-##' y-axis TODO.
+##' y-axis.
 ##'
 ##' @inheritParams plot.size_spectrum_numeric
 ##' @param log Which axes to log, for `plot(..., log = log)`. So "xy" for
@@ -52,13 +52,10 @@
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##' # TODO
 ##' res_vec <- fit_size_spectrum(sim_vec)
-##' plot(res_vec)
+##' plot(res_vec)    # Uses plot.size_spectrum_numeric() method, which calls
+##'   plot_isd() with log = "xy" as the default.
 ##' plot(res_vec, log = "x")
-##' plot(res_vec, log = "")
-##' plot(res_vec, x_small_ticks_labels = c(5, 50, 500), log = "x") # Tailor the
-##'   labels for a particular figure
 ##' }
 plot_isd <- function(res,
                      log,
@@ -92,7 +89,6 @@ plot_isd <- function(res,
                      y_small_ticks = NULL,
                      y_small_ticks_by = NULL,
                      y_small_ticks_labels = NULL,
-                     y_scaling = 0.75,
                      fit_col = "red",
                      fit_lwd = 2,
                      conf_lty = 2,
@@ -116,7 +112,7 @@ plot_isd <- function(res,
        ylim = ylim,
        type = "p",
        axes = FALSE,
-       mgp = mgp_val, # TODO
+       mgp = mgp_val,
        ...)
 
   # Add tickmarks and labels
@@ -151,7 +147,7 @@ plot_isd <- function(res,
     lines(x_plb, y_plb_conf_max, col = fit_col, lty = conf_lty)
   }
 
-# TODO fix the legend maybe, see plot_isd_binned
+  # Had a note to fix legend maybe, but seems okay
   if(!is.null(legend_label)){
     legend("topright",
            eval(legend_label),

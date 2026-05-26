@@ -30,9 +30,8 @@ bins).}
 }
 \arguments{
 \item{res_mlebin}{size_spectrum_mlebin object resulting from running
-\code{fit_size_spectrum()} on binned data (such that the function
-\code{fit_size_spectrum_mlebin()} is used; see vignette TODO). # TODO link help
-to plot.size_spectrum_numeric - may want to put them all together}
+\code{fit_size_spectrum()} on a \code{data.frame} of binned data (such that the function
+\code{fit_size_spectrum_mlebin()} is used); see the \href{https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data.html}{fit-data.html vignette}.}
 
 \item{style}{character either:
 \itemize{
@@ -43,8 +42,9 @@ to plot.size_spectrum_numeric - may want to put them all together}
 plot, essentially the recommended Fig. 6 of MEE paper where the top panel
 is bins of normalized biomass (but improved here by showing bins in the top
 panel rather than points) and the \code{"log_y_axis"} plot described above.
-TODO prob have to make that consistent in other plotting function
 Note that the x-axis is always logarithmic.
+Legends are automatically set, but can be tailored with the arguments
+defined below.
 }}
 
 \item{x_plb}{vector of values to use to plot the fitted PLB curve; if NA then
@@ -57,21 +57,20 @@ be modified as required.}
 \item{y_scaling}{numeric scaling of y-minimum of y-axis. Axis can't go to zero on
 log-log plot, but goes to the proportion \code{y_scaling} (<1)
 of the minimum value of counts greater than the highest \code{bin_min} value. Do
-such that can see the right-most bin in all plots.}
+such that can see the right-most or point bin in all plots.}
 
-\item{legend_label_a}{character label (default \code{"(a)"}) to use for panel a for two-panel plot
-(\code{log_y_axis = "both"}).}
+\item{legend_label_a}{character label (default \code{"(a)"}) to use for panel (a)
+for a two-panel plot}
 
-\item{legend_label_b}{character label to use for panel b for two-panel plot
-(\code{log_y_axis = "both"}).}
+\item{legend_label_b}{character label to use for panel (b) for two-panel plot}
 
-\item{legend_label_single}{character label to use for the only panel for a one-panel plot (\code{log_y_axis = "yes"} or \code{"no"}).}
+\item{legend_label_single}{character label to use for the only panel for a one-panel plot}
 
 \item{legend_text_a}{text to include in the legend for panel
-a for two-panel plot (\code{log_y_axis = "both"}), the \code{b = -1.58} in Fig. 7a
-of MEPS paper, or the only panel for a one-panel plot (\code{log_y_axis = "yes"} or \code{"no"}).}
+(a) for two-panel plot( the \code{b = -1.58} in Fig. 7a
+of MEPS paper) or the only panel for a one-panel plot.}
 
-\item{legend_text_a_n, }{legend_text_b_n as for \code{legend_text_a} and
+\item{legend_text_a_n}{legend_text_b_n as for \code{legend_text_a} and
 \code{legend_text_b} but for another row of information, default being \verb{n = <sample size>} as in Fig. 7a of MEPS paper.}
 
 \item{legend_text_b}{text to include in the legend for panel
@@ -86,32 +85,25 @@ in Fig. 7 of MEPS paper); default in \code{plot.size_spectrum_mlebin()} is NULL
 which gets converted to \code{black} in that function.}
 
 \item{...}{Further arguments for \code{plot_isd()} and then \code{plot()}, except
-cannot have \code{log} as that gets overridden. TODO check}
-
-\item{log_y_axis}{TODO delete a bunch of these params.....character either \code{"both"}, do two plots (like Fig. 7 of
-MEPS paper), \code{"no"} for single plot with linear y axis (like Fig. 7a of
-MEPS paper), \code{"yes"} for single plot with logarithmic y axis (like Fig. 7b
-of MEPS paper). Legends are automatically set, but can be tailored with the
-arguments defined below.}
+cannot have \code{log} as that gets overridden.}
 }
 \value{
 one- or two-panel plot of the ISD with data in binned form like in
 Fig. 7, 7a or 7b (depending on settings) of MEPS paper, but with nonoverlapping bins; returns nothing.
 }
 \description{
-TODO need xlab here and called functions
-}
-\details{
 Plots one- or two-panel plot of the ISD with data in binned form like in
 Fig. 7a or 7b (depending on settings) of MEPS paper, but with
 nonoverlapping bins. See \code{log_y_axis} to specify exact plot(s).
-
+}
+\details{
 Also directly called from \code{plot.size_spectrum_mlebins()} with no
 extra arugments for MLEbins method.
 }
 \examples{
 \dontrun{
-
+res_binned <- fit_size_spectrum(sim_vec_binned)
+plot(res_binned)
 }
 }
 \author{

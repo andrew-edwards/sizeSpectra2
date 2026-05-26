@@ -10,7 +10,7 @@ remove_hist(agg_list, remove_strata = NULL)
 \arguments{
 \item{agg_list}{List of objects of class \code{determine_xmin_and_fit_mlebins},
 from running \code{determine_xmin_and_fit_mlebins()} and then putting results
-into one list (TODO add example to vignette). If length 2 then assumed to
+into one list. If length 2 then assumed to
 be the fit and the histogram object, with no strata.}
 
 \item{remove_strata}{vector of names of any strata to remove, each must be one of \code{names(agg_list)}.}

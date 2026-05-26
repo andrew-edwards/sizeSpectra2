@@ -1,4 +1,4 @@
-##' Plot individual size distribution of values and the MLE fit with
+##' Plot individual size distribution (ISD) of values and the MLE fit with
 ##' confidence intervals
 ##'
 ##' Plots one- or two-panel plot of the ISD and data, with maximum likelihood
@@ -10,13 +10,15 @@
 ##' axes with fitted estimates and (b) same as (b) above, essentially the
 ##' recommended Fig. 6 of the MEE paper, but improved by showing bins in the top
 ##' panel rather than points.
-##' Single plots are either the ISD style with logarithmic or linear y-axis. See
+##'
+##' Single plots are the ISD style with either logarithmic or linear y-axis. See
 ##' the `style` argument.
 ##'
 ##' Legends are automatically set, but can be tailored with the
 ##'   arguments defined below.
 ##'
 ##' @inheritParams plot_isd
+##' @inheritParams base::plot
 ##' @param res size_spectrum_numeric object, as output from
 ##'   [fit_size_spectrum.numeric()], which gets called when applying
 ##'   [fit_size_spectrum()] to a numeric vector
@@ -28,19 +30,35 @@
 ##'   plot, essentially the recommended Fig. 6 of MEE paper where the top panel
 ##'   is bins of normalized biomass (but improved here by showing bins in the top
 ##'   panel rather than points) and the `"log_y_axis"` plot described above.
-##' TODO prob have to make that consistent in other plotting function
-##'  Note that the x-axis is always logarithmic.
+##'   Note that the x-axis is always logarithmic.
+##'   Legends are automatically set, but can be tailored with the arguments
+##'   defined below.
+##' @param y_scaling numeric scaling of y-minimum of y-axis. Axis can't go to zero on
+##'   log-log plot, but goes to the proportion `y_scaling` (<1)
+##'   of the minimum value of counts greater than the highest `bin_min` value. Do
+##'   such that can see the right-most or point bin in all plots.
+##' @param legend_label_a character label (default `"(a)"`) to use for panel (a)
+##' for a two-panel plot
+##' @param legend_label_b character label to use for panel (b) for two-panel plot
+##' @param legend_label_single character label to use for the only panel for a one-panel plot
+##' @param legend_text_a text to include in the legend for panel
+##'   (a) for two-panel plot( the `b = -1.58` in Fig. 7a
+##'   of MEPS paper) or the only panel for a one-panel plot.
+##' @param legend_text_b text to include in the legend for panel
+##'   b for two-panel plot (`log_y_axis = "both"`); ignored for one-panel plot
+##' @param legend_text_a_n, legend_text_b_n as for `legend_text_a` and
+##'   `legend_text_b` but for another row of information, default being `n =
+##'   <sample size>` as in Fig. 7a of MEPS paper.
 ##' @param ... Further arguments for `plot_isd()` and then `plot()`, except
-##'   cannot have `log` as that gets overridden. TODO check
+##'   cannot have `log` as that gets overridden.
 ##' @return One- or two-panel plot of raw data and PLB distribution (and fits of
 ##'   confidence limits) as solid (and dashed) fitted using MLE method; returns
-##'   nothing. TODO could return invisible biomass calcs
+##'   nothing.
 ##'
 ##' @export
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##' # TODO
 ##' res_vec <- fit_size_spectrum(sim_vec)
 ##' plot(res_vec)
 ##' plot(res_vec, log = "x")
@@ -50,8 +68,8 @@
 ##' }
 plot.size_spectrum_numeric <- function(res,
                                        style = "log_y_axis",
-                                       xlim = c(min(res$x),
-                                                max(res$x)),
+                                       xlim = c(res$x_min,
+                                                res$x_max),
                                        ylim = NULL,
                                        x_plb = NULL,
                                        y_scaling = 0.75,
@@ -63,7 +81,6 @@ plot.size_spectrum_numeric <- function(res,
                                        legend_label_b = "(b)",
                                        legend_label_single = NULL, # for just one
                                        # panel
-                                       # Use the a ones for single also TODO in help
                                        legend_text_a = paste0("b=",
                                                               round(res$b_mle,
                                                                     mle_round)),
@@ -92,19 +109,9 @@ plot.size_spectrum_numeric <- function(res,
 
   x <- res$x
 
-  x_min <- min(x)   # or from results??? TODO
-  x_max <- max(x)
+  x_min <- res$x_min
+  x_max <- res$x_max
   n <- res$n
-
-  # not sure these are needed; if xlim, ylim don't get specified won't they just
-  # end up as these? TODO
-  ## if(is.na(xlim_global[1])){
-  ##   xlim_global = c(min(x),
-  ##                   max(x))
-  ## }
-  ## if(is.na(ylim_global[1])){
-  ##   ylim_global = c(1, length(x))
-  ##   }
 
   # x values to plot PLB if not provided; need high resolution for both plots.
   if(is.null(x_plb)){
@@ -137,15 +144,12 @@ plot.size_spectrum_numeric <- function(res,
   if(is.null(ylim)){
     ylim <- c(y_scaling,
               length(x))
-   # TODO in help mention for this one it just scales
-                           # the y-axis since always multiplied by 1, the rank
-                           # of largest value
   }
 
   if(style %in% c("linear_y_axis", "log_y_axis")){
     log_axes <- ifelse(style == "log_y_axis",
                        "xy",
-                       "x")    # TODO test this
+                       "x")
 
     plot_isd(res = res,
              log = log_axes,

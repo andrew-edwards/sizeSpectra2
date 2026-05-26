@@ -34,12 +34,14 @@ adds tickmarks to one axis of a plot. Returns invisible.
 Called from \code{\link[=add_ticks]{add_ticks()}} which is called from \code{\link[=plot.size_spectrum_numeric]{plot.size_spectrum_numeric()}}.
 }
 \details{
+Single plots are the ISD style with either logarithmic or linear y-axis. See
+the \code{style} argument.
+
 Legends are automatically set, but can be tailored with the
 arguments defined below.
 }
 \examples{
 \dontrun{
-# TODO
 res_vec <- fit_size_spectrum(sim_vec)
 plot(res_vec)
 plot(res_vec, log = "x")

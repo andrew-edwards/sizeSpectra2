@@ -104,11 +104,9 @@ test_that("MLEbins fitting and plotting works and matches original results", {
                c(-3.16269213,
                  -2.83629213))
 
-
-
   # Testing detect_outliers and remove_outliers. You detect first then look at
-  # results to judge what to remove (it's not automatic, you assing
-  # remove_outliers(number = **) value.
+  # results to judge what to remove (it's not automatic, you are assessing ** in
+  # remove_outliers(number = **).
   # We didn't remove outliers for cephsmall_fg, so this is not replicating our
   # actual analysis, just an example to test the code.
 

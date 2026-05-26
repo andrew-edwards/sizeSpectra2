@@ -2,13 +2,13 @@
 % Please edit documentation in R/plot.size_spectrum_numeric.R
 \name{plot.size_spectrum_numeric}
 \alias{plot.size_spectrum_numeric}
-\title{Plot individual size distribution of values and the MLE fit with
+\title{Plot individual size distribution (ISD) of values and the MLE fit with
 confidence intervals}
 \usage{
 \method{plot}{size_spectrum_numeric}(
   res,
   style = "log_y_axis",
-  xlim = c(min(res$x), max(res$x)),
+  xlim = c(res$x_min, res$x_max),
   ylim = NULL,
   x_plb = NULL,
   y_scaling = 0.75,
@@ -41,20 +41,43 @@ confidence intervals}
 plot, essentially the recommended Fig. 6 of MEE paper where the top panel
 is bins of normalized biomass (but improved here by showing bins in the top
 panel rather than points) and the \code{"log_y_axis"} plot described above.
-TODO prob have to make that consistent in other plotting function
 Note that the x-axis is always logarithmic.
+Legends are automatically set, but can be tailored with the arguments
+defined below.
 }}
+
+\item{y_scaling}{numeric scaling of y-minimum of y-axis. Axis can't go to zero on
+log-log plot, but goes to the proportion \code{y_scaling} (<1)
+of the minimum value of counts greater than the highest \code{bin_min} value. Do
+such that can see the right-most or point bin in all plots.}
 
 \item{xlab}{ylab x/y labels, explicitly given default values here which can
 be modified as required.}
 
+\item{legend_label_a}{character label (default \code{"(a)"}) to use for panel (a)
+for a two-panel plot}
+
+\item{legend_label_b}{character label to use for panel (b) for two-panel plot}
+
+\item{legend_label_single}{character label to use for the only panel for a one-panel plot}
+
+\item{legend_text_a}{text to include in the legend for panel
+(a) for two-panel plot( the \code{b = -1.58} in Fig. 7a
+of MEPS paper) or the only panel for a one-panel plot.}
+
+\item{legend_text_a_n, }{legend_text_b_n as for \code{legend_text_a} and
+\code{legend_text_b} but for another row of information, default being \verb{n = <sample size>} as in Fig. 7a of MEPS paper.}
+
+\item{legend_text_b}{text to include in the legend for panel
+b for two-panel plot (\code{log_y_axis = "both"}); ignored for one-panel plot}
+
 \item{...}{Further arguments for \code{plot_isd()} and then \code{plot()}, except
-cannot have \code{log} as that gets overridden. TODO check}
+cannot have \code{log} as that gets overridden.}
 }
 \value{
 One- or two-panel plot of raw data and PLB distribution (and fits of
 confidence limits) as solid (and dashed) fitted using MLE method; returns
-nothing. TODO could return invisible biomass calcs
+nothing.
 }
 \description{
 Plots one- or two-panel plot of the ISD and data, with maximum likelihood
@@ -66,16 +89,16 @@ the data represent body masses, (a) the normalised biomass on log-log
 axes with fitted estimates and (b) same as (b) above, essentially the
 recommended Fig. 6 of the MEE paper, but improved by showing bins in the top
 panel rather than points.
-Single plots are either the ISD style with logarithmic or linear y-axis. See
-the \code{style} argument.
 }
 \details{
+Single plots are the ISD style with either logarithmic or linear y-axis. See
+the \code{style} argument.
+
 Legends are automatically set, but can be tailored with the
 arguments defined below.
 }
 \examples{
 \dontrun{
-# TODO
 res_vec <- fit_size_spectrum(sim_vec)
 plot(res_vec)
 plot(res_vec, log = "x")

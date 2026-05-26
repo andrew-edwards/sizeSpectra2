@@ -38,7 +38,6 @@ plot_isd_binned(
   y_small_ticks = NULL,
   y_small_ticks_by = NULL,
   y_small_ticks_labels = NULL,
-  y_scaling = 0.75,
   seg_col = "green",
   rect_shading_col = "grey",
   rect_border_col = "black",
@@ -50,9 +49,8 @@ plot_isd_binned(
 }
 \arguments{
 \item{res_mlebin}{size_spectrum_mlebin object resulting from running
-\code{fit_size_spectrum()} on binned data (such that the function
-\code{fit_size_spectrum_mlebin()} is used; see vignette TODO). # TODO link help
-to plot.size_spectrum_numeric - may want to put them all together}
+\code{fit_size_spectrum()} on a \code{data.frame} of binned data (such that the function
+\code{fit_size_spectrum_mlebin()} is used); see the \href{https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data.html}{fit-data.html vignette}.}
 
 \item{x_plb}{vector of values to use to plot the fitted PLB curve; if NA then
 automatically calculated (sometimes need to manually extend it to hit the
@@ -72,11 +70,6 @@ be modified as required.}
 
 \item{legend_text_second_row_multiplier}{numeric multiplier of the second
 row of legend text to space it out, especially for smaller panel plots.}
-
-\item{y_scaling}{numeric scaling of y-minimum of y-axis. Axis can't go to zero on
-log-log plot, but goes to the proportion \code{y_scaling} (<1)
-of the minimum value of counts greater than the highest \code{bin_min} value. Do
-such that can see the right-most bin in all plots.}
 
 \item{seg_col}{colour to use for the segments (top line of each box; green
 in Fig. 7 of MEPS paper); default in \code{plot.size_spectrum_mlebin()} is NULL
