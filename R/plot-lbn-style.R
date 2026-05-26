@@ -16,36 +16,17 @@
 ##' already binned, then there is uncertainty and so we have uncertainty in the
 ##' vertical direction on the plot. Only appropriate for nonoverlapping bins.
 ##'
-##' Adapting from `sizeSpectra::LBN_bin_plot()` and `plot_isd_binned()` (wanting
-##' it consistent with the latter, but seemed better to make a new function).
-##'
+##' Called from `plot.size_spectrum_numeric()` when using `style ==
+##' "biomass_and_isd"` and `plot.size_spectrum_mlebin()` when using
+##' `style == "biomass"` or `style == `"biomass_and_log"`
 ##' @param res results of class `size_spectrum_numeric` or
-##' `size_spectrum_mlebin`   ignore I think: TODO but if called
-##'   from `plot.size_spectrum_numeric()` then the results are from the MLE
-##'   method and do not have all the columns that would have from MLEbin
-##'   method. TODO onwards:
-##' @param binValsTibble tibble of binned data with each row representing a bin
-##'   and with columns `binMin` and `binMmax` (min and max break of each bin)
-##'   and `binCount` (count in that bin), as in the `binVals` component of the
-##'   output of `binData`. `wmin` and `wmax` can also be used instead of
-##'   `binMin` and `binMax`. Extra columns are ignored.
-##' @param binBreaks vector of bin breaks
-##' @param binCounts vector of bin counts
-##' @param b.MLE maximum likelihood estimate of *b* (ideally from the MLEbin method)
-##' @param b.confMin lower 95% confidence limits of *b*
-##' @param b.confMax upper 95% confidence limits of *b*
-##' @param plot.binned.fitted if TRUE then also plot the estimated normalised
-##'   biomass in each bin for the MLE of *b* and it's confidence limits
-##' @param log.xy Which axes to log, for `plot(..., log = log.xy)`. So `"xy"` for
-##'   log-log axes, `"x"` for only x-axis logged, `""` for both axes unlogged.
-##' @param leg.pos position of legend, from "bottomright"', '"bottom"',
-##'   '"bottomleft"', '"left"', '"topleft"', '"top"', '"topright"', '"right"'
-##'   and '"center"'.
-##' @param inset_label inset distance vector for legend
-##' @param legend_text text for legend TODO
+##' `size_spectrum_mlebin`
+##' @inheritParams plot_isd_binned
+##' @param plot_binned_fitted logical, whether to plot the binned version of the
+##' fitted PLB (to more accurately compare with the data if the data are binned)
 ##' @param ... further arguments to be passed to `plot()` and
 ##'   `plot_binned_fitted()`
-##' @return TODO should return a tibble of results
+##' @return invisible
 ##'
 ##' @export
 ##' @author Andrew Edwards
@@ -81,9 +62,7 @@ plot_lbn_style <- function(res,
                            y_small_ticks_by = NULL,
                            y_small_ticks_labels = NULL,
                            y_scaling = 0.75,
-                           seg_col = "green",   # want these parsed along if
-                           # they're changed by users in original
-                           # call - useArgs or something? TODO
+                           seg_col = "green",
                            rect_col = "grey",
                            fit_col = "red",
                            fit_lwd = 2,
@@ -96,7 +75,6 @@ plot_lbn_style <- function(res,
   stopifnot("Cannot define both y_small_ticks and y_small_ticks_by" =
               !(!is.null(y_small_ticks) & !is.null(y_small_ticks_by)))
 
-      # TODO might not need the if statement as have class-specific ones
   if("size_spectrum_numeric" %in% class(res)){
     # using bin_sum_norm for
     # plotting, no uncertainty in y-axis for data, by setting the
@@ -120,10 +98,8 @@ plot_lbn_style <- function(res,
                                       # completely cover them up
   }
 
-
-
-
-# TODO may need to adjust limits, using something like this (to be adapted):
+  # Want to show all the bins (not limit to xmin and xmax), though this might be
+  # different to MLE method.
   if(is.null(xlim)){
      xlim <- c(min(dat$bin_min),
                max(dat$bin_max))
@@ -131,11 +107,11 @@ plot_lbn_style <- function(res,
 
   if(is.null(ylim)){
     ylim <- c(min(dat$low_biomass_norm),
-              max(dat$high_biomass_norm))          # TODO use the conf intervals also
+              max(dat$high_biomass_norm))          # May want the confidence
+    # intervals also, but usually close enough; users can define ylim if needed
   }
 
-# copying  and editing from plot_isd_binned() (too hard to just generalise that)
-
+  # copying  and editing from plot_isd_binned() (too hard to just generalise that)
   plot.default(dat$bin_min,      #    nothing plotted anyway as type = "n"
                dat$high_biomass_norm,
                log = "xy",
@@ -145,10 +121,9 @@ plot_lbn_style <- function(res,
                ylim = ylim,
                type = "n",
                axes = FALSE,
-               mgp = mgp_val) # TODO
+               mgp = mgp_val)
 
   # Add tickmarks and labels, replacing what was in ISD_bin_plot with this
-  # TODO get working:
   add_ticks(
     log = "xy",
     tcl_small = tcl_small,
@@ -172,10 +147,8 @@ plot_lbn_style <- function(res,
          xright = dat$bin_max,
          ytop = dat$high_biomass_norm,
          col = rect_col,
-         lwd = 1)     # TODO generalise, but want thick for .numeric below since no
-    # uncertainty; this might be fine
+         lwd = 1)     # could generalise this, probably fine though
   }
-
 
   # Option to plot binned version of fitted curve (do first to then overlay the
   # straight lines of biomass density)
@@ -190,8 +163,7 @@ plot_lbn_style <- function(res,
          xright = dat$bin_max,
          ytop = dat$high_biomass_norm,
          col = rect_col,
-         lwd = 2)     # TODO generalise, but want thick for .numeric below since no
-    # uncertainty; this might be fine
+         lwd = 2)     # could generalise this, probably fine though
   }
 
 
@@ -201,7 +173,7 @@ plot_lbn_style <- function(res,
              b = res$b_mle,
              x_min = min(x_plb),
              x_max = max(x_plb)) * n * x_plb,
-        col="red")   # TODO generalise once working
+        col = fit_col)
 
   if(plot_conf_ints){
     # Add lines at limits of the 95% confidence interval of b:
@@ -210,19 +182,17 @@ plot_lbn_style <- function(res,
                b = res$b_conf[1],
                x_min = min(x_plb),
                x_max = max(x_plb)) * n * x_plb,
-          col="red",
-          lty=2)
+          col = fit_col,
+          lty = 2)
 
     lines(x_plb,
           dPLB(x_plb,
                b = res$b_conf[2],
                x_min = min(x_plb),
                x_max = max(x_plb)) * n * x_plb,
-          col="red",
-          lty=2)
+          col = fit_col,
+          lty = 2)
   }
-
-# TODO fix the legend
 
   if(!is.null(legend_label)){   # plot_isd has as.character
     legend("topright",
@@ -245,7 +215,6 @@ plot_lbn_style <- function(res,
          inset = inset_text)
   }
 
-
   # Add n
   if(!is.null(legend_text_n)){
   legend("topright",
@@ -256,13 +225,5 @@ plot_lbn_style <- function(res,
 
   box()     # to redraw axes over any boxes
 
-  # TODO decide if might need something like this
-#  if(is.na(x_plb)){
-#    x_plb <- exp(seq(log(min(binTibble$wmin)),
-#                     log(max(binTibble$wmax)),
-#                     length = 10000))   # values to plot the MLE fit,
-#                                        # encompassing data
-#  }
-
-  invisible()   # TODO can return something invisibly, might be worth doing
+  invisible() # Could return biomass calcs if wanted to
 }

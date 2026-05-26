@@ -20,6 +20,9 @@
 ##'   minimum/maximum value confidence interval for exponent b, of the PLB
 ##'   distribution at each value of `x_PLB`
 ##' @param plot_conf_ints logical whether to plot confidence intervals or not
+##' @param ylab label for the y-axis (sent to `plot.default()`)
+##' @param tcl_small passed on as the `tcl` argument to [axis()] for tick
+##' direction and length for small tickmarks
 ##' @param par_mai vector of values to use for `par(mai)`
 ##' @param par_cex numeric value to use for `par(cex)` (font size)
 ##' @param seg_col colour to use for the segments (top line of each box; green

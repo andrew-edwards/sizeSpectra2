@@ -44,46 +44,43 @@ plot_lbn_style(
 }
 \arguments{
 \item{res}{results of class \code{size_spectrum_numeric} or
-\code{size_spectrum_mlebin}   ignore I think: TODO but if called
-from \code{plot.size_spectrum_numeric()} then the results are from the MLE
-method and do not have all the columns that would have from MLEbin
-method. TODO onwards:}
+\code{size_spectrum_mlebin}}
 
-\item{inset_label}{inset distance vector for legend}
+\item{x_plb}{vector of values to use to plot the fitted PLB curve; if NA then
+automatically calculated (sometimes need to manually extend it to hit the
+x-axis, but tricky to automate that on a log-scale)}
 
-\item{legend_text}{text for legend TODO}
+\item{plot_conf_ints}{logical whether to plot confidence intervals or not}
+
+\item{plot_binned_fitted}{logical, whether to plot the binned version of the
+fitted PLB (to more accurately compare with the data if the data are binned)}
+
+\item{xlab}{ylab x/y labels, explicitly given default values here which can
+be modified as required.}
+
+\item{ylab}{label for the y-axis (sent to \code{plot.default()})}
+
+\item{tcl_small}{passed on as the \code{tcl} argument to \code{\link[=axis]{axis()}} for tick
+direction and length for small tickmarks}
+
+\item{legend_text_second_row_multiplier}{numeric multiplier of the second
+row of legend text to space it out, especially for smaller panel plots.}
+
+\item{seg_col}{colour to use for the segments (top line of each box; green
+in Fig. 7 of MEPS paper); default in \code{plot.size_spectrum_mlebin()} is NULL
+which gets converted to \code{black} in that function.}
+
+\item{fit_col}{colour to use for fitted curves}
+
+\item{fit_lwd}{line thickness to use for fitted curves}
+
+\item{conf_lty}{line type to use for confidence intervals}
 
 \item{...}{further arguments to be passed to \code{plot()} and
 \code{plot_binned_fitted()}}
-
-\item{binValsTibble}{tibble of binned data with each row representing a bin
-and with columns \code{binMin} and \code{binMmax} (min and max break of each bin)
-and \code{binCount} (count in that bin), as in the \code{binVals} component of the
-output of \code{binData}. \code{wmin} and \code{wmax} can also be used instead of
-\code{binMin} and \code{binMax}. Extra columns are ignored.}
-
-\item{binBreaks}{vector of bin breaks}
-
-\item{binCounts}{vector of bin counts}
-
-\item{b.MLE}{maximum likelihood estimate of \emph{b} (ideally from the MLEbin method)}
-
-\item{b.confMin}{lower 95\% confidence limits of \emph{b}}
-
-\item{b.confMax}{upper 95\% confidence limits of \emph{b}}
-
-\item{plot.binned.fitted}{if TRUE then also plot the estimated normalised
-biomass in each bin for the MLE of \emph{b} and it's confidence limits}
-
-\item{log.xy}{Which axes to log, for \code{plot(..., log = log.xy)}. So \code{"xy"} for
-log-log axes, \code{"x"} for only x-axis logged, \code{""} for both axes unlogged.}
-
-\item{leg.pos}{position of legend, from "bottomright"', '"bottom"',
-'"bottomleft"', '"left"', '"topleft"', '"top"', '"topright"', '"right"'
-and '"center"'.}
 }
 \value{
-TODO should return a tibble of results
+invisible
 }
 \description{
 Biomass size spectrum plot for binned data on a log-log scale like people
@@ -102,8 +99,8 @@ uncertainty on the plot). But if from the MLEbin method where the data are
 already binned, then there is uncertainty and so we have uncertainty in the
 vertical direction on the plot. Only appropriate for nonoverlapping bins.
 
-Adapting from \code{sizeSpectra::LBN_bin_plot()} and \code{plot_isd_binned()} (wanting
-it consistent with the latter, but seemed better to make a new function).
+Called from \code{plot.size_spectrum_numeric()} when using \code{style == "biomass_and_isd"} and \code{plot.size_spectrum_mlebin()} when using
+\code{style == "biomass"} or \verb{style == }"biomass_and_log"`
 }
 \examples{
 \donttest{

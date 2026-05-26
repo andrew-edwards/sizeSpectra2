@@ -68,6 +68,11 @@ distribution at each value of \code{x_PLB}}
 \item{xlab}{ylab x/y labels, explicitly given default values here which can
 be modified as required.}
 
+\item{ylab}{label for the y-axis (sent to \code{plot.default()})}
+
+\item{tcl_small}{passed on as the \code{tcl} argument to \code{\link[=axis]{axis()}} for tick
+direction and length for small tickmarks}
+
 \item{legend_text_second_row_multiplier}{numeric multiplier of the second
 row of legend text to space it out, especially for smaller panel plots.}
 

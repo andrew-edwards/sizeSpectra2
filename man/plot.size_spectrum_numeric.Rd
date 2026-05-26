@@ -37,13 +37,16 @@ confidence intervals}
 \item \code{"log_y_axis"} - single ISD plot with logarithmic y axis (Fig. 6b of MEE paper)
 \item \code{"linear_y_axis"} - for single ISD plot with linear y axis
 \item \code{"both_y_axes"} - both the above plots as a two-panel plot
-\item \code{"biomass_and_isd"} - to use only if the data represent body masses. Does two-panel
+\item \code{"biomass_and_isd"} - to use only if the data represent a vector of body masses. Does two-panel
 plot, essentially the recommended Fig. 6 of MEE paper where the top panel
 is bins of normalized biomass (but improved here by showing bins in the top
 panel rather than points) and the \code{"log_y_axis"} plot described above.
 Note that the x-axis is always logarithmic.
 Legends are automatically set, but can be tailored with the arguments
 defined below.
+\item \code{"biomass"} or \code{"biomass_and_log"} - from using the MLEbin method,
+whether to plot just a normalised biomass plot or a normalised biomass plot
+plus the binned data and fit of the PLB.
 }}
 
 \item{y_scaling}{numeric scaling of y-minimum of y-axis. Axis can't go to zero on

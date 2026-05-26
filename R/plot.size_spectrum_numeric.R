@@ -26,13 +26,17 @@
 ##'   * `"log_y_axis"` - single ISD plot with logarithmic y axis (Fig. 6b of MEE paper)
 ##'   * `"linear_y_axis"` - for single ISD plot with linear y axis
 ##'   * `"both_y_axes"` - both the above plots as a two-panel plot
-##'   * `"biomass_and_isd"` - to use only if the data represent body masses. Does two-panel
+##'   * `"biomass_and_isd"` - to use only if the data represent a vector of body masses. Does two-panel
 ##'   plot, essentially the recommended Fig. 6 of MEE paper where the top panel
 ##'   is bins of normalized biomass (but improved here by showing bins in the top
 ##'   panel rather than points) and the `"log_y_axis"` plot described above.
 ##'   Note that the x-axis is always logarithmic.
 ##'   Legends are automatically set, but can be tailored with the arguments
 ##'   defined below.
+##'   * `"biomass"` or `"biomass_and_log"` - from using the MLEbin method,
+##'   whether to plot just a normalised biomass plot or a normalised biomass plot
+##'   plus the binned data and fit of the PLB.
+##'
 ##' @param y_scaling numeric scaling of y-minimum of y-axis. Axis can't go to zero on
 ##'   log-log plot, but goes to the proportion `y_scaling` (<1)
 ##'   of the minimum value of counts greater than the highest `bin_min` value. Do
@@ -206,7 +210,7 @@ plot.size_spectrum_numeric <- function(res,
 
   if(style == "biomass"){
 
-    plot_lbn_style(res,
+    plot_lb_style(res,
                    x_plb = x_plb,
                    xlab = xlab,
                    inset_label = inset_label,

@@ -1,6 +1,6 @@
 ##' Add horizontal bars and shaded rectangles to `plot_lbn_style()`
 ##'
-##' TODO check help. These are to show the estimated normalised biomasses in each bin, based on
+##' These are to show the estimated normalised biomasses in each bin, based on
 ##' the MLE value of `b` and it's confidence limit values.
 ##' Each horizontal bar spans a bin (default colour is red), with it's vertical value indicating the
 ##' expected normalised biomass based on the MLE of `b`. The height of the
@@ -16,7 +16,7 @@
 ##' @param shorter fraction shorter to make the rectangles, so can see them
 ##' overlapping with grey rectangles; may not work exacly as planned (won't be symmetric) when x-axis
 ##' not logged, but that's not going to be a useful plot anyway
-##' @return  TODO
+##' @return  invisible, adds to an existing plot
 ##' @export
 ##' @author Andrew Edwards
 ##' @examples
@@ -33,7 +33,7 @@ plot_lbn_fitted <- function(dat,
   # Rectangles corresponding to confidence interval ranges, it doesn't matter
   # that sometimes we'll have ybottom > ytop (I think it might almost be guaranteed
   # to happen for at least one bin, yes, think they must switch). So can't say
-  # top corresponds to max or min of conf interval of b, I think. TODO tidy up.
+  # top corresponds to max or min of conf interval of b, I think.
   rect(xleft = (1 + shorter) * dat$bin_min,
        ybottom = dat$mle_conf_1_biomass_norm,
        xright = (1 - shorter) * dat$bin_max,
@@ -48,4 +48,6 @@ plot_lbn_fitted <- function(dat,
            y1 = dat$mle_biomass_norm,
            col = bar_col,
            lwd = bar_lwd)
+
+  invisible()
 }

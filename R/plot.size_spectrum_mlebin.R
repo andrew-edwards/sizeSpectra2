@@ -180,9 +180,6 @@ plot.size_spectrum_mlebin <- function(res_mlebin,
                    legend_text = legend_text_a,
                    legend_text_n = legend_text_a_n,
                    ...)
-
-
-    # plot_lbn_style presumably, compare with .numeric
   }
 
   if(style == "biomass_and_log"){
