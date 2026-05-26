@@ -45,8 +45,8 @@ test_that("MLEbin fitting and plotting works and matches original results", {
                         style = "biomass_and_log"))
 
 
-  # Zero count in first bin, this currently passes but should fail if I fix the
-  # function (see TODO's in it).
+  # Zero count in first bin, this currently passes but should fail if I change the
+  # function; think I didn't change it as now use x_min explicitly
   sim_vec_binned_zero <- sim_vec_binned
   sim_vec_binned_zero[1, "bin_count"] <- 0
   expect_error(fit_size_spectrum(sim_vec_binned_zero))
@@ -65,8 +65,6 @@ test_that("MLEbin fitting and plotting works and matches original results", {
   expect_invisible(plot(res_binned_2))
 
   expect_error(determine_xmin_and_fit_mlebin(sim_vec_binned[-4, ]))
-
-  # TODO need some outlier detection here?
 
   expect_equal(make_hist(1:10)$breaks[10],
                10)

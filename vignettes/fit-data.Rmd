@@ -16,8 +16,8 @@ rmarkdown::render("fit-data.Rmd")
 ```
 
 ```{r, load, include = FALSE}
-# load_all()
-library(sizeSpectraFit)
+load_all()
+# library(sizeSpectraFit)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -231,7 +231,7 @@ So `res_mlebin` is a list object that contains objects:
 - `b_mle`: the MLE of the exponent $b$ as calculated using the MLEbin method,
 - `b_conf`: the 95% confidence interval of $b$,
 - `data`: the original data as used for the fit, plus some extra calculations
- (TODO define somewhere)
+ (see `?fit_size_spectrum()`),
 - `x_min` and `x_max`: the MLEs of $x_{min}$ and $x_{max}$, which are simply the
 minimum of the lowest bin and maximum of the maximum bin,
 - `method`: tells us that the MLEbin method was used.
