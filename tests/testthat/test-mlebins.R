@@ -66,8 +66,12 @@ test_that("MLEbins fitting and plotting works and matches original results", {
   # sum(dat_needed$bin_count)
    #   [1] 1085.234   doesn't seem to match figure
 
-  res_cephsmall_fg <- determine_xmin_and_fit_mlebins(dat_needed)  # seems to
+  res_cephsmall_fg_here <- determine_xmin_and_fit_mlebins(dat_needed)  # seems
+  # to
   # take a few minutes, surprisingly since small dataset
+
+  expect_equal(res_cephsmall_fg_here,
+               res_cephsmall_fg)
 
   expect_equal(fit_size_spectrum_mlebins(dat_needed,
                                          x_min = NULL,

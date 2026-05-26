@@ -182,7 +182,9 @@ res_cephsmall_fg
 This is a list of two objects (each is a list): `$mlebins_fit` contains the
 details of the maximum likelihood fitting similar to the other methods, and $h$ is an object of class
 `histogram` that contains details of the
-histogram used to determine $x_{min}$.
+histogram used to determine $x_{min}$. (Use `remove_hist(res_cephsmall_fg)` to
+remove the histogram object and retain the class; this also works on lists of
+results from multiple applications of `determine_xmin_and_fit_mlebins()`).
 
 The object has the class `size_spectrum_mlebins` such that our customised
 `plot.size_spectrum_mlebins()` automatically gets used: 
