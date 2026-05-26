@@ -27,9 +27,11 @@ remove_hist <- function(agg_list,
     for(i in 1:length(agg_list)){     # many strata
       if("determine_xmin_and_fit_mlebins" %in% class(agg_list[[i]])){
         return_agg[[i]] <- agg_list[[i]]$mlebins
-        # might need mlebin also if we create determine_xmin_and_fit_mlebin, or below TODO
+      } else if("determine_xmin_and_fit_mlebin" %in% class(agg_list[[i]])){
+        return_agg[[i]] <- agg_list[[i]]$mlebin
       } else {
-        return_agg[[i]] <- agg_list[[i]]    # presumably already the mlebins or mlebin results
+        return_agg[[i]] <- agg_list[[i]]    # presumably already the mlebins or
+                                            #  mlebin results
       }
       names(return_agg)[i] <- names(agg_list)[i]
     }

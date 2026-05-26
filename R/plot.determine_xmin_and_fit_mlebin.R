@@ -6,7 +6,7 @@ plot.determine_xmin_and_fit_mlebin <- function(res,
                                                ...
                                                ){
 
-  # might want to change seg_col, put in explicitly here if so TODO
+  # might want to change seg_col, put in explicitly here if so
 
   plot.determine_xmin_and_fit_mlebins(res,
                                       seg_col = seg_col,

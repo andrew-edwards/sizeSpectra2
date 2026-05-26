@@ -5,7 +5,7 @@
 \alias{plot.determine_xmin_and_fit_mlebin}
 \alias{plot.determine_xmin_and_fit_mlebins}
 \title{Plot results from determining x_min by mode method and then fitting use
-MLEbin or MLEbins method  TODO combine help, do all in plot.determine_xmin_and_fit}
+MLEbin or MLEbins method}
 \usage{
 \method{plot}{determine_xmin_and_fit_mlebin}(res, seg_col = "black", main_hist = "", ...)
 
@@ -20,7 +20,9 @@ MLEbin or MLEbins method  TODO combine help, do all in plot.determine_xmin_and_f
 )
 }
 \arguments{
-\item{res}{list of class \code{determine_xmin_for_mlebins_and_fit} as output from \code{determine_xmin_for_mlebins_and_fit()}}
+\item{res}{size_spectrum_numeric object, as output from
+\code{\link[=fit_size_spectrum.numeric]{fit_size_spectrum.numeric()}}, which gets called when applying
+\code{\link[=fit_size_spectrum]{fit_size_spectrum()}} to a numeric vector}
 
 \item{seg_col}{colour to use for the segments (top line of each box; green
 in Fig. 7 of MEPS paper); default in \code{plot.size_spectrum_mlebin()} is NULL
@@ -28,9 +30,11 @@ which gets converted to \code{black} in that function.}
 
 \item{main_hist}{title for histogram; useful if doing strata}
 
-\item{...}{arguments to passed onto \code{\link[=hist]{hist()}} or \code{\link[=plot.size_spectrum_mlebins]{plot.size_spectrum_mlebins()}}}
+\item{...}{Further arguments for \code{plot_isd()} and then \code{plot()}, except
+cannot have \code{log} as that gets overridden.}
 
-\item{xlim_hist}{numeric vector of two values representing \code{xlim} for histogram plot; default is the full range
+\item{xlim_hist}{numeric vector of two values representing \code{xlim} for
+histogram plot on a linear axis; default is the full range
 of breaks (which might be too large for a clear figure, especially given
 the linear axis).}
 
@@ -39,16 +43,17 @@ the linear axis).}
 \item{par_cex}{numeric value to use for \code{par(cex)} (font size)}
 }
 \value{
-figure in current device  TODO inheritParams
-plot.size_spectrum_mlebin   did not work TODO check everything flows through
+figure in current device
 }
 \description{
 Plot results from determining x_min by mode method and then fitting use
-MLEbin or MLEbins method  TODO combine help, do all in plot.determine_xmin_and_fit
+MLEbin or MLEbins method
 }
 \examples{
 \dontrun{
-See .Rmd
+See fit-data-mlebins.html vignette at
+https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data-mlebins.html
+for MLEbins example
 }
 }
 \author{

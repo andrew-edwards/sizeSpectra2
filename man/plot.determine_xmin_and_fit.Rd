@@ -7,26 +7,34 @@
 \method{plot}{determine_xmin_and_fit}(res, xlim_hist = NULL, main_hist = "", ...)
 }
 \arguments{
-\item{res}{list of class \code{determine_xmin_and_fit} as output from \code{determine_xmin_and_fit()}}
+\item{res}{list of one of the following classes:
+\itemize{
+\item \code{determine_xmin_and_fit} as output from \code{determine_xmin_and_fit()}
+\item \code{determine_xmin_for_mlebin_and_fit} as output from \code{determine_xmin_for_mlebin_and_fit()}
+\item \code{determine_xmin_for_mlebins_and_fit} as output from \code{determine_xmin_for_mlebins_and_fit()}
+}}
 
-\item{xlim_hist}{numeric vector of two values representing \code{xlim} for histogram plot; default is the full range
+\item{xlim_hist}{numeric vector of two values representing \code{xlim} for
+histogram plot on a linear axis; default is the full range
 of breaks (which might be too large for a clear figure, especially given
-the linear axis). TODO could maybe add in log-x axis, but not option in
-\code{plot.hist()} so would have to make it up here.}
+the linear axis).}
 
-\item{...}{arguments to passed onto \code{\link[=hist]{hist()}} for now, but probably want
-more. TODO \code{sizeSpectra::ISD_bin_plot_nonoverlapping()}}
+\item{main_hist}{title for histogram; useful if doing strata}
+
+\item{...}{arguments to passed onto \code{hist()} or plotting functions
+based on \code{class(res)}; see \code{?plot.size_spectrum_numeric}.}
 }
 \value{
 figure in current device
 }
 \description{
-TODO check if want features from plot.determine_xmin_and_fit_mlebins(),
-which was adapted and improved from this. TODO combine help files.
+Plot results from determining x_min by mode method and then fitting use MLE hake spectra results
 }
 \examples{
 \dontrun{
-See .Rmd
+See fit-data-mlebins.html vignette at
+https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data-mlebins.html
+for MLEbins example
 }
 }
 \author{

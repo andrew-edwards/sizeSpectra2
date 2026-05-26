@@ -7,6 +7,10 @@
 \method{plot}{size_spectrum_mlebins}(res_mlebins, seg_col = "green", ...)
 }
 \arguments{
+\item{res_mlebins}{size_spectrum_mlebins object resulting from running
+\code{fit_size_spectrum()} to use the MLEbins method;
+see the \href{https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data-mlebins.html}{fit-data-mlebins.html vignette}.}
+
 \item{seg_col}{colour to use for the segments (top line of each box; green
 in Fig. 7 of MEPS paper); default in \code{plot.size_spectrum_mlebin()} is NULL
 which gets converted to \code{black} in that function.}
@@ -19,8 +23,7 @@ one- or two-panel plot of the ISD with data in binned form like in
 Fig. 7, 7a or 7b (depending on settings) of MEPS paper, with overlapping bins; returns nothing.
 }
 \description{
-Think can just pass everything on, need to test TODO. And just link to
-plot.size_spectrum_mlebin() help.
+See \code{?plot.size_spectrum_mlebin}.
 }
 \examples{
 \dontrun{

@@ -52,7 +52,7 @@ community and the fits were not great, so the results are not so reliable.}
 calculated automatically.}
 
 \item{x_jitter}{Amount to left/right jitter each strata within a group;
-default works great for an example plot, needs generalising TODO}
+default works great for an example plot, likely needs generalising}
 
 \item{legend_position}{character description of keyword of where to put
 legend using \code{legend()}, one of '"bottomright"', '"bottom"',

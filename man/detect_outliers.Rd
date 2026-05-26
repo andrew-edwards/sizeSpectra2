@@ -2,8 +2,8 @@
 % Please edit documentation in R/detect-outliers.R
 \name{detect_outliers}
 \alias{detect_outliers}
-\title{Analyse gaps to look for outliers (large values with gaps from remaining
-continuous values) from using the MLEbins method.}
+\title{Analyse gaps to look for outliers, namely large values with gaps from remaining
+continuous values, from using the MLEbins method.}
 \usage{
 detect_outliers(res, ...)
 }
@@ -12,7 +12,7 @@ detect_outliers(res, ...)
 \itemize{
 \item \code{size_spectrum_mlebins} object
 \item \code{determine_xmin_and_fit_mlebins} object
-\code{gap_ratio} is gap divided by second largest gap
+\item \code{remove_outliers_mlebins} object
 }}
 }
 \value{

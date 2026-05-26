@@ -1,22 +1,17 @@
 ##' Plot results from determining x_min by mode method and then fitting use
-##' MLEbin or MLEbins method  TODO combine help, do all in plot.determine_xmin_and_fit
-##'
-##' @param res list of class `determine_xmin_for_mlebins_and_fit` as output from `determine_xmin_for_mlebins_and_fit()`
-##' @param xlim_hist numeric vector of two values representing `xlim` for histogram plot; default is the full range
-##'   of breaks (which might be too large for a clear figure, especially given
-##'   the linear axis).
-##' @param main_hist title for histogram; useful if doing strata
-##' @param ... arguments to passed onto [hist()] or [plot.size_spectrum_mlebins()]
+##' MLEbin or MLEbins method
 ##' @inheritParams plot.size_spectrum_numeric
 ##' @inheritParams plot_isd_binned
+##' @inheritParams plot.determine_xmin_and_fit
 ##'
-##' @return figure in current device  TODO inheritParams
-##'   plot.size_spectrum_mlebin   did not work TODO check everything flows through
+##' @return figure in current device
 ##' @export
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##' See .Rmd
+##' See fit-data-mlebins.html vignette at
+##' https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data-mlebins.html
+##' for MLEbins example
 ##' }
 plot.determine_xmin_and_fit_mlebins <- function(res,
                                                 xlim_hist = NULL,
@@ -47,37 +42,24 @@ plot.determine_xmin_and_fit_mlebins <- function(res,
 
   par(mfrow = c(3,1))
 
-  # par(mai = mai_orig)     # TODO (from sizeSpectraHake): think about Since gets reset by ISD_bin_plot(). Should clean
-                          # up that function in sizeSpectra.
-
-  # Don't think needed now, this was specific for hake:
-  # Have to make the full histogram (with 0 counts here) to get the colours
-  #  right, but ISD plot (I think) requires no 0 counts (maybe they get ignored).
-#  make_hist_full <- make_hist(res[[i]]$counts_per_bin,
-#                                bin_width = res[[i]]$bin_width)
-
-  # TODO mlebin example in test it
-
   # Want it red for the bin with x_min in it (though not all values in the bin
   # will get fitted) and all those above. So for all bins with max bin break > x_min
   col_hist <- ifelse(res$h$breaks[-1] <= res_fit$x_min,  # take out first
                                         # breakpoint since bars correspond to
                                         # mids; but need <= because if x_min is
                                         # a bin break we don't want the bin
-                                        # below to be read TODO double check
-                                        # MLEbins plots (that's a little convoluted)
+                                        # below to be read (that's a little convoluted)
                      "grey",
                      "red")
 
   border_col = "black"
 
-  # If too fine then don't have black borders:  TODO generalise, this was hake specific
+  # If too fine then don't have black borders: could generalise, this was hake specific:
   #if(res$h$bin_width < 0.1){
   #  border_col = col_hist
   #}
 
   # arguments <- list(...)
-
   # if (!"seg_col" %in% names(arguments)) {
   #  seg_col <- "green"    # the default in plot.size_spectrum_mlebins(); just
                           # can't use that automatically, see below.
@@ -105,22 +87,17 @@ plot.determine_xmin_and_fit_mlebins <- function(res,
       cex = par_cex)
 
   dots_parser(plot.size_spectrum_mlebin,
-              # This should be
+              # This should be really be
               # plot.size_spectrum_mlebins (which is almost
               # plot.size_spectrum_mlebin() anyway) but the
-              # dots_parser doesn't pass on style (TODO had thought seg_col was
-              # the issue)
-              # because formals(FUN) I think does not
-              # detect the arguments for the
+              # dots_parser doesn't pass on style because formals(FUN) I think
+              # does not detect the arguments for the
               # subsequent function plot...mlebin(), and hence ignores the
               #  style = "linear_y_axis" argument given here (and things like xlab).
-              # Option 1. since plot..mlebins() basically calls
+              # Since plot..mlebins() basically calls
               # plot...mlebin() with seg_col = "green", can circumvent the
               # ...mlebins() call here and add seg_col as an explicit
-              # option. TODO check if that works for other options though; don't
-              # think it will. Don't see what's special about seg_col now - yes,
-              # want it to switch the default to green as for mlebins plots,
-              # since now calling plot...mlebin.
+              # option.
               res_mlebin = res_fit,
               style = "linear_y_axis",
               seg_col = seg_col,
