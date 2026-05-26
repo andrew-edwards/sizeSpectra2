@@ -1,6 +1,6 @@
 ##' Plot the aggregate fits for several strata (sampling scenarios)
 ##'
-##' Uses the results from [plot_aggregate_mlebin()] to plot aggregated size
+##' Uses the results from [plot_aggregate()] or [plot_aggregate_mlebin()] to plot aggregated size
 ##' spectra for several strata on a single rank/frequency style plot. Has options
 ##' for normalising and restricting x range to give justifiable comparisons.
 ##'
@@ -34,7 +34,9 @@
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##' # See aggregating-size-spectra.Rmd TODO copy something to here maybe
+##' ##' # See fit-aggregated.html vignette at
+##' # https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-aggregated.html
+##' # for a worked example
 ##' }
 ##'
 plot_aggregate_fits <- function(agg_list,
@@ -50,6 +52,9 @@ plot_aggregate_fits <- function(agg_list,
                                 ylim = NULL,
                                 inset_text = c(0, 0.04),
                                 legend_text_second_row_multiplier = 2,
+                                xlab = expression(paste("Body mass, ",
+                                                        italic(x), "(g)")), # as
+                                                        # for Mediterranean paper
                                 ...){    # passed onto plot(...)
 
   num_strata <- length(strata_names)
@@ -152,12 +157,11 @@ plot_aggregate_fits <- function(agg_list,
 
   plot(agg_fit_x[[1]],
        agg_fit_y_norm[[1]],
-       log = log_axes,                  # TODO generalise options, prob use ...
+       log = log_axes,
        type = "l",
        xlim = xlim,
        ylim = ylim,
-       xlab = expression(paste("Body mass, ",
-                               italic(x), "(g)")),
+       xlab = xlab,
        ylab = ifelse(normalise,
                      expression(paste("Proportion of ", counts >= x),
                                 sep=""),

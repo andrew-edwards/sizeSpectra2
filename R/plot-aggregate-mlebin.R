@@ -1,32 +1,17 @@
 ##' Do an aggregated MLEbin or MLEbins plot of several PLB fits, each to a separate (but related)
 ##' group of individuals; returns the fitted values.
 ##'
+##' Given a list of MLEbin or MLEbins results, combine
+##' the data and show an aggregated distribution, as well as the individual fits.
+
 ##' Users may need to play with the colour settings to get an instructive
 ##' plot; it is hard to automate all of them, see the arguments available.
 ##'
-##' TODO note for me: this creates the first plot using plot... then makes the
-##' subsequent rectangles and lines here.
+##' This creates the first plot using `plot.size_spectrum_mlebin()` or
+##' `plot.size_spectrum_mlebins()`, depending on `class(res_list[[1]]). It then
+##' makes the subsequent rectangles and lines here.
 ##'
-##' TODO forcussing on MLEbins first, but should be general enough but need
-##' testing for MLEbin. This is copying [plot_aggregate] and then
-##' editing. Worked for Med data, so do test for simulated MLEbin data.
-##' isn't easy).
-##'
-##' TODO Am making plot_aggregate_mlebin() and maybe
-##'   plot_aggregate_mlebins(), though prob best to make the latter the same,
-##'   and don't want the green lines as a bit too confusing maybe.; could check
-##'   the class here and have a general outfacing function,
-##' or also make plot_aggregate_numeric and just call
-##'   the right one. Some of the details could be shared here maybe.
-##'
-##' Given a list of MLEbin results, combine
-##' the data and show an aggregated distribution, as well as the individual fits.
-##'
-##'
-##' @param res_list list of results, with each component a list object of a
-##'   given type TODO share help with plot-aggregate.
-##' @param col_vec vector of colours to assign for each group, used for the
-##' border of the rectangles and the fitted curve.
+##' @inheritParams plot_aggregate
 ##' @param rect_shading_equal_col_vec logical, if TRUE then shade in the
 ##' rectangles with the colour for that group, else if FALSE stick with grey. Will depend
 ##' how the figure looks (sometimes you cannot see the fitted curve if the
@@ -34,15 +19,13 @@
 ##' @param rect_border_equal_col_vec logical, if TRUE then colour the borders of the
 ##' rectangles with the colour for that group, else stick with black. Will depend
 ##' how the figure looks; hard to fully automate.
-##' @param return_agg_x_y logical, whether to return the aggregated x and y for plotting
-##' @return list with two objects, `x_plb_agg` and `y_plb_agg`, which are the
-##'   fitted x and y values for the aggregated size spectrum (which does not
-##'   have a simple exponent). To then use for plotting multiple strata in [plot_aggregate_fits()].
 ##' @export
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##' # See aggregating-size-spectra.Rmd TODO copy something to here maybe
+##' # See fit-aggregated.html vignette at
+##' # https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-aggregated.html
+##' # for a worked example
 ##' }
 ##'
 plot_aggregate_mlebin <- function(res_list,
@@ -55,14 +38,13 @@ plot_aggregate_mlebin <- function(res_list,
                                   ylim_global = NULL,
                                   y_scaling = 0.25,
                                   return_agg_x_y = TRUE,
-                                  ...){   # TODO not actually used yet, but search below
+                                  ...){
 
   # Basing this on plot_aggregate() for size_spectrum_numeric results and using
   # code from plot.size_spectrum_mlebin(). Also moving in calculations that were
   # in aggregate_mlebins(). Hard to make the plotting functions
   # general enough to do this, so just copying the relevant bits here.
 
-  # TODO could generalise this in the master wrapper function
   if(!("list" %in% class(res_list))){
     stop("res_list need to be a list of lists of MLE results.")
   }
@@ -71,8 +53,6 @@ plot_aggregate_mlebin <- function(res_list,
     stop("Need to add more colours to col_vec to have one for each results component in res_list.")
   }
 
-  # TODO could generalise this in the master wrapper function; may want mlebin
-  # here also
   if(!("size_spectrum_mlebin" %in% class(res_list[[1]]) |
        "size_spectrum_mlebins" %in% class(res_list[[1]]))){
     stop("res_list need to be a list of size_spectrum_mlebin or size_spectrum_mlebins results.")
@@ -80,13 +60,6 @@ plot_aggregate_mlebin <- function(res_list,
 
   S <- length(res_list)                     # Number of species groups
   group_names <- names(res_list)
-
-  # This is for size_spectrum_numeric:
-#  x_global <- numeric()
-#  for(s in 1:S){
-#    x_global <- c(x_global,
-#                  res_list[[s]]$x)
-#  }
 
   # Aggregate all the data together to plot
   aggregated_data_temp <- tibble::tibble()
@@ -114,12 +87,12 @@ plot_aggregate_mlebin <- function(res_list,
     dplyr::arrange(bin_min)
 
   # Can't do in dplyr, same approach as in fit_size_spectrum_mlebins(); maybe
-  # create a function TODO
+  # create a function
   count_gte_bin_min <- rep(NA,
                            length = nrow(aggregated_data))
   low_count <- count_gte_bin_min
   high_count <- count_gte_bin_min
-# TODO think if this works for mlebin, expect it should
+
   for(iii in 1:length(count_gte_bin_min)){
     count_gte_bin_min[iii] <- sum( (aggregated_data$bin_min >= aggregated_data$bin_min[iii]) * aggregated_data$bin_count)
     low_count[iii] <- sum( (aggregated_data$bin_min >= aggregated_data$bin_max[iii]) * aggregated_data$bin_count)
@@ -144,10 +117,7 @@ plot_aggregate_mlebin <- function(res_list,
     b_vec[s] <- res_list[[s]]$b_mle
     n_vec[s] <- max(res_list[[s]]$data$high_count)
     xmin_vec[s] <- res_list[[s]]$x_min
-    xmax_vec[s] <- res_list[[s]]$x_max   # TODO change to x_max_vec etc. Maybe,
-                                        # thought I was trying to be
-                                        # consistent. See plot_aggregate also if do
-  }
+    xmax_vec[s] <- res_list[[s]]$x_max  }
 
   # x_min and x_max for fitting
   xmin_agg <- min(xmin_vec)
@@ -158,10 +128,6 @@ plot_aggregate_mlebin <- function(res_list,
   if(is.null(xlim_global)){
     xlim_global <- c(xmin_agg,
                      xmax_agg)
-    expect_equal(c(min(aggregated_data$bin_min),
-                   max(aggregated_data$bin_max)),
-                 c(xmin_agg,
-                   xmax_agg))    # TODO take out once have run it.
   }
 
   if(rect_shading_equal_col_vec){
@@ -195,8 +161,9 @@ plot_aggregate_mlebin <- function(res_list,
        legend_text_a_n = NA,
        seg_col = seg_col_vec[1],
        rect_shading_col = rect_shading_col_vec[1],
-       rect_border_col = rect_border_col_vec[1]
-       )   # want ... I think xlab etc  TODO
+       rect_border_col = rect_border_col_vec[1],
+       ...
+       )
 
   # Full aggregated data, taking from plot_isd_binned():
     rect(xleft = aggregated_data$bin_min,
@@ -212,7 +179,8 @@ plot_aggregate_mlebin <- function(res_list,
            y1 = aggregated_data$count_gte_bin_min,
            col = agg_border_col)
 
-  # if(log == "xy")    # Not including any other option yet, TODO see if decide to
+  # if(log == "xy")    # Not including any other option yet, or at least haven't
+  # fully tested them all
 
   # Need to manually draw the rectangle with low_count = 0 since it doesn't
   #  get plotted on log-log plot
@@ -235,8 +203,8 @@ plot_aggregate_mlebin <- function(res_list,
            col = agg_border_col)
   # }
 
-  # x values at which to calculate PLB's and PLB_agg; may have to do each one
-  # manually here, though have already automatically done the first one above TODO
+  # x values at which to calculate PLB's and PLB_agg; have to do each one
+  # manually here.
   # Doing evenly on a log scale since range is quite large for aggregated, and
   # x-axis is always logged
   x_plb_agg <- 10^seq(log10(xmin_agg),
@@ -286,7 +254,7 @@ plot_aggregate_mlebin <- function(res_list,
              y1 = this_group_data$count_gte_bin_min,
              col = seg_col_vec[s])
 
-  # if(log == "xy")    # Not including any other option yet, TODO see if decide to
+  # if(log == "xy")    # Not including any other option yet,
 
   # Need to manually draw the rectangle with low_count = 0 since it doesn't
   #  get plotted on log-log plot
