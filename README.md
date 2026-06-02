@@ -41,14 +41,15 @@ improves size spectra and community structure of demersal megafauna in
 the Northwestern Mediterranean Sea’ in *Global Ecology and Conservation*
 [\[3\]](https://www.sciencedirect.com/science/article/pii/S2351989426001769).
 
-The package is usable, though I am still writing some of the help files
-and completing the automating testing. The functions are all working, so
-feel free to download and use sizeSpectraFit. But please check back and
-redownload when there is no ‘under development’ badge or warning above.
-Note that some functions here may be improved by then (and so you may
-have to update any code you have written); once no longer ‘under
-development’ I will ensure full back compatibility and will document
-changes in the NEWS file.
+The package is usable with four complete vignettes, though I am still
+finishing some of the help files. The functions are all working and are
+automatically tested, so feel free to download and use sizeSpectraFit.
+
+But please check back and redownload when there is no ‘under
+development’ badge or warning above. Note that some functions here may
+potentially be improved by then (and so you may have to update any code
+you have written); once no longer ‘under development’ I will ensure full
+back compatibility and will document changes in the NEWS file.
 
 Below is some background on size spectra plus simple examples of fitting
 size spectra to different types of data using the package. For more
