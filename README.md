@@ -141,6 +141,9 @@ res
 #> $x_max
 #> [1] 398.7787
 #> 
+#> $n
+#> [1] 1000
+#> 
 #> $method
 #> [1] "MLE"
 ```
@@ -215,6 +218,9 @@ res_mlebin
 #> 
 #> $x_max
 #> [1] 512
+#> 
+#> $n
+#> [1] 1000
 #> 
 #> $method
 #> [1] "MLEbin"
@@ -315,8 +321,8 @@ power-law distribution.
 
 ## Vignettes
 
-Three vignettes for sizeSpectraFit go into more details than shown
-above. Also see the help files for the functions for more details. The
+Four vignettes for sizeSpectraFit go into more details than shown above.
+Also see the help files for the functions for more details. The
 vignettes are rendered and viewable on GitHub at:
 
 - [fit-data.html](https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data.html)
@@ -328,13 +334,17 @@ vignettes are rendered and viewable on GitHub at:
 - [fit-aggregated.html](https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-aggregated.html)
   – our new normalised aggregated size spectrum, as described in
   [\[3\]](https://www.sciencedirect.com/science/article/pii/S2351989426001769)
+- [misc-sizeSpectraFit.html](https://andrew-edwards.github.io/sizeSpectraFit/vignettes/misc-sizeSpectraFit.html)
+  – miscellaneous functions and other usability, such that all relevant
+  functions are now covered in the vignettes.
 
 To run and adapt the code yourself, simply download the raw R Markdown
 files from
 [fit-data.Rmd](https://github.com/andrew-edwards/sizeSpectraFit/blob/main/vignettes/fit-data.Rmd),
 [fit-data-mlebins.Rmd](https://github.com/andrew-edwards/sizeSpectraFit/blob/main/vignettes/fit-data-mlebins.Rmd),
+[fit-aggregated.Rmd](https://github.com/andrew-edwards/sizeSpectraFit/blob/main/vignettes/fit-aggregated.Rmd),
 or
-[fit-aggregated.Rmd](https://github.com/andrew-edwards/sizeSpectraFit/blob/main/vignettes/fit-aggregated.Rmd).
+[misc-sizeSpectraFit.Rmd](https://github.com/andrew-edwards/sizeSpectraFit/blob/main/vignettes/misc-sizeSpectraFit.Rmd).
 
 Run the file locally, and then adapt it for your own data.
 
