@@ -16,8 +16,8 @@ rmarkdown::render("fit-data.Rmd")
 ```
 
 ```{r, load, include = FALSE}
-load_all()
-# library(sizeSpectraFit)
+# load_all()
+library(sizeSpectraFit)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -58,7 +58,8 @@ sim_vec[1:20]
 ```
 
 The main fitting function is `fit_size_spectrum()`, which will automatically use
-the MLE method here because the data are a vector of individual values:
+the MLE method here (via `fit_size_spectrum.numeric()`) because the data are a
+`numeric` vector of individual values:
 ```{r, MLE2}
 res <- fit_size_spectrum(sim_vec)
 res
@@ -131,13 +132,13 @@ relevant.
 
 Successive bins double in size, such that they appear of equal width on the log
 scale. The normalised biomass within each
-one is calcluated as the sum of the biomass in the bin divided by the bin width;
+one is calculated as the sum of the biomass in the bin divided by the bin width;
 there is no uncertainty in this calculation here because we know the individual
 body sizes (this is not so if the data are already binned, see later). The
 horizontal red lines show the estimated normalised biomass in each bin based on
 the MLE of the exponent $b$, and the pink boxes span the normalised biomass
 estimated for all values within the 95% confidence interval of $b$. The straight
-lines are also shown for the MLE of $b$ (solid line) and the 95% confidency
+lines are also shown for the MLE of $b$ (solid line) and the 95% confidence
 interval estimates (dashed lines). Note that the straight lines fit the PLB
 distribution, whose definition includes the $x_{min}$ and $x_{max}$ bounds (see
 MEE paper equation 1) so the lines are bounded, but the top bin here goes beyond $x_{max}$, even though
@@ -172,7 +173,7 @@ mock_data <- c(runif(100, 0.25, 2),
                rPLB(1000, -2, x_min = 2, x_max = 100))
 hist(mock_data, breaks = 40)
 ```
-So even a rudimentarly histogram shows a unimodal distribution. To fit this:
+So even a rudimentary histogram shows a unimodal distribution. To fit this:
 
 ```{r, mockfit}
 res_mock <- determine_xmin_and_fit(mock_data)
@@ -220,7 +221,7 @@ in width.
 To fit the PLB distribution, we again just use the `fit_size_spectrum()`
 function (which automatically detects that we want to use the MLEbin method
 because our data are a data frame rather than a simple vector of individual body
-masses):
+masses, so the function `fit_size_spectrum.data.frame()` gets used):
 ```{r}
 res_mlebin <- fit_size_spectrum(sim_vec_binned)
 res_mlebin
@@ -340,6 +341,13 @@ give the above plot.
 And then also consider that we want to also allow for a tibble that has year or
 another heading (maybe allow it to be called strata, or let user add that as an
 option - yes, strata = year as the default, or maybe strata = NULL is the default).
+
+### Digging into the details
+
+All the function code is in the [R/
+folder](https://github.com/andrew-edwards/sizeSpectraFit/tree/main/R) so look
+there for the code if you want to dig deeper. Start with the function being used
+and then see what other functions it calls. Please email me with any questions/clarifications.
 
 Our [MEE paper](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12641/full)
 

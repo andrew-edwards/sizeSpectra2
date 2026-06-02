@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Andrew Edwards" />
+
+
+<title>Some useful miscellaneous functions that are not in the other vignettes</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Some useful miscellaneous functions that
+are not in the other vignettes</h1>
+<h4 class="author">Andrew Edwards</h4>
+<h4 class="date">Last rendered on 02 June, 2026</h4>
+
+
+
+<p>This vignette for the <a href="https://github.com/andrew-edwards/sizeSpectraFit?tab=readme-ov-file#sizespectrafit">sizeSpectraFit
+R package</a> contains some extra miscellaneous functions from the
+package, that are not covered in the other vignettes (or doing so would
+add extra clutter to those vignettes) but that might be useful for
+users.</p>
+<p>There are still further functions in the package (called by other
+functions) that users are not likely to need, but all code for them is
+in the <code>R/</code> directory for the package at <a href="https://github.com/andrew-edwards/sizeSpectraFit/tree/main/R" class="uri">https://github.com/andrew-edwards/sizeSpectraFit/tree/main/R</a>.
+To list all exported functions you can type
+<code>getNamespaceExports(&quot;sizeSpectraFit&quot;)</code>; each will have a
+help function.</p>
+<div id="note-about-customised-functions" class="section level2">
+<h2>Note about customised functions</h2>
+<p>Note that we have customised plotting functions that automatically
+get applied to, for example, the results of
+<code>size_spectrum_fit()</code> depending on the class of the argument.
+In case you are unaware of how this works in R, here is a simple
+annotated example.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">fit_size_spectrum</span>(sim_vec)      <span class="co"># Fit a simulated vector of values</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">class</span>(res)                             <span class="co"># Check the class</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  [<span class="dv">1</span>] <span class="st">&quot;size_spectrum_numeric&quot;</span> <span class="st">&quot;list&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">plot</span>(res)</span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- --> Now,
+because <code>res</code> has a specific class, namely
+<code>&quot;size_spectrum_numeric&quot; &quot;list&quot;</code>, R will look at the first
+element of the class when we call <code>plot()</code>, and see if there
+is a specific plotting function for that element, in the form of
+<code>plot.size_spectrum_numeric()</code> in this case. This then gets
+used in the above plot. Similar behaviour occurs for other types of
+results and some other functions. This is useful to know for digging
+into the help files of such functions (you need to know how to figure
+out the explicit function name).</p>
+<p>Okay, so here are the extra the functions that are not mentioned in
+the other vignettes. See the help files for full details, here I just
+highlight them briefly to bring them to your attention (and to remind
+myself that they exist!).</p>
+</div>
+<div id="plb-distribution-functions-dplb-dplb_agg-etc." class="section level2">
+<h2>PLB distribution functions: <code>dPLB</code>,
+<code>dPLB_agg</code>, etc.</h2>
+<p>For the bounded power-law (PLB) distribution, standard R functions
+are available to give the probability density and distribution
+functions, and random number generation.</p>
+<p>These are in the standard R format like <code>dnorm()</code> for the
+normal distribution. So we have:</p>
+<ul>
+<li><p><code>dPLB()</code>: probability density function</p></li>
+<li><p><code>pPLB()</code>: cumulative distribution function <span class="math inline">\(P(X \leq x)\)</span></p></li>
+<li><p><code>rPLB()</code>: random generation of values</p></li>
+<li><p><code>qPLB()</code>: quantile function</p></li>
+</ul>
+<p>as described in <a href="http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12641/full">Edwards
+et al. (2017)</a>. Random generation uses the inverse method (e.g. p1215
+of Edwards 2008, Journal of Animal Ecology, 77:1212-1222).
+<code>qPLB()</code> is from inverting the cumulative distribution
+function. Unbounded power-law distributions are also included (as
+<code>dPL()</code> etc.) for completeness (except for
+<code>qPL()</code>) but are likely not needed.</p>
+<p>For aggregated bounded power-law distributions across multiple
+samples, we include <code>dPLB_agg()</code> and <code>pPLB_agg()</code>,
+based on mathematics worked out in Appendix B of <a href="https://www.sciencedirect.com/science/article/pii/S2351989426001769">Quevedo
+et al. (2026)</a>. Results then feed into <code>plot_aggregate()</code>
+to generate the plot. See the <a href="https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-aggregated.html">fit-aggregated
+vignette</a> for details, and the help files.</p>
+</div>
+<div id="calculations-calc_mle_conf" class="section level2">
+<h2>Calculations: <code>calc_mle_conf()</code></h2>
+<p>This is called from the fitting functions to calculate the maximum
+likelihood estimate of a parameter and its 95% confidence interval by
+using the profile log-likelihood method described in the Ecological
+Detective (Hilborn and Mangel, 1997, page 162). It can be used for any
+log-likelihood functions. Our fitting functions specify the correct
+log-likelihood function to be used;
+e.g. <code>fit_size_spectrum.numeric()</code> uses
+<code>neg_ll_mle_method()</code> which gives the exact formula for the
+negative log-likelihood of a power-law distribution given a set of
+numerical measurements.</p>
+<p>Fits are done using <code>nlm()</code>, and warnings can be
+suppressed with <code>suppress_warnings = TRUE</code> (sometimes there
+are many, but these all seem to be</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>Warning <span class="cf">in</span> <span class="fu">nlm</span>(<span class="at">f =</span> negll.fn, <span class="at">p =</span> p, ...) <span class="sc">:</span> </span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="cn">NA</span><span class="sc">/</span><span class="cn">Inf</span> replaced by maximum positive value.</span></code></pre></div>
+<p>This is due to the likelihood function blowing up, presumably when
+searching some very very unlikely region of parameter space.</p>
+<p>For the confidence interval it calls our
+<code>calc_confidence_interval()</code> function. If the interval
+reaches one of the bounds, then <code>calc_mle_conf()</code> repeats the
+calculation with a larger interval.</p>
+</div>
+<div id="detecting-and-removing-outliers" class="section level2">
+<h2>Detecting and removing outliers</h2>
+<p><code>detect_outliers()</code> uses the appropriate function
+depending on the class of the argument, one of:
+<code>detect_outliers.size_spectrum_mlebins()</code>,
+<code>detect_outliers.determine_xmin_and_fit_mlebins()</code>, or
+<code>detect_outliers.remove_outliers_mlebins()</code>. It analyses gaps
+to look for outliers, namely large values with gaps from remaining
+continuous values, from using the MLEbins method.</p>
+<p>If already run through
+<code>remove_outliers.size_spectrum_mlebins()</code> then it will use
+<code>detect_outliers.remove_outliers.mlebins()</code> and can keep
+iterating that. See <code>?remove_outliers</code> for further details
+and example code.</p>
+<p>If there is a gap between roughly-continuous body sizes and a larger
+group then it is useful to test if removing the larger group affects the
+results.</p>
+<p>Used for Sensitivity Example B in Quevedo et al. (2026), see p34 of
+Supp Material B. The relevant code is <a href="https://github.com/andrew-edwards/sizeSpectraFit/tree/main/report/mediterranean/mediterranean-analysis-15">available
+here</a>.</p>
+</div>
+<div id="making-histogram-objects-make_hist-make_hist_for_binned_counts_mlebin-make_hist_for_binned_counts" class="section level2">
+<h2>Making histogram objects: <code>make_hist()</code>,
+<code>make_hist_for_binned_counts_mlebin()</code>,
+<code>make_hist_for_binned_counts()</code></h2>
+<p><code>make_hist()</code> converts a vector of body sizes into a
+histogram list object and creates 0 counts for missing bins (such that
+we can automatically use the base R <code>plot.histogram()</code> for
+plotting).</p>
+<p><code>make_hist_for_binned_counts_mlebin()</code> does similar for
+data in a <code>data.frame</code> to be used for the MLEbin method (bins
+are not overlapping and so can simply be used).</p>
+<p><code>make_hist_for_binned_counts()</code> does similar for data that
+has overlapping bins, taking a tibble with <code>bin_min</code>,
+<code>bin_max</code>, and <code>bin_count</code> and assign counts to
+new equal bins based on <code>bin_min</code>, summing the original
+counts (which can be non-integer).</p>
+</div>
+<div id="cumulative-biomass-functions-for-plotting" class="section level2">
+<h2>Cumulative biomass functions for plotting</h2>
+<p>sizeSpectraFit includes functionality to plot normalised biomass
+style plots (that people are used to seeing) that are calculated based
+on our likelihood calculations (that we have shown to perform better
+than fitting the regression of a normalised biomass plot).</p>
+<p><code>p_biomass()</code> gives the biomass cumulative distribution
+function from equations A.4 and A.8 in <a href="http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12641/full">Edwards
+et al. (2017)</a>. This is the total biomass between <code>x_min</code>
+and the value of <code>x</code>, assuming a bounded power-law
+distribution of body masses between <code>x_min</code> and
+<code>x_max</code> and a given value of exponent <code>b</code>, and a
+total of <code>n</code> individuals.</p>
+<p>This function is used by <code>p_biomass_bins()</code> to give total
+biomass (and normalised biomass) in each bin. Bins are either created or
+prescribed, depending on the input, and uncertainty is calculated if
+appropriate. <code>p_biomass_bins()</code> works on the results of a
+call to our main <code>fit_size_spectrum()</code> function, with
+<code>p_biomass_bins.size_spectrum_numeric()</code> or
+<code>p_biomass_bins.size_spectrum_mlebin()</code> being called as
+appropriate. See <code>?p_biomass_bins()</code> for explanation.</p>
+<p>The output can then be used for plotting LBN biomass type plots. They
+are used automatically, along with <code>plot_lbn_fitted()</code> in
+<code>plot_lbn_style()</code> which is called if
+<code>style = &quot;biomass&quot;</code> in the plotting functions. So these
+functions are getting used behind the scenes in the call</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">plot</span>(res,</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>     <span class="at">style =</span> <span class="st">&quot;biomass&quot;</span>)</span></code></pre></div>
+<p>in the <a href="https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data.html">fit-data.html
+vignette</a>.</p>
+</div>
+<div id="plotting-results-for-multiple-groups" class="section level2">
+<h2>Plotting results for multiple groups</h2>
+<p><code>plot_multiple_exponents()</code> plots the estimated <span class="math inline">\(b\)</span> with confidence intervals for multiple
+groups and strata. A somewhat specific plot for the Mediterranean
+analyses of five species groups fitted for three strata in Figure B.20
+of <a href="https://www.sciencedirect.com/science/article/pii/S2351989426001769">Quevedo
+et al. (2026)</a>, but applicable to other sets of results, likely with
+some tweaking.</p>
+<p>The Quevedo results are saved in the package, and the function
+creates the figure:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(quevedo_table_b1,</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>             <span class="at">digits =</span> <span class="dv">2</span>)   <span class="co"># results from Table B.1 of Quevedo et al. (2026)</span></span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Group</th>
+<th align="left">Strata</th>
+<th align="right">x_min</th>
+<th align="right">x_max</th>
+<th align="right">Low b</th>
+<th align="right">MLE b</th>
+<th align="right">High b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Full community</td>
+<td align="left">Baseline</td>
+<td align="right">1.01</td>
+<td align="right">1015.66</td>
+<td align="right">-1.33</td>
+<td align="right">-1.33</td>
+<td align="right">-1.33</td>
+</tr>
+<tr class="even">
+<td align="left">Full community</td>
+<td align="left">FG</td>
+<td align="right">2.01</td>
+<td align="right">1144.57</td>
+<td align="right">-1.68</td>
+<td align="right">-1.67</td>
+<td align="right">-1.67</td>
+</tr>
+<tr class="odd">
+<td align="left">Full community</td>
+<td align="left">NTR</td>
+<td align="right">0.38</td>
+<td align="right">1343.56</td>
+<td align="right">-1.22</td>
+<td align="right">-1.22</td>
+<td align="right">-1.22</td>
+</tr>
+<tr class="even">
+<td align="left">Crustacea</td>
+<td align="left">Baseline</td>
+<td align="right">1.01</td>
+<td align="right">95.23</td>
+<td align="right">-1.29</td>
+<td align="right">-1.28</td>
+<td align="right">-1.27</td>
+</tr>
+<tr class="odd">
+<td align="left">Crustacea</td>
+<td align="left">FG</td>
+<td align="right">2.01</td>
+<td align="right">61.66</td>
+<td align="right">-1.94</td>
+<td align="right">-1.94</td>
+<td align="right">-1.93</td>
+</tr>
+<tr class="even">
+<td align="left">Crustacea</td>
+<td align="left">NTR</td>
+<td align="right">0.38</td>
+<td align="right">161.37</td>
+<td align="right">-1.26</td>
+<td align="right">-1.26</td>
+<td align="right">-1.25</td>
+</tr>
+<tr class="odd">
+<td align="left">Actinopterygii</td>
+<td align="left">Baseline</td>
+<td align="right">5.03</td>
+<td align="right">1015.66</td>
+<td align="right">-1.55</td>
+<td align="right">-1.54</td>
+<td align="right">-1.53</td>
+</tr>
+<tr class="even">
+<td align="left">Actinopterygii</td>
+<td align="left">FG</td>
+<td align="right">7.12</td>
+<td align="right">1084.84</td>
+<td align="right">-1.97</td>
+<td align="right">-1.96</td>
+<td align="right">-1.95</td>
+</tr>
+<tr class="odd">
+<td align="left">Actinopterygii</td>
+<td align="left">NTR</td>
+<td align="right">7.12</td>
+<td align="right">1343.56</td>
+<td align="right">-1.63</td>
+<td align="right">-1.62</td>
+<td align="right">-1.61</td>
+</tr>
+<tr class="even">
+<td align="left">Chondrichthyes</td>
+<td align="left">Baseline</td>
+<td align="right">8.05</td>
+<td align="right">372.32</td>
+<td align="right">-1.08</td>
+<td align="right">-1.06</td>
+<td align="right">-1.04</td>
+</tr>
+<tr class="odd">
+<td align="left">Chondrichthyes</td>
+<td align="left">FG</td>
+<td align="right">77.14</td>
+<td align="right">357.98</td>
+<td align="right">-1.36</td>
+<td align="right">-1.29</td>
+<td align="right">-1.22</td>
+</tr>
+<tr class="even">
+<td align="left">Chondrichthyes</td>
+<td align="left">NTR</td>
+<td align="right">262.28</td>
+<td align="right">379.64</td>
+<td align="right">-10.45</td>
+<td align="right">-9.85</td>
+<td align="right">-9.25</td>
+</tr>
+<tr class="odd">
+<td align="left">Cephalopoda small</td>
+<td align="left">Baseline</td>
+<td align="right">3.05</td>
+<td align="right">12.40</td>
+<td align="right">-3.97</td>
+<td align="right">-3.88</td>
+<td align="right">-3.78</td>
+</tr>
+<tr class="even">
+<td align="left">Cephalopoda small</td>
+<td align="left">FG</td>
+<td align="right">3.14</td>
+<td align="right">18.05</td>
+<td align="right">-3.16</td>
+<td align="right">-3.00</td>
+<td align="right">-2.84</td>
+</tr>
+<tr class="odd">
+<td align="left">Cephalopoda small</td>
+<td align="left">NTR</td>
+<td align="right">3.05</td>
+<td align="right">20.89</td>
+<td align="right">-4.32</td>
+<td align="right">-4.18</td>
+<td align="right">-4.05</td>
+</tr>
+<tr class="even">
+<td align="left">Cephalopoda large</td>
+<td align="left">Baseline</td>
+<td align="right">45.06</td>
+<td align="right">527.54</td>
+<td align="right">-2.51</td>
+<td align="right">-2.27</td>
+<td align="right">-2.04</td>
+</tr>
+<tr class="odd">
+<td align="left">Cephalopoda large</td>
+<td align="left">FG</td>
+<td align="right">24.03</td>
+<td align="right">1144.57</td>
+<td align="right">-1.90</td>
+<td align="right">-1.82</td>
+<td align="right">-1.75</td>
+</tr>
+<tr class="even">
+<td align="left">Cephalopoda large</td>
+<td align="left">NTR</td>
+<td align="right">53.86</td>
+<td align="right">401.61</td>
+<td align="right">-3.96</td>
+<td align="right">-3.63</td>
+<td align="right">-3.31</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">plot_multiple_exponents</span>(quevedo_table_b1,</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                        <span class="at">shade_first =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="plotting-customisation" class="section level2">
+<h2>Plotting customisation</h2>
+<p><code>add_ticks()</code> adds labelled and unlabelled tick marks to a
+plot (for linear or log axes) that are calculated automatically if
+needed, or can be explicitly specified. See
+<code>?add_ticks()</code>.</p>
+</div>
+<div id="printing-results" class="section level2">
+<h2>Printing results</h2>
+<p>Since the raw data are included in the output from
+<code>fit_size_spectrum.numeric()</code>, the default
+<code>print()</code> would print all data, so we provide condensed
+output using a wrapper function
+<code>print.size_spectrum_numeric()</code> that gets automatically used
+to show output. It limits the output to just the first 10 values. To see
+them all use <code>print.default()</code>.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

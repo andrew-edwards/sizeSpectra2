@@ -16,8 +16,8 @@ rmarkdown::render("fit-data-mlebins.Rmd")
 ```
 
 ```{r, load, include = FALSE}
-load_all()
-# library(sizeSpectraFit)
+# load_all()
+library(sizeSpectraFit)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -167,7 +167,8 @@ function calculates a histogram to find the peak from which to start the bounded
 power-law fit [(Quevedo et
 al.,
 2026)](https://www.sciencedirect.com/science/article/pii/S2351989426001769). It
-then fits the size spectrum. This can take a few minutes, so I have saved
+then fits the size spectrum using `fit_size_spectrum_mlebins()`; if you wish to
+specify `x_min` then you would just use `fit_size_spectrum_mlebins()`. This can take a few minutes, so I have saved
 `res_cephsmall_fg` as a data object in sizeSpectraFit (this next chunk is not
 actually run, don't tell anyone...; so do make sure to take out `eval = FALSE` if you use this
 code as a template):
@@ -186,8 +187,8 @@ histogram used to determine $x_{min}$. (Use `remove_hist(res_cephsmall_fg)` to
 remove the histogram object and retain the class; this also works on lists of
 results from multiple applications of `determine_xmin_and_fit_mlebins()`).
 
-The object has the class `size_spectrum_mlebins` such that our customised
-`plot.size_spectrum_mlebins()` automatically gets used: 
+The object has the class `determine_xmin_and_fit_mlebins` such that our customised
+`plot.determine_xmin_and_fit_mlebins()` automatically gets used: 
 ```{r, plotmlebins, fig.height = 12}
 plot(res_cephsmall_fg)
 ```

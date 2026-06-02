@@ -1,0 +1,223 @@
+---
+title: "Some useful miscellaneous functions that are not in the other vignettes"
+author: "Andrew Edwards"
+output:
+  rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Some useful miscellaneous functions that are not in the other vignettes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+date: "Last rendered on `r format(Sys.time(), '%d %B, %Y')`"
+---
+
+```{r, instr, echo = FALSE, eval = FALSE}
+# To build either run this line or click knit button in RStudio
+rmarkdown::render("misc-sizeSpectraFit.Rmd")
+```
+
+```{r, load, include = FALSE}
+load_all()
+# library(sizeSpectraFit)
+
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = " ",
+  fig.width = 7,
+  fig.height = 6
+)
+```
+
+This vignette for the [sizeSpectraFit R
+package](https://github.com/andrew-edwards/sizeSpectraFit?tab=readme-ov-file#sizespectrafit)
+contains some extra miscellaneous functions from the package, that are not
+covered in the other vignettes (or doing so would add extra clutter to those
+vignettes) but that might be useful for users.
+
+There are still further functions in the package (called by other functions)
+that users are not likely to need, but all code for them is in the `R/`
+directory for the package at
+https://github.com/andrew-edwards/sizeSpectraFit/tree/main/R. To list all exported functions you
+can type `getNamespaceExports("sizeSpectraFit")`; each will have a help
+function.
+
+## Note about customised functions 
+
+Note that we have customised plotting functions that automatically get applied
+to, for example, the results of `size_spectrum_fit()` depending on the class of the
+argument. In case you are unaware of how this works in R, here is a simple
+annotated example.
+```{r, class, fig.height = 5.5}
+res <- fit_size_spectrum(sim_vec)      # Fit a simulated vector of values
+class(res)                             # Check the class
+plot(res)
+```
+Now, because `res` has a specific class, namely `"size_spectrum_numeric" "list"`, R will look at
+the first element of the class when we call `plot()`, and see if there is a
+specific plotting function for that element, in the form of
+`plot.size_spectrum_numeric()` in this case. This then gets used in the above
+plot. Similar behaviour occurs for other types of results and some other functions. This is
+useful to know for digging into the help files of such functions (you need to
+know how to figure out the explicit function name).
+
+Okay, so here are the extra the functions that are not mentioned in the other
+vignettes. See the help files for full
+details, here I just highlight them briefly to bring them to your attention
+(and to remind myself that they exist!).
+
+## PLB distribution functions: `dPLB`, `dPLB_agg`, etc.
+
+For the bounded power-law (PLB) distribution, standard R functions are available
+to give the probability density and distribution functions, and random number
+generation.
+
+These are in the standard R format like `dnorm()` for the normal
+distribution. So we have:
+
+  * `dPLB()`: probability density function
+
+  * `pPLB()`: cumulative distribution function $P(X \leq x)$ 
+
+  * `rPLB()`: random generation of values
+
+  * `qPLB()`: quantile function
+  
+as described in [Edwards et
+al. (2017)](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12641/full). Random
+generation uses the inverse method (e.g. p1215 of Edwards 2008, Journal of
+Animal Ecology, 77:1212-1222). `qPLB()` is from inverting the cumulative
+distribution function. Unbounded power-law distributions are also included (as
+`dPL()` etc.) for completeness (except for `qPL()`) but are likely not needed.
+
+For aggregated bounded power-law distributions across multiple samples, we
+include `dPLB_agg()` and `pPLB_agg()`, based on mathematics worked out
+in Appendix B of [Quevedo et al. (2026)](https://www.sciencedirect.com/science/article/pii/S2351989426001769). Results then feed into `plot_aggregate()` to generate the plot.
+See the [fit-aggregated
+vignette](https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-aggregated.html)
+for details, and the help files.
+
+## Calculations: `calc_mle_conf()` 
+
+This is called from the fitting functions to calculate the maximum likelihood
+estimate of a parameter and its 95% confidence interval by using the profile
+log-likelihood method described in the Ecological Detective (Hilborn and
+Mangel, 1997, page 162). It can be used for any log-likelihood functions. Our
+fitting functions specify the correct log-likelihood function to be used;
+e.g. `fit_size_spectrum.numeric()`  uses `neg_ll_mle_method()` which gives the
+exact formula for the negative log-likelihood of a power-law distribution given
+a set of numerical measurements.
+
+Fits are done using `nlm()`, and warnings can be suppressed with `suppress_warnings =
+TRUE` (sometimes there are many, but these all seem to be 
+
+```{r, eval = FALSE}
+Warning in nlm(f = negll.fn, p = p, ...) : 
+
+NA/Inf replaced by maximum positive value.
+```
+
+This is due to the likelihood function blowing up, presumably when searching
+some very very unlikely region of parameter space.
+
+For the
+confidence interval it calls our `calc_confidence_interval()` function. If the interval reaches one of the bounds, then
+`calc_mle_conf()` repeats the calculation with a larger interval. 
+
+## Detecting and removing outliers
+
+`detect_outliers()` uses the appropriate function depending on the class
+of the argument, one of: 
+`detect_outliers.size_spectrum_mlebins()`,
+`detect_outliers.determine_xmin_and_fit_mlebins()`, or
+`detect_outliers.remove_outliers_mlebins()`. 
+It analyses gaps to look for outliers, namely large values with gaps from
+remaining continuous values, from using the MLEbins method.
+
+If already run through `remove_outliers.size_spectrum_mlebins()` then it will
+use `detect_outliers.remove_outliers.mlebins()` and can keep iterating
+that. See `?remove_outliers` for further details and example code.
+
+If there is a gap between roughly-continuous body sizes and a larger group
+then it is useful to test if removing the larger group affects the results.
+
+Used for Sensitivity Example B in Quevedo et al. (2026), see p34 of Supp
+Material B. The relevant code is [available
+here](https://github.com/andrew-edwards/sizeSpectraFit/tree/main/report/mediterranean/mediterranean-analysis-15).
+
+## Making histogram objects: `make_hist()`, `make_hist_for_binned_counts_mlebin()`, `make_hist_for_binned_counts()`
+
+`make_hist()` converts a vector of body sizes into a histogram list object and
+creates 0 counts for missing bins (such that we can automatically use the base R
+`plot.histogram()` for plotting). 
+
+`make_hist_for_binned_counts_mlebin()` does similar
+for data in a `data.frame` to be used for the MLEbin method (bins are not
+overlapping and so can simply be used). 
+
+`make_hist_for_binned_counts()` does
+similar for data that has overlapping bins, taking a tibble with `bin_min`, `bin_max`, and `bin_count` and assign counts to new equal bins based on `bin_min`, summing the original counts (which can be non-integer).
+
+
+## Cumulative biomass functions for plotting
+
+sizeSpectraFit includes functionality to plot normalised biomass style plots
+(that people are used to seeing) that are calculated based on our likelihood
+calculations (that we have shown to perform better than fitting the regression
+of a normalised biomass plot).
+
+`p_biomass()` gives the biomass cumulative distribution function from equations
+A.4 and A.8 in [Edwards et
+al. (2017)](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12641/full). This
+is the total biomass between `x_min` and the value of `x`, assuming a bounded power-law
+distribution of body masses between `x_min` and `x_max` and a given value of
+ exponent `b`, and a total of `n` individuals.
+
+This function is used by `p_biomass_bins()` to give total
+biomass (and normalised biomass) in each bin. Bins are either created or
+prescribed, depending on the input, and uncertainty is calculated if
+appropriate. `p_biomass_bins()` works on the results of a call to our main
+`fit_size_spectrum()` function, with `p_biomass_bins.size_spectrum_numeric()` or
+`p_biomass_bins.size_spectrum_mlebin()` being called as appropriate. See
+`?p_biomass_bins()` for explanation.
+
+The output can then be used for plotting LBN biomass type plots. They are used
+automatically, along with `plot_lbn_fitted()` in `plot_lbn_style()` which is called if `style = "biomass"`
+in the plotting functions. So these functions are getting used behind the scenes
+in the call
+```{r, eval = FALSE}
+plot(res,
+     style = "biomass")
+```
+in the [fit-data.html
+vignette](https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data.html).
+
+## Plotting results for multiple groups
+
+`plot_multiple_exponents()` plots the estimated $b$ with confidence intervals for multiple groups and
+strata. A somewhat specific plot for the Mediterranean analyses of five species
+groups fitted for three strata in Figure B.20 of [Quevedo et al. (2026)](https://www.sciencedirect.com/science/article/pii/S2351989426001769), but
+applicable to other sets of results, likely with some tweaking.
+
+The Quevedo results are saved in the package, and the function creates the
+figure:
+```{r, multexp}
+knitr::kable(quevedo_table_b1,
+             digits = 2)   # results from Table B.1 of Quevedo et al. (2026)
+
+plot_multiple_exponents(quevedo_table_b1,
+                        shade_first = TRUE)
+```
+
+## Plotting customisation
+
+`add_ticks()` adds labelled and unlabelled tick marks to a plot (for linear or
+log axes) that are calculated automatically if needed, or can be explicitly
+specified. See `?add_ticks()`.
+
+## Printing results
+
+Since the raw data are included in the output from
+`fit_size_spectrum.numeric()`, the default `print()` would print all data, so we
+provide condensed output using a wrapper function
+`print.size_spectrum_numeric()` that gets automatically used to show output. It
+limits the output to just the first 10 values. To see them all use `print.default()`.
+

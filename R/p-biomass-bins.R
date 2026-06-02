@@ -2,7 +2,7 @@
 ##' bin breaks, with uncertainty if appropriate.
 ##'
 ##' For an object of class `size_spectrum_numeric`, from fitting a vector of
-##' values using the MLE method, we create new bins and calculated the biomass
+##' values using the MLE method, we create new bins and calculate the biomass
 ##' in each. The bins are defined as doubling in size (as per
 ##' the traditional size spectrum approach) using `bin_data(res$x, bin_width =
 ##' "2k")` in `p_biomass_bins.size_spectrum.numeric()`. We know all the individual body sizes, so there is
