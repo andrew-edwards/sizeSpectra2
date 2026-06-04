@@ -11,7 +11,7 @@
 #' here to then go into NAMESPACE. May have a few more here than we really need.
 #'
 #' @name sizeSpectraFit_import_from
-#' usethis namespace: start
+## usethis namespace: start
 #' @importFrom dplyr mutate summarise select group_by n arrange ungroup
 #' @importFrom dplyr inner_join left_join right_join anti_join full_join
 #' @importFrom dplyr semi_join row_number
