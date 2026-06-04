@@ -5,10 +5,15 @@
 ##' @param log_scale logical, whether not this axis is on the log10 scale
 ##' @param x_or_y character, either "x" or "y" to specify which axis the tick
 ##'   marks and labels are being added to
-##' @param big_ticks, big_ticks_labels, small_ticks, small_ticks_by,
+##' @inheritParams plot_isd
+##' @param big_ticks,big_ticks_labels,small_ticks,small_ticks_by,
 ##'   small_ticks_labels See corresponding `x_...` definitions in
-##'   [plot.size_spectrum_numeric()].
-##' @inherit plot.size_spectrum_numeric
+##'   [plot_isd()].
+##' @inheritParams plot_isd
+##' @param small_ticks_per_big number of small ticks per big tick (with the end
+##' ones overlapping the big ticks) -- i.e. `small_ticks_per_big = 10` will add a
+##' small tick every 0.1 between big ticks at 0 and 1. Only applicable if
+##' `small_ticks` and `small_ticks_by` are both `NULL`.
 ##' @return adds tickmarks to one axis of a plot. Returns invisible.
 ##' @export
 ##' @author Andrew Edwards

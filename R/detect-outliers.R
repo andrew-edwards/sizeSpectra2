@@ -9,6 +9,7 @@
 ##' * `size_spectrum_mlebins` object
 ##' * `determine_xmin_and_fit_mlebins` object
 ##' * `remove_outliers_mlebins` object
+##' @param ... TODO
 ##' @return tibble containing just the data values needed for
 ##' calculations, which are the original four columns:
 ##'   * `species`

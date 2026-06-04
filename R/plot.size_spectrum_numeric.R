@@ -50,11 +50,17 @@
 ##'   of MEPS paper) or the only panel for a one-panel plot.
 ##' @param legend_text_b text to include in the legend for panel
 ##'   b for two-panel plot (`log_y_axis = "both"`); ignored for one-panel plot
-##' @param legend_text_a_n, legend_text_b_n as for `legend_text_a` and
+##' @param legend_text_a_n,legend_text_b_n as for `legend_text_a` and
 ##'   `legend_text_b` but for another row of information, default being `n =
 ##'   <sample size>` as in Fig. 7a of MEPS paper.
 ##' @param ... Further arguments for `plot_isd()` and then `plot()`, except
 ##'   cannot have `log` as that gets overridden.
+##' @param xlim TODO
+##' @param ylim TODO
+##' @param x_plb TODO
+##' @param mle_round TODO
+##' @param par_mai vector of values to use for `par(mai)`
+##' @param par_cex numeric value to use for `par(cex)` (font size)
 ##' @return One- or two-panel plot of raw data and PLB distribution (and fits of
 ##'   confidence limits) as solid (and dashed) fitted using MLE method; returns
 ##'   nothing.

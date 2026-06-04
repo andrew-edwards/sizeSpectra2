@@ -3,6 +3,8 @@
 ##'
 ##' @param dat tibble of data in the format required for fitting
 ##'   using MLEbin method; see [fit_size_spectrum()].
+##' @param x_min TODO
+##' @param ... TODO
 ##' @return object of class `determine_xmin_and_fit_mlebin`, such that
 ##' [plot.determine_xmin_and_fit_mlebin()] gets used for plotting; a list containing
 ##' two list objects

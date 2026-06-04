@@ -26,6 +26,8 @@
 ##' fitted PLB (to more accurately compare with the data if the data are binned)
 ##' @param ... further arguments to be passed to `plot()` and
 ##'   `plot_binned_fitted()`
+##' @param y_scaling TODO
+##' @param rect_col TODO
 ##' @return invisible
 ##'
 ##' @export

@@ -10,21 +10,19 @@
 ##' details.
 ##'
 ##' @inheritParams plot.size_spectrum_numeric
-##' @inheritParams plot.size_spectrum_mlebin
+##' @inheritParams plot_isd
 ##' @param x_plb vector of values to use to plot the fitted PLB curve; if NA then
 ##'   automatically calculated (sometimes need to manually extend it to hit the
 ##'   x-axis, but tricky to automate that on a log-scale)
 ##' @param y_plb vector of values corresponding to the MLE fit of the PLB
 ##'   distribution at each value of `x_PLB`
-##' @param y_plb_conf_min, y_plb_conf_max vector of values corresponding to the fit, using the
+##' @param y_plb_conf_min,y_plb_conf_max vector of values corresponding to the fit, using the
 ##'   minimum/maximum value confidence interval for exponent b, of the PLB
 ##'   distribution at each value of `x_PLB`
 ##' @param plot_conf_ints logical whether to plot confidence intervals or not
 ##' @param ylab label for the y-axis (sent to `plot.default()`)
 ##' @param tcl_small passed on as the `tcl` argument to [axis()] for tick
 ##' direction and length for small tickmarks
-##' @param par_mai vector of values to use for `par(mai)`
-##' @param par_cex numeric value to use for `par(cex)` (font size)
 ##' @param seg_col colour to use for the segments (top line of each box; green
 ##'   in Fig. 7 of MEPS paper); default in `plot.size_spectrum_mlebin()` is NULL
 ##'   which gets converted to `black` in that function.
@@ -36,9 +34,6 @@
 ##' @param conf_lty line type to use for confidence intervals
 ##' @param legend_text_second_row_multiplier numeric multiplier of the second
 ##'   row of legend text to space it out, especially for smaller panel plots.
-##' @param LBN_style Whether to plot an LBN style plot (similar to Fig. 6a of MEE
-##'   paper), used directly from `plot.size_spectrum_numeric()` to give the
-##'   recommended Fig. 6 plot for MLE results, provided data are body masses.
 ##' @param show_fit_on_top logical, whether to plot the fitted PLB curve on top of the
 ##'   data or underneath. Usually on top (the default) is fine, but sometimes
 ##'   having it underneath is better.

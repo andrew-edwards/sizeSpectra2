@@ -8,6 +8,9 @@
 ##'
 ##' @param dat_for_mlebins tibble of data in the format required for fitting
 ##'   using MLEbins method; see [fit_size_spectrum_mlebins()].
+##' @inheritParams make_hist
+##' @param x_min TODO
+##' @param ... TODO
 ##' @return list of class `determine_xmin_and_fit_mlebins` for plotting, containing
 ##' * `mlebins_fit` object of class `size_spectrum_mlebins` from using MLEbins
 ##' method; see [fit_size_spectrum_mlebins()]

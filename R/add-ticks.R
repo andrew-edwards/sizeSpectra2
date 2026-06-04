@@ -6,7 +6,7 @@
 ##' and 6(b) of MEE paper and Figure 7 of MEPS paper. `log` argument needs to
 ##' match the original [plot()] call (this is not checked).
 ##'
-##' @inherit plot.size_spectrum_numeric
+##' @inheritParams plot_isd
 ##' @return Adds axes and big and small tick marks to the plot. Returns invisible.
 ##' @export
 ##' @author Andrew Edwards

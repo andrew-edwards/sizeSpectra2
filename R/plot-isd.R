@@ -4,21 +4,29 @@
 ##' Is called from `plot.size_spectrum_numeric()` with logarithmic or linear
 ##' y-axis.
 ##'
-##' @inheritParams plot.size_spectrum_numeric
 ##' @param log Which axes to log, for `plot(..., log = log)`. So "xy" for
 ##'   log-log axes, "x" for only x-axis logged.
+##' @param xlim TODO
+##' @param ylim TODO
+##' @param x_plb TODO
+##' @param y_plb TODO
+##' @param y_plb_conf_min,y_plb_conf_max TODO
 ##' @param plot_conf_ints logical whether to plot PLB fit for confidence
 ##'   intervals or not
-##' @param xlab, ylab x/y labels, explicitly given default values here which can
+##' @param xlab,ylab x/y labels, explicitly given default values here which can
 ##'   be modified as required.
 ##' @param mgp_val mgp values to use, as in `plot(..., mgp = mgp_vals)`; see [graphics::par()].
 ##' @param tcl_small Length of small tickmarks; see [graphics::axis()].
+##' @param inset_label TODO
+##' @param inset_text TODO
+##' @param legend_label TODO
 ##' @param legend_text text to put in the corner, defaults to `b = <value>`. Set to
 ##'   `NA` to have none, and modify default if needed.
+##' @param legend_text_n TODO
+##' @param legend_text_second_row_multiplier TODO
 ##' @param legend_position where to place legend, gets used as the first
 ##'   argument in [legend()].
-##' @param inset Inset distance for legend
-##' @param x_big_ticks, y_big_ticks numeric vector of big tick marks on
+##' @param x_big_ticks,y_big_ticks numeric vector of big tick marks on
 ##'   x-axis/y-axis. If NULL then gets done automatically, so if that does not
 ##'   look good then define explicitly here, plus `x_big_ticks_labels` and/or
 ##'  `y_big_ticks_labels`. For a log axis you may also want to define the small
@@ -26,23 +34,26 @@
 ##' the big ones and may not be correct. So define the big ticks with caution
 ##' (if it would really help to have this more automated I can work on it; just make
 ##' a GitHub Issue).
-##' @param x_big_ticks_labels, y_big_ticks_labels numeric vector of big tick
+##' @param x_big_ticks_labels,y_big_ticks_labels numeric vector of big tick
 ##'   marks to label on x-axis/y-axis. If NULL then gets done automatically, so
 ##'   if that does not look good then define explicitly here
-##' @param x_small_ticks, y_small_ticks  numeric vector of small tick marks on x-axis/y-axis. If
-##'   NULL then gets done automatically, so if that does not  look good then
+##' @param x_small_ticks,y_small_ticks numeric vector of small tick marks on x-axis/y-axis. If
+##'   NULL then gets done automatically, so if that does not look good then
 ##'   define explicitly here.
-##' @param x_small_ticks_by, y_small_ticks_by  numeric vector of increment to
+##' @param x_small_ticks_by,y_small_ticks_by numeric vector of increment to
 ##'   use to generate small tick marks on x-axis/y-axis; only relevant for
 ##'   linear axes. Will coincide with the
 ##'   big tick marks and extend beyond them. Can only define `x_small_ticks` or
 ##'   `x_small_ticks_by` (same for `y_...`). Set
 ##'   to `NA` to force no small unlabelled tickmarks.
-##' @param x_small_ticks_labels, y_small_ticks_labels numeric vector of small tick
+##' @param x_small_ticks_labels,y_small_ticks_labels numeric vector of small tick
 ##'   marks to label on x-axis/y-axis. If NULL then gets done automatically, so
 ##'   if that does not look good then define explicitly here. Note that these
 ##'   labels get created here also (but usually you would base this on the
 ##'   existing ones).
+##' @param fit_col TODO
+##' @param fit_lwd TODO
+##' @param conf_lty TODO
 ##' @param ... Further arguments for `plot()`
 ##' @return Single figure of ISD on log-log plot (or log-linear depending on the
 ##'   options given), with values as points or normalised binned biomass and PLB

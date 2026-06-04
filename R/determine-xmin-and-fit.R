@@ -11,6 +11,7 @@
 ##' lengths), for which we want to use the MLE method, but first want to
 ##' determine `x_min`.
 ##' @param ... arguments to pass onto [fit_size_spectrum.numeric()]
+##' @inheritParams make_hist
 ##' @return list of class `determine_xmin_and_fit` for plotting, containing two objects:
 ##' * `mle_fit` object of class `size_spectrum_numeric` from using MLE
 ##' method; see [fit_size_spectrum()]

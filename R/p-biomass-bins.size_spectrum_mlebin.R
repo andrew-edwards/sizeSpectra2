@@ -1,4 +1,5 @@
 ##' @rdname p_biomass_bins
+##' @param res_mlebin TODO
 ##' @export
 p_biomass_bins.size_spectrum_mlebin <- function(res_mlebin){   # result from mlebin
 

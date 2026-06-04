@@ -11,9 +11,9 @@
 ##' group names), if not specified then use all
 ##' @param strata_name `character` the strata to analyse (can be a vector of
 ##' strata names), if not specified then use all
-##' @param minimum_length, maximum_length remove fish shorter/longer  than this, in the units of
+##' @param minimum_length,maximum_length remove fish shorter/longer than this, in the units of
 ##' `length_bin_min` (which may be different to the original `length`
-##' one. Note: this was originally based on
+##' one). Note: this was originally based on
 ##' `length` column which used a different example and does not need to be in
 ##' `dat`, but I just switched it to `length_bin_min` column which is
 ##' more correct; may change some older results if rerunning anything; broke a

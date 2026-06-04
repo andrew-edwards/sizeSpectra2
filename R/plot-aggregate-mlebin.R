@@ -19,6 +19,7 @@
 ##' @param rect_border_equal_col_vec logical, if TRUE then colour the borders of the
 ##' rectangles with the colour for that group, else stick with black. Will depend
 ##' how the figure looks; hard to fully automate.
+##' @param y_scaling TODO
 ##' @export
 ##' @author Andrew Edwards
 ##' @examples

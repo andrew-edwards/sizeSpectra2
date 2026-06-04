@@ -19,11 +19,6 @@
 ##' automatically in [plot_lbn_style()] which is called if `style = "biomass"`
 ##' in calls to plot results.
 ##'
-##' @param bin_vals either a `numeric` vector of bin breaks, or a `data.frame` that
-##'   contains columns `bin_min` and `bin_max` (and possibly more; e.g. the
-##'   format of the `bin_vals` component output from [bin_data()].
-##'   Either `p_biomass_bins.numeric()` or `p_biomass_bins.data.frame()` gets called
-##'   appropriately.
 ##' @param res results list, of either class `size_spectrum_numeric` or
 ##'   `size_spectrum_mlebin`.
 ##' @return tibble if `res` is of class `size_spectrum_numeric` then it is the

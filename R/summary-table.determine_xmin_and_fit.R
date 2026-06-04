@@ -1,5 +1,5 @@
 ##' @rdname summary_mle_table
-##'
+##' @param res TODO
 ##' @export
 summary_mle_table.determine_xmin_and_fit <- function(res,
                                                      dig = 2){

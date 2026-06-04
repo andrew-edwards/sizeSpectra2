@@ -1,4 +1,5 @@
 ##' @rdname p_biomass_bins
+##' @param res_mle TODO
 ##' @export
 p_biomass_bins.size_spectrum_numeric <- function(res_mle   # result from MLE method
                                                  ){
