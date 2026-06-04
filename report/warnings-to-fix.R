@@ -7,6 +7,12 @@ Warnings from running check() on 4/6/26.
     Including base/recommended package(s):
     'graphics'
 
+This is only in ./plot.determine_xmin_and_fit_mlebins.R:69:
+                  dots_parser(graphics:::plot.histogram, (twice)
+Replacing with
+dots_parser(utils::getS3method("plot",
+                                   "histogram"),
+
 2. checking S3 generic/method consistency ... WARNING
   fit_size_spectrum:
     function(dat, ...)
@@ -207,6 +213,7 @@ Warnings from running check() on 4/6/26.
 
 5. checking for unstated dependencies in 'tests' ... WARNING
   '::' or ':::' import not declared from: 'tibble'
+Adding tibble to DESCRIPTION (even though dplyr depends on tibble)
 
 Okay, asked ghcp to fix number 4. Going through and checking/fixing them, leaving the
 TODOs (37 across 18 files) for now. Doing in commit that creates this file.

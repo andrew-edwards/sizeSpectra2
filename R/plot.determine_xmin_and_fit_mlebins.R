@@ -66,14 +66,16 @@ plot.determine_xmin_and_fit_mlebins <- function(res,
   #}
 
   if(is.null(xlim_hist)){
-    dots_parser(graphics:::plot.histogram,
+    dots_parser(utils::getS3method("plot",
+                                   "histogram"),
                 x = res$h,
                 # xlim = xlim_global,
                 col = col_hist,
                 border = border_col,
                 main = main_hist,
                 ...)} else {
-    dots_parser(graphics:::plot.histogram,
+    dots_parser(utils::getS3method("plot",
+                                   "histogram"),
                 x = res$h,
                 # xlim = xlim_global,
                 col = col_hist,
