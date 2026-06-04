@@ -10,6 +10,10 @@ determine_xmin_and_fit_mlebin(dat, x_min = NULL, ...)
 \arguments{
 \item{dat}{tibble of data in the format required for fitting
 using MLEbin method; see \code{\link[=fit_size_spectrum]{fit_size_spectrum()}}.}
+
+\item{x_min}{TODO}
+
+\item{...}{TODO}
 }
 \value{
 object of class \code{determine_xmin_and_fit_mlebin}, such that

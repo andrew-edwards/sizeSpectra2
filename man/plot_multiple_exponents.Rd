@@ -48,7 +48,7 @@ plot_multiple_exponents(
 strata in lightgrey, because (for Mediterranean analyses) this is the full
 community and the fits were not great, so the results are not so reliable.}
 
-\item{xlim, }{ylim vectors for axes limits; if NULL (the default) they get
+\item{xlim, ylim}{vectors for axes limits; if NULL (the default) they get
 calculated automatically.}
 
 \item{x_jitter}{Amount to left/right jitter each strata within a group;

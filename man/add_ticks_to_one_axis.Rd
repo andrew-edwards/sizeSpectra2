@@ -23,22 +23,23 @@ add_ticks_to_one_axis(
 \item{x_or_y}{character, either "x" or "y" to specify which axis the tick
 marks and labels are being added to}
 
-\item{big_ticks, }{big_ticks_labels, small_ticks, small_ticks_by,
-small_ticks_labels See corresponding \code{x_...} definitions in
-\code{\link[=plot.size_spectrum_numeric]{plot.size_spectrum_numeric()}}.}
+\item{tcl_small}{Length of small tickmarks; see \code{\link[graphics:axis]{graphics::axis()}}.}
+
+\item{mgp_val}{mgp values to use, as in \code{plot(..., mgp = mgp_vals)}; see \code{\link[graphics:par]{graphics::par()}}.}
+
+\item{big_ticks, big_ticks_labels, small_ticks, small_ticks_by, }{small_ticks_labels See corresponding \code{x_...} definitions in
+\code{\link[=plot_isd]{plot_isd()}}.}
+
+\item{small_ticks_per_big}{number of small ticks per big tick (with the end
+ones overlapping the big ticks) -- i.e. \code{small_ticks_per_big = 10} will add a
+small tick every 0.1 between big ticks at 0 and 1. Only applicable if
+\code{small_ticks} and \code{small_ticks_by} are both \code{NULL}.}
 }
 \value{
 adds tickmarks to one axis of a plot. Returns invisible.
 }
 \description{
 Called from \code{\link[=add_ticks]{add_ticks()}} which is called from \code{\link[=plot.size_spectrum_numeric]{plot.size_spectrum_numeric()}}.
-}
-\details{
-Single plots are the ISD style with either logarithmic or linear y-axis. See
-the \code{style} argument.
-
-Legends are automatically set, but can be tailored with the
-arguments defined below.
 }
 \examples{
 \dontrun{

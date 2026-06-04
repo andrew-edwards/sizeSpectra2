@@ -19,6 +19,8 @@ neg_ll_mlebin_method(b, x_min, x_max, w, d, J, n)
 \item{d}{vector of length \code{J} giving the count in each bin; must have \verb{d_1, d_J > 0}}
 
 \item{J}{number of bins (length of \code{d})}
+
+\item{n}{TODO}
 }
 \value{
 negative log-likelihood of the parameters given the data

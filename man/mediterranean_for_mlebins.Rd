@@ -23,9 +23,9 @@ group names), if not specified then use all}
 \item{strata_name}{\code{character} the strata to analyse (can be a vector of
 strata names), if not specified then use all}
 
-\item{minimum_length, }{maximum_length remove fish shorter/longer  than this, in the units of
+\item{minimum_length, maximum_length}{remove fish shorter/longer than this, in the units of
 \code{length_bin_min} (which may be different to the original \code{length}
-one. Note: this was originally based on
+one). Note: this was originally based on
 \code{length} column which used a different example and does not need to be in
 \code{dat}, but I just switched it to \code{length_bin_min} column which is
 more correct; may change some older results if rerunning anything; broke a

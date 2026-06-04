@@ -18,6 +18,10 @@ class \code{intervals_density_list} if ...  was applied to a data
 frame; the respective function ...  or
 gets automatically used.}
 
+\item{...}{TODO}
+
+\item{res}{TODO}
+
 \item{dig}{number of decimal places to show}
 }
 \value{

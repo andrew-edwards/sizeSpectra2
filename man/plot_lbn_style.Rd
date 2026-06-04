@@ -50,25 +50,76 @@ plot_lbn_style(
 automatically calculated (sometimes need to manually extend it to hit the
 x-axis, but tricky to automate that on a log-scale)}
 
+\item{xlim}{TODO}
+
+\item{ylim}{TODO}
+
 \item{plot_conf_ints}{logical whether to plot confidence intervals or not}
 
 \item{plot_binned_fitted}{logical, whether to plot the binned version of the
 fitted PLB (to more accurately compare with the data if the data are binned)}
 
-\item{xlab}{ylab x/y labels, explicitly given default values here which can
-be modified as required.}
-
 \item{ylab}{label for the y-axis (sent to \code{plot.default()})}
+
+\item{mgp_val}{mgp values to use, as in \code{plot(..., mgp = mgp_vals)}; see \code{\link[graphics:par]{graphics::par()}}.}
 
 \item{tcl_small}{passed on as the \code{tcl} argument to \code{\link[=axis]{axis()}} for tick
 direction and length for small tickmarks}
 
+\item{inset_label}{TODO}
+
+\item{inset_text}{TODO}
+
+\item{legend_label}{TODO}
+
+\item{legend_text}{text to put in the corner, defaults to \verb{b = <value>}. Set to
+\code{NA} to have none, and modify default if needed.}
+
+\item{legend_text_n}{TODO}
+
 \item{legend_text_second_row_multiplier}{numeric multiplier of the second
 row of legend text to space it out, especially for smaller panel plots.}
+
+\item{legend_position}{where to place legend, gets used as the first
+argument in \code{\link[=legend]{legend()}}.}
+
+\item{x_big_ticks, y_big_ticks}{numeric vector of big tick marks on
+x-axis/y-axis. If NULL then gets done automatically, so if that does not
+look good then define explicitly here, plus \code{x_big_ticks_labels} and/or
+\code{y_big_ticks_labels}. For a log axis you may also want to define the small
+tick marks explicitly as they are constructed somewhat automatically from
+the big ones and may not be correct. So define the big ticks with caution
+(if it would really help to have this more automated I can work on it; just make
+a GitHub Issue).}
+
+\item{x_big_ticks_labels, y_big_ticks_labels}{numeric vector of big tick
+marks to label on x-axis/y-axis. If NULL then gets done automatically, so
+if that does not look good then define explicitly here}
+
+\item{x_small_ticks, y_small_ticks}{numeric vector of small tick marks on x-axis/y-axis. If
+NULL then gets done automatically, so if that does not look good then
+define explicitly here.}
+
+\item{x_small_ticks_by, y_small_ticks_by}{numeric vector of increment to
+use to generate small tick marks on x-axis/y-axis; only relevant for
+linear axes. Will coincide with the
+big tick marks and extend beyond them. Can only define \code{x_small_ticks} or
+\code{x_small_ticks_by} (same for \code{y_...}). Set
+to \code{NA} to force no small unlabelled tickmarks.}
+
+\item{x_small_ticks_labels, y_small_ticks_labels}{numeric vector of small tick
+marks to label on x-axis/y-axis. If NULL then gets done automatically, so
+if that does not look good then define explicitly here. Note that these
+labels get created here also (but usually you would base this on the
+existing ones).}
+
+\item{y_scaling}{TODO}
 
 \item{seg_col}{colour to use for the segments (top line of each box; green
 in Fig. 7 of MEPS paper); default in \code{plot.size_spectrum_mlebin()} is NULL
 which gets converted to \code{black} in that function.}
+
+\item{rect_col}{TODO}
 
 \item{fit_col}{colour to use for fitted curves}
 

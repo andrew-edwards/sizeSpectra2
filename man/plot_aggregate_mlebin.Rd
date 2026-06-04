@@ -47,6 +47,8 @@ how the figure looks; hard to fully automate.}
 
 \item{ylim_global}{as \code{ylim_global} for the global \code{ylim}}
 
+\item{y_scaling}{TODO}
+
 \item{return_agg_x_y}{logical, whether to return the aggregated x and y for plotting
 values of the aggregated fit}
 

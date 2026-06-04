@@ -41,7 +41,7 @@ it's maximum, so that all fits are on the same scale}
 
 \item{lty_strata}{vector of \code{lty} values for line type for each strata, see \code{\link[=par]{par()}}.}
 
-\item{xlim, }{ylim vectors for axes limits; if NULL (the default) they get
+\item{xlim, ylim}{vectors for axes limits; if NULL (the default) they get
 calculated automatically, but users likely want to then manually adjust
 them, especially \code{ylim} to be able to see all fits asymptoting at their
 x_min values, but the
@@ -52,6 +52,8 @@ refine \code{ylim} to celarly show the aymptotes).}
 
 \item{legend_text_second_row_multiplier}{numeric multiplier of the second
 row of legend text to space it out, especially for smaller panel plots.}
+
+\item{xlab}{TODO}
 
 \item{...}{additional arguments passed onto \code{\link[=plot]{plot()}}}
 }

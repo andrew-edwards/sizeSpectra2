@@ -48,9 +48,12 @@ plot_isd_binned(
 )
 }
 \arguments{
-\item{res_mlebin}{size_spectrum_mlebin object resulting from running
-\code{fit_size_spectrum()} on a \code{data.frame} of binned data (such that the function
-\code{fit_size_spectrum_mlebin()} is used); see the \href{https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data.html}{fit-data.html vignette}.}
+\item{log}{Which axes to log, for \code{plot(..., log = log)}. So "xy" for
+log-log axes, "x" for only x-axis logged.}
+
+\item{xlim}{TODO}
+
+\item{ylim}{TODO}
 
 \item{x_plb}{vector of values to use to plot the fitted PLB curve; if NA then
 automatically calculated (sometimes need to manually extend it to hit the
@@ -59,22 +62,65 @@ x-axis, but tricky to automate that on a log-scale)}
 \item{y_plb}{vector of values corresponding to the MLE fit of the PLB
 distribution at each value of \code{x_PLB}}
 
-\item{y_plb_conf_min, }{y_plb_conf_max vector of values corresponding to the fit, using the
+\item{y_plb_conf_min, y_plb_conf_max}{vector of values corresponding to the fit, using the
 minimum/maximum value confidence interval for exponent b, of the PLB
 distribution at each value of \code{x_PLB}}
 
 \item{plot_conf_ints}{logical whether to plot confidence intervals or not}
 
-\item{xlab}{ylab x/y labels, explicitly given default values here which can
-be modified as required.}
-
 \item{ylab}{label for the y-axis (sent to \code{plot.default()})}
+
+\item{mgp_val}{mgp values to use, as in \code{plot(..., mgp = mgp_vals)}; see \code{\link[graphics:par]{graphics::par()}}.}
 
 \item{tcl_small}{passed on as the \code{tcl} argument to \code{\link[=axis]{axis()}} for tick
 direction and length for small tickmarks}
 
+\item{inset_label}{TODO}
+
+\item{inset_text}{TODO}
+
+\item{legend_label}{TODO}
+
+\item{legend_text}{text to put in the corner, defaults to \verb{b = <value>}. Set to
+\code{NA} to have none, and modify default if needed.}
+
+\item{legend_text_n}{TODO}
+
 \item{legend_text_second_row_multiplier}{numeric multiplier of the second
 row of legend text to space it out, especially for smaller panel plots.}
+
+\item{legend_position}{where to place legend, gets used as the first
+argument in \code{\link[=legend]{legend()}}.}
+
+\item{x_big_ticks, y_big_ticks}{numeric vector of big tick marks on
+x-axis/y-axis. If NULL then gets done automatically, so if that does not
+look good then define explicitly here, plus \code{x_big_ticks_labels} and/or
+\code{y_big_ticks_labels}. For a log axis you may also want to define the small
+tick marks explicitly as they are constructed somewhat automatically from
+the big ones and may not be correct. So define the big ticks with caution
+(if it would really help to have this more automated I can work on it; just make
+a GitHub Issue).}
+
+\item{x_big_ticks_labels, y_big_ticks_labels}{numeric vector of big tick
+marks to label on x-axis/y-axis. If NULL then gets done automatically, so
+if that does not look good then define explicitly here}
+
+\item{x_small_ticks, y_small_ticks}{numeric vector of small tick marks on x-axis/y-axis. If
+NULL then gets done automatically, so if that does not look good then
+define explicitly here.}
+
+\item{x_small_ticks_by, y_small_ticks_by}{numeric vector of increment to
+use to generate small tick marks on x-axis/y-axis; only relevant for
+linear axes. Will coincide with the
+big tick marks and extend beyond them. Can only define \code{x_small_ticks} or
+\code{x_small_ticks_by} (same for \code{y_...}). Set
+to \code{NA} to force no small unlabelled tickmarks.}
+
+\item{x_small_ticks_labels, y_small_ticks_labels}{numeric vector of small tick
+marks to label on x-axis/y-axis. If NULL then gets done automatically, so
+if that does not look good then define explicitly here. Note that these
+labels get created here also (but usually you would base this on the
+existing ones).}
 
 \item{seg_col}{colour to use for the segments (top line of each box; green
 in Fig. 7 of MEPS paper); default in \code{plot.size_spectrum_mlebin()} is NULL
@@ -94,14 +140,6 @@ which gets converted to \code{black} in that function.}
 \item{show_fit_on_top}{logical, whether to plot the fitted PLB curve on top of the
 data or underneath. Usually on top (the default) is fine, but sometimes
 having it underneath is better.}
-
-\item{par_mai}{vector of values to use for \code{par(mai)}}
-
-\item{par_cex}{numeric value to use for \code{par(cex)} (font size)}
-
-\item{LBN_style}{Whether to plot an LBN style plot (similar to Fig. 6a of MEE
-paper), used directly from \code{plot.size_spectrum_numeric()} to give the
-recommended Fig. 6 plot for MLE results, provided data are body masses.}
 }
 \value{
 single panel plot of the ISD with data in binned form like in

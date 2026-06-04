@@ -26,6 +26,8 @@ detect_outliers(res, ...)
 \item \code{determine_xmin_and_fit_mlebins} object
 \item \code{remove_outliers_mlebins} object
 }}
+
+\item{...}{TODO}
 }
 \value{
 tibble containing just the data values needed for

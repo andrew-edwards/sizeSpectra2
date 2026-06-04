@@ -16,6 +16,10 @@ remove_outliers(dat, ...)
 \method{remove_outliers}{size_spectrum_mlebins}(res, number = 1)
 }
 \arguments{
+\item{dat}{TODO}
+
+\item{...}{TODO}
+
 \item{res}{One of:
 \itemize{
 \item \code{size_spectrum_mlebins} object

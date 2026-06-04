@@ -49,13 +49,20 @@ whether to plot just a normalised biomass plot or a normalised biomass plot
 plus the binned data and fit of the PLB.
 }}
 
+\item{xlim}{TODO}
+
+\item{ylim}{TODO}
+
+\item{x_plb}{TODO}
+
 \item{y_scaling}{numeric scaling of y-minimum of y-axis. Axis can't go to zero on
 log-log plot, but goes to the proportion \code{y_scaling} (<1)
 of the minimum value of counts greater than the highest \code{bin_min} value. Do
 such that can see the right-most or point bin in all plots.}
 
-\item{xlab}{ylab x/y labels, explicitly given default values here which can
-be modified as required.}
+\item{mle_round}{TODO}
+
+\item{inset_label}{TODO}
 
 \item{legend_label_a}{character label (default \code{"(a)"}) to use for panel (a)
 for a two-panel plot}
@@ -68,11 +75,15 @@ for a two-panel plot}
 (a) for two-panel plot( the \code{b = -1.58} in Fig. 7a
 of MEPS paper) or the only panel for a one-panel plot.}
 
-\item{legend_text_a_n, }{legend_text_b_n as for \code{legend_text_a} and
+\item{legend_text_a_n, legend_text_b_n}{as for \code{legend_text_a} and
 \code{legend_text_b} but for another row of information, default being \verb{n = <sample size>} as in Fig. 7a of MEPS paper.}
 
 \item{legend_text_b}{text to include in the legend for panel
 b for two-panel plot (\code{log_y_axis = "both"}); ignored for one-panel plot}
+
+\item{par_mai}{vector of values to use for \code{par(mai)}}
+
+\item{par_cex}{numeric value to use for \code{par(cex)} (font size)}
 
 \item{...}{Further arguments for \code{plot_isd()} and then \code{plot()}, except
 cannot have \code{log} as that gets overridden.}

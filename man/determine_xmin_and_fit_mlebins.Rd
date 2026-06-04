@@ -17,6 +17,17 @@ determine_xmin_and_fit_mlebins(
 \arguments{
 \item{dat_for_mlebins}{tibble of data in the format required for fitting
 using MLEbins method; see \code{\link[=fit_size_spectrum_mlebins]{fit_size_spectrum_mlebins()}}.}
+
+\item{bin_width}{numeric bin width for the data set.}
+
+\item{bin_start}{numeric value for the first bin to start at; if \code{NULL} then
+set to the next multiple of \code{bin_width} below \code{min(x)}. If \code{bin_width = 1} then this will
+be the integer below \code{min(x)} (i.e. \code{min(x) \%/\% 1}). If,
+say, \code{min(x) = 10.6} and \code{bin_width = 0.5} then \code{bin_start = 10.5}.}
+
+\item{x_min}{TODO}
+
+\item{...}{TODO}
 }
 \value{
 list of class \code{determine_xmin_and_fit_mlebins} for plotting, containing

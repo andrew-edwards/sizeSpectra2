@@ -11,6 +11,13 @@ determine_xmin_and_fit(dat, bin_width = 1, bin_start = NULL, ...)
 lengths), for which we want to use the MLE method, but first want to
 determine \code{x_min}.}
 
+\item{bin_width}{numeric bin width for the data set.}
+
+\item{bin_start}{numeric value for the first bin to start at; if \code{NULL} then
+set to the next multiple of \code{bin_width} below \code{min(x)}. If \code{bin_width = 1} then this will
+be the integer below \code{min(x)} (i.e. \code{min(x) \%/\% 1}). If,
+say, \code{min(x) = 10.6} and \code{bin_width = 0.5} then \code{bin_start = 10.5}.}
+
 \item{...}{arguments to pass onto \code{\link[=fit_size_spectrum.numeric]{fit_size_spectrum.numeric()}}}
 }
 \value{

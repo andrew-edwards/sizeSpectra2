@@ -19,11 +19,9 @@ p_biomass_bins(res)
 \item{res}{results list, of either class \code{size_spectrum_numeric} or
 \code{size_spectrum_mlebin}.}
 
-\item{bin_vals}{either a \code{numeric} vector of bin breaks, or a \code{data.frame} that
-contains columns \code{bin_min} and \code{bin_max} (and possibly more; e.g. the
-format of the \code{bin_vals} component output from \code{\link[=bin_data]{bin_data()}}.
-Either \code{p_biomass_bins.numeric()} or \code{p_biomass_bins.data.frame()} gets called
-appropriately.}
+\item{res_mlebin}{TODO}
+
+\item{res_mle}{TODO}
 }
 \value{
 tibble if \code{res} is of class \code{size_spectrum_numeric} then it is the
