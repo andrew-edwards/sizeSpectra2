@@ -1,4 +1,4 @@
-##' @rdname detect-outliers
+##' @rdname detect_outliers
 ##' @export
 detect_outliers.determine_xmin_and_fit_mlebins <- function(res){
 

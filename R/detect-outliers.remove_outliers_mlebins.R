@@ -1,4 +1,4 @@
-##' @rdname detect-outliers
+##' @rdname detect_outliers
 ##' @export
 detect_outliers.remove_outliers_mlebins <- function(res){
 

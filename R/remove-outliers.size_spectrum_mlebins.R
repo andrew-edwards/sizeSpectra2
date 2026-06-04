@@ -1,4 +1,4 @@
-##' @rdname remove-outliers
+##' @rdname remove_outliers
 ##' @export
 remove_outliers.size_spectrum_mlebins <- function(res,
                                                   number = 1){
