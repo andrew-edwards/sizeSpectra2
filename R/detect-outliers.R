@@ -3,13 +3,12 @@
 ##'
 ##' If already run through `remove_outliers.size_spectrum_mlebins()` then it wil
 ##' use `detect_outliers.remove_outliers.mlebins()` and can keep iterating
-##' that. See [remove_outliers()] for further details and example code.
+##' that. See [remove_outliers] for further details and example code.
 ##'
 ##' @param res One of:
 ##' * `size_spectrum_mlebins` object
 ##' * `determine_xmin_and_fit_mlebins` object
 ##' * `remove_outliers_mlebins` object
-##'
 ##' @return tibble containing just the data values needed for
 ##' calculations, which are the original four columns:
 ##'   * `species`

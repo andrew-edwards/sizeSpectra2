@@ -32,7 +32,7 @@ it easy to see if the largest gap is much much larger than the second largest.
 \description{
 If already run through \code{remove_outliers.size_spectrum_mlebins()} then it wil
 use \code{detect_outliers.remove_outliers.mlebins()} and can keep iterating
-that. See \code{\link[=remove_outliers]{remove_outliers()}} for further details and example code.
+that. See \link{remove_outliers} for further details and example code.
 }
 \examples{
 \dontrun{
