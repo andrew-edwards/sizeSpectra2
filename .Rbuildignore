@@ -11,7 +11,4 @@ data-raw/*
 ^README\.Rmd$
 vignettes/
 
-R-hdiAnalysis/*
-R-sizeSpectra/*
-R-temp/*
-R-aggregating/*
+report/
