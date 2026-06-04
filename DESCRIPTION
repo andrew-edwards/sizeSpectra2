@@ -20,7 +20,8 @@ RoxygenNote: 7.3.3
 Remotes: github::andrew-edwards/sizeSpectraFit
 Imports:
     dplyr (>= 1.0.2),
-    tidyr
+    tidyr,
+    methods
 Suggests:
     rmarkdown,
     knitr,

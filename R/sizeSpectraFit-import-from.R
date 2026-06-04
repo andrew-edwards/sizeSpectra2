@@ -16,7 +16,8 @@
 #' @importFrom dplyr inner_join left_join right_join anti_join full_join
 #' @importFrom dplyr semi_join row_number
 #' @importFrom dplyr bind_rows case_when pull contains tibble rename as_tibble
-#' @importFrom magrittr %>%
+#' @importFrom dplyr %>%
+#' @importFrom tibble add_column as_tibble tibble
 #' @importFrom methods hasArg
 #' @importFrom stats nlm qchisq runif
 #' @importFrom graphics abline axis box hist legend lines par plot.default points rect segments
