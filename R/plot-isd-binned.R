@@ -48,7 +48,10 @@
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##'
+##' # Is called by `plot.size_spectrum_mlebin()`,
+##' # `plot.size_spectrum_mlebins()`, and
+##' # `plot.size_spectrum_numeric()` to make an LBN-style plot; see vignettes
+##' # and help for those functions for examples.
 ##' }
 plot_isd_binned <- function(res_mlebin,
                             log,

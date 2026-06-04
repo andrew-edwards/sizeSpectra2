@@ -33,6 +33,23 @@ numerically. Specifically this is the negative of the log-likelihood
 function given in (A.70) of the MEE paper and (S.27) of the MEPS paper,
 where the latter fixed a minor error in (A.75) of the MEE paper.
 }
+\examples{
+\dontrun{
+# Gives the negative likelihood value using the MLEbin method, for the PLB
+# distribution for the simulated binned data at the value of b = -3:
+neg_ll_mlebin_method(b = -3,
+                     x_min = min(sim_vec_binned$bin_min),
+                     x_max = max(sim_vec_binned$bin_max),
+                     w = c(sim_vec_binned$bin_min,
+                           max(sim_vec_binned$bin_max)),
+                     d <- sim_vec_binned$bin_count,
+                     J <- nrow(sim_vec_binned),
+                     n <- sum(sim_vec_binned$bin_count))
+# All except b would be calculated outside the repeated calls to the
+# function for speed, but are shown here for the example; e.g. see
+# fit_size_spectrum_mlebin() code.
+}
+}
 \author{
 Andrew Edwards
 }

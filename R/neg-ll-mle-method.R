@@ -15,6 +15,20 @@
 ##' @return numeric negative log-likelihood of the parameters given the data
 ##' @export
 ##' @author Andrew Edwards
+##' @examples
+##' \dontrun{
+##' # Gives the negative likelihood value for the PLB distribution for the
+##' # simulated vector of data at the value of b = -3:
+##' neg_ll_mle_method(b = -3,
+##'                   x = sim_vec,
+##'                   n = length(sim_vec),
+##'                   x_min = min(sim_vec),
+##'                   x_max = max(sim_vec),
+##'                   sum_log_x = sum(log(sim_vec)))
+##' # Those last four would be calculated outside the repeated calls to the
+##' # function, but are shown here for the example; e.g. see
+##' # fit_size_spectrum_numeric() code.
+##' }
 neg_ll_mle_method = function(b,
                              x,
                              n,

@@ -8,7 +8,9 @@
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##'
+##' # Called from calc_mle_conf() which is turn called from fitting functions
+##' # such as fit_size_spectrum.numeric(). See or adapt those if you want to
+##' # create a new example.
 ##' }
 calc_confidence_interval <- function(this_neg_ll_fn,
                                      min_neg_ll_value,

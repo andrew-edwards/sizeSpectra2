@@ -36,7 +36,21 @@
 ##' @return  negative log-likelihood of the parameters given the data
 ##' @author Andrew Edwards
 ##' @export
-##'
+##' @examples
+##' \dontrun{
+##' # Gives the negative likelihood value using the MLEbins method, for the PLB
+##' # distribution for a subset of the Mediterranean data (small cephalopoda on
+##' # the fishing grounds) at the value of b = -3:
+##' dat <- res_cephsmall_fg$mlebins_fit$data
+##' neg_ll_mlebins_method(b = -3,
+##'                      x_min = min(dat$bin_min),
+##'                      x_max = max(dat$bin_max),
+##'                      data_for_mlebins = dat,
+##'                      n = sum(dat$bin_count))
+##' # All except b would be calculated outside the repeated calls to the
+##' # function for speed, but are shown here for the example; e.g. see
+##' # fit_size_spectrum_mlebins() code.
+##' }
 neg_ll_mlebins_method <- function(b,
                                   x_min,
                                   x_max,

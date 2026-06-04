@@ -74,7 +74,14 @@ negative log-likelihood function and its arguments (other parameters and data).
 Often give warnings that can safely be ignored (see
 \code{suppress.warnings} description below to hide warnings).
 This is a general function that is applicable for any likelihood function,
-not just related to size spectra.
+not just related to size spectra. in sizeSpectraFit it is called from the
+various fitting functions.
+}
+\examples{
+\dontrun{
+# Gets called from the fitting functions such as
+# fit_size_spectrum.numeric(). Look at that if you want to create an example.
+}
 }
 \author{
 Andrew Edwards

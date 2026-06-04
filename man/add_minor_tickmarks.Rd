@@ -37,6 +37,7 @@ based on current axis) to ensure they are sensible (e.g. starting at 0 not -0.05
 }
 \examples{
 \dontrun{
+# gets called by add_ticks(), so see example for that
 }
 }
 \author{

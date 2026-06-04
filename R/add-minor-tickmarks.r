@@ -16,6 +16,7 @@
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
+##' # gets called by add_ticks(), so see example for that
 ##' }
 add_minor_tickmarks <- function(x_tick_start = 0,
                                 x_tick_by = 2,

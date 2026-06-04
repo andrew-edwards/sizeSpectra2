@@ -20,13 +20,29 @@
 ##' @return negative log-likelihood of the parameters given the data
 ##' @export
 ##' @author Andrew Edwards
+##' @examples
+##' \dontrun{
+##' # Gives the negative likelihood value using the MLEbin method, for the PLB
+##' # distribution for the simulated binned data at the value of b = -3:
+##' neg_ll_mlebin_method(b = -3,
+##'                      x_min = min(sim_vec_binned$bin_min),
+##'                      x_max = max(sim_vec_binned$bin_max),
+##'                      w = c(sim_vec_binned$bin_min,
+##'                            max(sim_vec_binned$bin_max)),
+##'                      d <- sim_vec_binned$bin_count,
+##'                      J <- nrow(sim_vec_binned),
+##'                      n <- sum(sim_vec_binned$bin_count))
+##' # All except b would be calculated outside the repeated calls to the
+##' # function for speed, but are shown here for the example; e.g. see
+##' # fit_size_spectrum_mlebin() code.
+##' }
 neg_ll_mlebin_method <- function(b,
-                                x_min,
-                                x_max,
-                                w,
-                                d,
-                                J,
-                                n){
+                                 x_min,
+                                 x_max,
+                                 w,
+                                 d,
+                                 J,
+                                 n){
   if(b != -1){
     neg_ll <- n * log( abs( w[J+1]^(b+1) - w[1]^(b+1) ) ) -
       sum( d * log( abs( w[-1]^(b+1) - w[-(J+1)]^(b+1) ) ) )

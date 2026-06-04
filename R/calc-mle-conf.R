@@ -8,7 +8,8 @@
 ##' Often give warnings that can safely be ignored (see
 ##'  `suppress.warnings` description below to hide warnings).
 ##' This is a general function that is applicable for any likelihood function,
-##' not just related to size spectra.
+##' not just related to size spectra. in sizeSpectraFit it is called from the
+##' various fitting functions.
 ##'
 ##' @param this_neg_ll_fn negative log-likelihood function that take arguments
 ##'  (parameters and data) in ... and returns a negative
@@ -50,6 +51,11 @@
 ##'   * conf: the 95\% confidence interval of the MLE
 ##' @export
 ##' @author Andrew Edwards
+##' @examples
+##' \dontrun{
+##' # Gets called from the fitting functions such as
+##' # fit_size_spectrum.numeric(). Look at that if you want to create an example.
+##' }
 calc_mle_conf <- function(this_neg_ll_fn,   # needed to avoid partial matching
                                         # with n
                           p,
@@ -79,8 +85,8 @@ calc_mle_conf <- function(this_neg_ll_fn,   # needed to avoid partial matching
 
   conf <- calc_confidence_interval(this_neg_ll_fn = this_neg_ll_fn,
                                    min_neg_ll_value = min_neg_ll$minimum,
-                                     vec = vec,
-                                     ...)
+                                   vec = vec,
+                                   ...)
 
   # If confidence interval hits a bound then redo it over a larger range
   while(conf[1] == min(vec) | conf[2] == max(vec)){

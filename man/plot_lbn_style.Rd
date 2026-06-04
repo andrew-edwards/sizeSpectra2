@@ -104,7 +104,9 @@ Called from \code{plot.size_spectrum_numeric()} when using \code{style == "bioma
 }
 \examples{
 \donttest{
-
+# Is called by `plot.size_spectrum_mlebin()` and
+# `plot.size_spectrum_numeric()`; see vignettes
+# and help for those functions for examples.
 }
 }
 \author{

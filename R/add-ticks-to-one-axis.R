@@ -1,6 +1,7 @@
 ##' Add ticks and labels to one axis
 ##'
 ##' Called from [add_ticks()] which is called from [plot.size_spectrum_numeric()].
+##'
 ##' @param log_scale logical, whether not this axis is on the log10 scale
 ##' @param x_or_y character, either "x" or "y" to specify which axis the tick
 ##'   marks and labels are being added to
@@ -11,6 +12,10 @@
 ##' @return adds tickmarks to one axis of a plot. Returns invisible.
 ##' @export
 ##' @author Andrew Edwards
+##' @examples
+##' \dontrun{
+##' # See ?add_ticks for examples, as that calls this function.
+##' }
 add_ticks_to_one_axis <- function(log_scale,
                                   x_or_y,
                                   tcl_small,

@@ -30,6 +30,21 @@ Calculate the negative log-likelihood of the parameters \code{b}, \code{x_min} a
 log-likelihood. Will be called by \code{nlm()} or similar. \code{x_min} and \code{x_max}
 are just estimated as the min and max of the data, not numerically using likelihood.
 }
+\examples{
+\dontrun{
+# Gives the negative likelihood value for the PLB distribution for the
+# simulated vector of data at the value of b = -3:
+neg_ll_mle_method(b = -3,
+                  x = sim_vec,
+                  n = length(sim_vec),
+                  x_min = min(sim_vec),
+                  x_max = max(sim_vec),
+                  sum_log_x = sum(log(sim_vec)))
+# Those last four would be calculated outside the repeated calls to the
+# function, but are shown here for the example; e.g. see
+# fit_size_spectrum_numeric() code.
+}
+}
 \author{
 Andrew Edwards
 }

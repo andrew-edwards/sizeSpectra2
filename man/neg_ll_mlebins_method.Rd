@@ -48,6 +48,22 @@ largest bin, respectively, (since they are the MLEs), no need to do
 numerically. See Supplementary Material of MEPS paper for derivation, and
 the vignettes for example use.
 }
+\examples{
+\dontrun{
+# Gives the negative likelihood value using the MLEbins method, for the PLB
+# distribution for a subset of the Mediterranean data (small cephalopoda on
+# the fishing grounds) at the value of b = -3:
+dat <- res_cephsmall_fg$mlebins_fit$data
+neg_ll_mlebins_method(b = -3,
+                     x_min = min(dat$bin_min),
+                     x_max = max(dat$bin_max),
+                     data_for_mlebins = dat,
+                     n = sum(dat$bin_count))
+# All except b would be calculated outside the repeated calls to the
+# function for speed, but are shown here for the example; e.g. see
+# fit_size_spectrum_mlebins() code.
+}
+}
 \author{
 Andrew Edwards
 }

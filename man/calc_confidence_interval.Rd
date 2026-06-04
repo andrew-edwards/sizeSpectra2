@@ -28,7 +28,9 @@ Gets called from \code{\link[=calc_mle_conf]{calc_mle_conf()}}.
 }
 \examples{
 \dontrun{
-
+# Called from calc_mle_conf() which is turn called from fitting functions
+# such as fit_size_spectrum.numeric(). See or adapt those if you want to
+# create a new example.
 }
 }
 \author{

@@ -42,12 +42,7 @@ arguments defined below.
 }
 \examples{
 \dontrun{
-res_vec <- fit_size_spectrum(sim_vec)
-plot(res_vec)
-plot(res_vec, log = "x")
-plot(res_vec, log = "")
-plot(res_vec, x_small_ticks_labels = c(5, 50, 500), log = "x") # Tailor the
-  labels for a particular figure
+# See ?add_ticks for examples, as that calls this function.
 }
 }
 \author{
