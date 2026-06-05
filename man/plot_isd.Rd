@@ -43,6 +43,10 @@ plot_isd(
 )
 }
 \arguments{
+\item{res}{\code{size_spectrum_numeric} object, as output from
+\code{\link[=fit_size_spectrum.numeric]{fit_size_spectrum.numeric()}}, which gets called when applying
+\code{\link[=fit_size_spectrum]{fit_size_spectrum()}} to a numeric vector.}
+
 \item{log}{Which axes to log, for \code{plot(..., log = log)}. So "xy" for
 log-log axes, "x" for only x-axis logged.}
 
@@ -60,7 +64,7 @@ log-log axes, "x" for only x-axis logged.}
 intervals or not}
 
 \item{xlab, ylab}{x/y labels, explicitly given default values here which can
-be modified as required.}
+be modified as required; the usual argument to \code{plot()}}
 
 \item{mgp_val}{mgp values to use, as in \code{plot(..., mgp = mgp_vals)}; see \code{\link[graphics:par]{graphics::par()}}.}
 

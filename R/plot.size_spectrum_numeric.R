@@ -19,9 +19,10 @@
 ##'
 ##' @inheritParams plot_isd
 ##' @inheritParams base::plot
-##' @param x size_spectrum_numeric object, as output from
+##' @param x `size_spectrum_numeric` object, as output from
 ##'   [fit_size_spectrum.numeric()], which gets called when applying
-##'   [fit_size_spectrum()] to a numeric vector
+##'   [fit_size_spectrum()] to a numeric vector. Has to be called `x` to match
+##'   the `base::plot(x)` function else gives warnings.
 ##' @param style character either:
 ##'   * `"log_y_axis"` - single ISD plot with logarithmic y axis (Fig. 6b of MEE paper)
 ##'   * `"linear_y_axis"` - for single ISD plot with linear y axis
@@ -41,6 +42,8 @@
 ##'   log-log plot, but goes to the proportion `y_scaling` (<1)
 ##'   of the minimum value of counts greater than the highest `bin_min` value. Do
 ##'   such that can see the right-most or point bin in all plots.
+##' @param xlab x label, explicitly given default value here which can
+##'   be modified as required; the usual argument to `plot()`
 ##' @param legend_label_a character label (default `"(a)"`) to use for panel (a)
 ##' for a two-panel plot
 ##' @param legend_label_b character label to use for panel (b) for two-panel plot

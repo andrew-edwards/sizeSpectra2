@@ -8,11 +8,15 @@
 ##' Also directly called from `plot.size_spectrum_mlebins()` with no
 ##' extra arugments for MLEbins method.
 ##'
+##' @inheritParams plot_isd
 ##' @inheritParams plot.size_spectrum_numeric
 ##' @inheritParams plot_isd_binned
 ##' @param x size_spectrum_mlebin object resulting from running
 ##'   `fit_size_spectrum()` on a `data.frame` of binned data (such that the function
 ##'   `fit_size_spectrum_mlebin()` is used); see the [fit-data.html vignette](https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data.html).
+##' @param xlab x label, explicitly given default value here which can
+##'   be modified as required; the usual argument to `plot()`
+
 ##' @return one- or two-panel plot of the ISD with data in binned form like in
 ##'   Fig. 7, 7a or 7b (depending on settings) of MEPS paper, but with nonoverlapping bins; returns nothing.
 ##' @export

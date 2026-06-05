@@ -21,6 +21,7 @@
 ##' `style == "biomass"` or `style == `"biomass_and_log"`
 ##' @param res results of class `size_spectrum_numeric` or
 ##' `size_spectrum_mlebin`
+##' @inheritParams plot_isd
 ##' @inheritParams plot_isd_binned
 ##' @param plot_binned_fitted logical, whether to plot the binned version of the
 ##' fitted PLB (to more accurately compare with the data if the data are binned)

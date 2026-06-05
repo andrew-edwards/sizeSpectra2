@@ -11,6 +11,8 @@
 ##'
 ##' @inheritParams plot.size_spectrum_numeric
 ##' @inheritParams plot_isd
+##' @param res_mlebin object of class `size_spectrum_mlebin` object, as output from
+##'   [fit_size_spectrum.data.frame()]
 ##' @param x_plb vector of values to use to plot the fitted PLB curve; if NA then
 ##'   automatically calculated (sometimes need to manually extend it to hit the
 ##'   x-axis, but tricky to automate that on a log-scale)
@@ -20,7 +22,8 @@
 ##'   minimum/maximum value confidence interval for exponent b, of the PLB
 ##'   distribution at each value of `x_PLB`
 ##' @param plot_conf_ints logical whether to plot confidence intervals or not
-##' @param ylab label for the y-axis (sent to `plot.default()`)
+##' @param xlab,ylab x/y labels, explicitly given default values here which can
+##'   be modified as required; the usual argument to `plot()`
 ##' @param tcl_small passed on as the `tcl` argument to [axis()] for tick
 ##' direction and length for small tickmarks
 ##' @param seg_col colour to use for the segments (top line of each box; green

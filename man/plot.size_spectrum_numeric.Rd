@@ -28,9 +28,10 @@ confidence intervals}
 )
 }
 \arguments{
-\item{x}{size_spectrum_numeric object, as output from
+\item{x}{\code{size_spectrum_numeric} object, as output from
 \code{\link[=fit_size_spectrum.numeric]{fit_size_spectrum.numeric()}}, which gets called when applying
-\code{\link[=fit_size_spectrum]{fit_size_spectrum()}} to a numeric vector}
+\code{\link[=fit_size_spectrum]{fit_size_spectrum()}} to a numeric vector. Has to be called \code{x} to match
+the \code{base::plot(x)} function else gives warnings.}
 
 \item{style}{character either:
 \itemize{
@@ -63,6 +64,9 @@ such that can see the right-most or point bin in all plots.}
 \item{mle_round}{TODO}
 
 \item{inset_label}{TODO}
+
+\item{xlab}{x label, explicitly given default value here which can
+be modified as required; the usual argument to \code{plot()}}
 
 \item{legend_label_a}{character label (default \code{"(a)"}) to use for panel (a)
 for a two-panel plot}

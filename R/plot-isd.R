@@ -4,6 +4,9 @@
 ##' Is called from `plot.size_spectrum_numeric()` with logarithmic or linear
 ##' y-axis.
 ##'
+##' @param res `size_spectrum_numeric` object, as output from
+##'   [fit_size_spectrum.numeric()], which gets called when applying
+##'   [fit_size_spectrum()] to a numeric vector.
 ##' @param log Which axes to log, for `plot(..., log = log)`. So "xy" for
 ##'   log-log axes, "x" for only x-axis logged.
 ##' @param xlim TODO
@@ -14,7 +17,7 @@
 ##' @param plot_conf_ints logical whether to plot PLB fit for confidence
 ##'   intervals or not
 ##' @param xlab,ylab x/y labels, explicitly given default values here which can
-##'   be modified as required.
+##'   be modified as required; the usual argument to `plot()`
 ##' @param mgp_val mgp values to use, as in `plot(..., mgp = mgp_vals)`; see [graphics::par()].
 ##' @param tcl_small Length of small tickmarks; see [graphics::axis()].
 ##' @param inset_label TODO

@@ -27,7 +27,7 @@ marks and labels are being added to}
 
 \item{mgp_val}{mgp values to use, as in \code{plot(..., mgp = mgp_vals)}; see \code{\link[graphics:par]{graphics::par()}}.}
 
-\item{big_ticks, big_ticks_labels, small_ticks, small_ticks_by, }{small_ticks_labels See corresponding \code{x_...} definitions in
+\item{big_ticks, big_ticks_labels, small_ticks, small_ticks_by, small_ticks_labels}{See corresponding \code{x_...} definitions in
 \code{\link[=plot_isd]{plot_isd()}}.}
 
 \item{small_ticks_per_big}{number of small ticks per big tick (with the end

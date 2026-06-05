@@ -46,25 +46,24 @@ plot_lbn_style(
 \item{res}{results of class \code{size_spectrum_numeric} or
 \code{size_spectrum_mlebin}}
 
-\item{x_plb}{vector of values to use to plot the fitted PLB curve; if NA then
-automatically calculated (sometimes need to manually extend it to hit the
-x-axis, but tricky to automate that on a log-scale)}
+\item{x_plb}{TODO}
 
 \item{xlim}{TODO}
 
 \item{ylim}{TODO}
 
-\item{plot_conf_ints}{logical whether to plot confidence intervals or not}
+\item{plot_conf_ints}{logical whether to plot PLB fit for confidence
+intervals or not}
 
 \item{plot_binned_fitted}{logical, whether to plot the binned version of the
 fitted PLB (to more accurately compare with the data if the data are binned)}
 
-\item{ylab}{label for the y-axis (sent to \code{plot.default()})}
+\item{xlab, ylab}{x/y labels, explicitly given default values here which can
+be modified as required; the usual argument to \code{plot()}}
 
 \item{mgp_val}{mgp values to use, as in \code{plot(..., mgp = mgp_vals)}; see \code{\link[graphics:par]{graphics::par()}}.}
 
-\item{tcl_small}{passed on as the \code{tcl} argument to \code{\link[=axis]{axis()}} for tick
-direction and length for small tickmarks}
+\item{tcl_small}{Length of small tickmarks; see \code{\link[graphics:axis]{graphics::axis()}}.}
 
 \item{inset_label}{TODO}
 
@@ -77,8 +76,7 @@ direction and length for small tickmarks}
 
 \item{legend_text_n}{TODO}
 
-\item{legend_text_second_row_multiplier}{numeric multiplier of the second
-row of legend text to space it out, especially for smaller panel plots.}
+\item{legend_text_second_row_multiplier}{TODO}
 
 \item{legend_position}{where to place legend, gets used as the first
 argument in \code{\link[=legend]{legend()}}.}
@@ -121,11 +119,11 @@ which gets converted to \code{black} in that function.}
 
 \item{rect_col}{TODO}
 
-\item{fit_col}{colour to use for fitted curves}
+\item{fit_col}{TODO}
 
-\item{fit_lwd}{line thickness to use for fitted curves}
+\item{fit_lwd}{TODO}
 
-\item{conf_lty}{line type to use for confidence intervals}
+\item{conf_lty}{TODO}
 
 \item{...}{further arguments to be passed to \code{plot()} and
 \code{plot_binned_fitted()}}

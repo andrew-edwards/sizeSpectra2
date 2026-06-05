@@ -215,6 +215,14 @@ Doing in the commit that adds this line.
 
 Mostly done. Still a few with the latest commit.
 
+##' @inheritParams base::plot     in plot.size_spectrum_numeric() may get
+##' confused with xlab in plot_isd()? Presumably fine, and one just gets used
+##' first.
+
+Still seemed to give warnings, so copied xlab in a few places.
+
+D check_man() passes now!
+
 5. checking for unstated dependencies in 'tests' ... WARNING
   '::' or ':::' import not declared from: 'tibble'
 Adding tibble to DESCRIPTION (even though dplyr depends on tibble)

@@ -48,6 +48,9 @@ plot_isd_binned(
 )
 }
 \arguments{
+\item{res_mlebin}{object of class \code{size_spectrum_mlebin} object, as output from
+\code{\link[=fit_size_spectrum.data.frame]{fit_size_spectrum.data.frame()}}}
+
 \item{log}{Which axes to log, for \code{plot(..., log = log)}. So "xy" for
 log-log axes, "x" for only x-axis logged.}
 
@@ -68,7 +71,8 @@ distribution at each value of \code{x_PLB}}
 
 \item{plot_conf_ints}{logical whether to plot confidence intervals or not}
 
-\item{ylab}{label for the y-axis (sent to \code{plot.default()})}
+\item{xlab, ylab}{x/y labels, explicitly given default values here which can
+be modified as required; the usual argument to \code{plot()}}
 
 \item{mgp_val}{mgp values to use, as in \code{plot(..., mgp = mgp_vals)}; see \code{\link[graphics:par]{graphics::par()}}.}
 

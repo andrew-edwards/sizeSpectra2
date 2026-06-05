@@ -20,9 +20,10 @@ MLEbin or MLEbins method}
 )
 }
 \arguments{
-\item{x}{size_spectrum_numeric object, as output from
+\item{x}{\code{size_spectrum_numeric} object, as output from
 \code{\link[=fit_size_spectrum.numeric]{fit_size_spectrum.numeric()}}, which gets called when applying
-\code{\link[=fit_size_spectrum]{fit_size_spectrum()}} to a numeric vector}
+\code{\link[=fit_size_spectrum]{fit_size_spectrum()}} to a numeric vector. Has to be called \code{x} to match
+the \code{base::plot(x)} function else gives warnings.}
 
 \item{seg_col}{colour to use for the segments (top line of each box; green
 in Fig. 7 of MEPS paper); default in \code{plot.size_spectrum_mlebin()} is NULL

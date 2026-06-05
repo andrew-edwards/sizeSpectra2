@@ -6,8 +6,9 @@
 ##' @param x_or_y character, either "x" or "y" to specify which axis the tick
 ##'   marks and labels are being added to
 ##' @inheritParams plot_isd
-##' @param big_ticks,big_ticks_labels,small_ticks,small_ticks_by,
-##'   small_ticks_labels See corresponding `x_...` definitions in
+##' @param
+##' big_ticks,big_ticks_labels,small_ticks,small_ticks_by,small_ticks_labels
+##' See corresponding `x_...` definitions in
 ##'   [plot_isd()].
 ##' @inheritParams plot_isd
 ##' @param small_ticks_per_big number of small ticks per big tick (with the end

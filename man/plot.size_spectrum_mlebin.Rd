@@ -58,6 +58,9 @@ plus the binned data and fit of the PLB.
 
 \item{inset_label}{TODO}
 
+\item{xlab}{x label, explicitly given default value here which can
+be modified as required; the usual argument to \code{plot()}}
+
 \item{y_scaling}{numeric scaling of y-minimum of y-axis. Axis can't go to zero on
 log-log plot, but goes to the proportion \code{y_scaling} (<1)
 of the minimum value of counts greater than the highest \code{bin_min} value. Do
@@ -90,8 +93,7 @@ b for two-panel plot (\code{log_y_axis = "both"}); ignored for one-panel plot}
 in Fig. 7 of MEPS paper); default in \code{plot.size_spectrum_mlebin()} is NULL
 which gets converted to \code{black} in that function.}
 
-\item{...}{Further arguments for \code{plot_isd()} and then \code{plot()}, except
-cannot have \code{log} as that gets overridden.}
+\item{...}{Further arguments for \code{plot()}}
 }
 \value{
 one- or two-panel plot of the ISD with data in binned form like in
