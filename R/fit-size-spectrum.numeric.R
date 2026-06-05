@@ -5,7 +5,8 @@ fit_size_spectrum.numeric <- function(dat,
                                       x_max = NULL,
                                       b_vec = NULL,
                                       b_vec_inc = 0.00001,
-                                      b_start = NULL){
+                                      b_start = NULL,
+                                      ...){
   x <- dat     # x will be the data to be fitted, might get restricted in next lines
   if(!is.null(x_min)){
     x <- x[x >= x_min]

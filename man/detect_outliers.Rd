@@ -13,11 +13,11 @@ continuous values, from using the MLEbins method.}
 \usage{
 detect_outliers(res, ...)
 
-\method{detect_outliers}{determine_xmin_and_fit_mlebins}(res)
+\method{detect_outliers}{determine_xmin_and_fit_mlebins}(res, ...)
 
-\method{detect_outliers}{remove_outliers_mlebins}(res)
+\method{detect_outliers}{remove_outliers_mlebins}(res, ...)
 
-\method{detect_outliers}{size_spectrum_mlebins}(res)
+\method{detect_outliers}{size_spectrum_mlebins}(res, ...)
 }
 \arguments{
 \item{res}{One of:

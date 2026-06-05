@@ -13,13 +13,14 @@
 ##' https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data-mlebins.html
 ##' for MLEbins example
 ##' }
-plot.determine_xmin_and_fit_mlebins <- function(res,
+plot.determine_xmin_and_fit_mlebins <- function(x,
                                                 xlim_hist = NULL,
                                                 par_mai = c(0.4, 0.5, 0.05, 0.3),
                                                 par_cex = 0.7,
                                                 seg_col = "green",
                                                 main_hist = "",
                                                 ...){
+  res <- x
 
   par_orig <- par(no.readonly = TRUE)
   on.exit(par(par_orig))
@@ -100,13 +101,13 @@ plot.determine_xmin_and_fit_mlebins <- function(res,
               # plot...mlebin() with seg_col = "green", can circumvent the
               # ...mlebins() call here and add seg_col as an explicit
               # option.
-              res_mlebin = res_fit,
+              x = res_fit,
               style = "linear_y_axis",
               seg_col = seg_col,
               ...)
 
   dots_parser(plot.size_spectrum_mlebin,
-              res_mlebin = res_fit,
+              x = res_fit,
               style = "log_y_axis",
               seg_col = seg_col,
               ...)

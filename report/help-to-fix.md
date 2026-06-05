@@ -121,7 +121,7 @@ them here documents them everywhere.*
 ## R/p-biomass-bins.size_spectrum_numeric.R
 
 ```
-@param res_mle
+@param res (renamed from res_mle; inherited from p_biomass_bins generic)
 ```
 
 ---
@@ -129,7 +129,7 @@ them here documents them everywhere.*
 ## R/p-biomass-bins.size_spectrum_mlebin.R
 
 ```
-@param res_mlebin
+@param res (inherited from p_biomass_bins generic)
 ```
 
 ---
@@ -161,7 +161,7 @@ them here documents them everywhere.*
 ## R/remove-outliers.R
 
 ```
-@param dat
+~~@param dat~~ (removed — generic now uses `res`)
 @param ...
 ```
 

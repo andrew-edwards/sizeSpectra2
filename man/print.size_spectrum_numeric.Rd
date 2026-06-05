@@ -4,10 +4,10 @@
 \alias{print.size_spectrum_numeric}
 \title{Print size spectrum results for fit to a numeric vector, i.e. \code{\link[=fit_size_spectrum.numeric]{fit_size_spectrum.numeric()}}}
 \usage{
-\method{print}{size_spectrum_numeric}(res, ...)
+\method{print}{size_spectrum_numeric}(x, ...)
 }
 \arguments{
-\item{res}{size_spectrum_numeric object, as output from
+\item{x}{size_spectrum_numeric object, as output from
 \code{\link[=fit_size_spectrum.numeric]{fit_size_spectrum.numeric()}}, which gets called when applying
 \code{\link[=fit_size_spectrum]{fit_size_spectrum()}} to a numeric vector}
 

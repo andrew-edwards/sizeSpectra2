@@ -10,7 +10,7 @@
 ##'
 ##' @inheritParams plot.size_spectrum_numeric
 ##' @inheritParams plot_isd_binned
-##' @param res_mlebin size_spectrum_mlebin object resulting from running
+##' @param x size_spectrum_mlebin object resulting from running
 ##'   `fit_size_spectrum()` on a `data.frame` of binned data (such that the function
 ##'   `fit_size_spectrum_mlebin()` is used); see the [fit-data.html vignette](https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data.html).
 ##' @return one- or two-panel plot of the ISD with data in binned form like in
@@ -22,10 +22,10 @@
 ##' res_binned <- fit_size_spectrum(sim_vec_binned)
 ##' plot(res_binned)
 ##' }
-plot.size_spectrum_mlebin <- function(res_mlebin,
+plot.size_spectrum_mlebin <- function(x,
                                       style = "log_y_axis",
-                                      xlim = c(min(res_mlebin$data$bin_min),
-                                               max(res_mlebin$data$bin_max)),
+                                      xlim = c(min(x$data$bin_min),
+                                               max(x$data$bin_max)),
                                       ylim = NA,
                                       x_plb = NA,
                                       inset_label = c(0, -0.02),
@@ -38,10 +38,10 @@ plot.size_spectrum_mlebin <- function(res_mlebin,
                                       legend_label_b = "(b)",
                                       legend_label_single = NULL,
                                       legend_text_a = paste0("b=",
-                                                           round(res_mlebin$b_mle,
+                                                           round(x$b_mle,
                                                                   mle_round)),
                                       legend_text_a_n = paste0("n=",
-                                                               round(sum(res_mlebin$data$bin_count))),
+                                                               round(sum(x$data$bin_count))),
                                       legend_text_b = NULL,
                                       legend_text_b_n = NULL,
                                       par_mai = c(0.4, 0.5, 0.05, 0.3),
@@ -51,6 +51,7 @@ plot.size_spectrum_mlebin <- function(res_mlebin,
                                                               # black if not overridden
                                       ...
                                       ){
+  res_mlebin <- x
   # Parts of this are included in plot_aggregate_mlebin() so if change things
   #  here may need to check that and change there also.
   stopifnot("style must be log_y_axis, linear_y_axis, both_y_axes, biomass, or biomass_and_log" =

@@ -7,10 +7,10 @@
 \title{Plot results from determining x_min by mode method and then fitting use
 MLEbin or MLEbins method}
 \usage{
-\method{plot}{determine_xmin_and_fit_mlebin}(res, seg_col = "black", main_hist = "", ...)
+\method{plot}{determine_xmin_and_fit_mlebin}(x, seg_col = "black", main_hist = "", ...)
 
 \method{plot}{determine_xmin_and_fit_mlebins}(
-  res,
+  x,
   xlim_hist = NULL,
   par_mai = c(0.4, 0.5, 0.05, 0.3),
   par_cex = 0.7,
@@ -20,7 +20,7 @@ MLEbin or MLEbins method}
 )
 }
 \arguments{
-\item{res}{size_spectrum_numeric object, as output from
+\item{x}{size_spectrum_numeric object, as output from
 \code{\link[=fit_size_spectrum.numeric]{fit_size_spectrum.numeric()}}, which gets called when applying
 \code{\link[=fit_size_spectrum]{fit_size_spectrum()}} to a numeric vector}
 

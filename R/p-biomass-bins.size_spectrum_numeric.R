@@ -1,8 +1,8 @@
 ##' @rdname p_biomass_bins
-##' @param res_mle TODO
+##' @param res TODO
 ##' @export
-p_biomass_bins.size_spectrum_numeric <- function(res_mle   # result from MLE method
-                                                 ){
+p_biomass_bins.size_spectrum_numeric <- function(res){
+  res_mle <- res
 
 
   # Need to create bins manually

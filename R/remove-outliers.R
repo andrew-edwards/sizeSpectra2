@@ -9,7 +9,6 @@
 ##' @param res One of:
 ##' * `size_spectrum_mlebins` object
 ##' * `determine_xmin_and_fit_mlebins` object
-##' @param dat TODO
 ##' @param ... TODO
 ##' @param number numeric value for how many of the top measurements to remove;
 ##'   user should determine manually from a plot.
@@ -31,7 +30,7 @@
 ##' # See example code at
 ##' # https://github.com/andrew-edwards/sizeSpectraFit/tree/main/report/mediterranean/mediterranean-analysis-15
 ##' }
-remove_outliers <- function(dat,
+remove_outliers <- function(res,
                             ...){
   UseMethod("remove_outliers")
 }

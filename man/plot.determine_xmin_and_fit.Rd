@@ -4,10 +4,10 @@
 \alias{plot.determine_xmin_and_fit}
 \title{Plot results from determining x_min by mode method and then fitting use MLE hake spectra results}
 \usage{
-\method{plot}{determine_xmin_and_fit}(res, xlim_hist = NULL, main_hist = "", ...)
+\method{plot}{determine_xmin_and_fit}(x, xlim_hist = NULL, main_hist = "", ...)
 }
 \arguments{
-\item{res}{list of one of the following classes:
+\item{x}{list of one of the following classes:
 \itemize{
 \item \code{determine_xmin_and_fit} as output from \code{determine_xmin_and_fit()}
 \item \code{determine_xmin_for_mlebin_and_fit} as output from \code{determine_xmin_for_mlebin_and_fit()}

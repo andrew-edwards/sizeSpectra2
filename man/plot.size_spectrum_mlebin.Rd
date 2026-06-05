@@ -6,9 +6,9 @@
 bins).}
 \usage{
 \method{plot}{size_spectrum_mlebin}(
-  res_mlebin,
+  x,
   style = "log_y_axis",
-  xlim = c(min(res_mlebin$data$bin_min), max(res_mlebin$data$bin_max)),
+  xlim = c(min(x$data$bin_min), max(x$data$bin_max)),
   ylim = NA,
   x_plb = NA,
   inset_label = c(0, -0.02),
@@ -18,8 +18,8 @@ bins).}
   legend_label_a = "(a)",
   legend_label_b = "(b)",
   legend_label_single = NULL,
-  legend_text_a = paste0("b=", round(res_mlebin$b_mle, mle_round)),
-  legend_text_a_n = paste0("n=", round(sum(res_mlebin$data$bin_count))),
+  legend_text_a = paste0("b=", round(x$b_mle, mle_round)),
+  legend_text_a_n = paste0("n=", round(sum(x$data$bin_count))),
   legend_text_b = NULL,
   legend_text_b_n = NULL,
   par_mai = c(0.4, 0.5, 0.05, 0.3),
@@ -29,7 +29,7 @@ bins).}
 )
 }
 \arguments{
-\item{res_mlebin}{size_spectrum_mlebin object resulting from running
+\item{x}{size_spectrum_mlebin object resulting from running
 \code{fit_size_spectrum()} on a \code{data.frame} of binned data (such that the function
 \code{fit_size_spectrum_mlebin()} is used); see the \href{https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data.html}{fit-data.html vignette}.}
 

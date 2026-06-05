@@ -19,7 +19,7 @@
 ##'
 ##' @inheritParams plot_isd
 ##' @inheritParams base::plot
-##' @param res size_spectrum_numeric object, as output from
+##' @param x size_spectrum_numeric object, as output from
 ##'   [fit_size_spectrum.numeric()], which gets called when applying
 ##'   [fit_size_spectrum()] to a numeric vector
 ##' @param style character either:
@@ -76,10 +76,10 @@
 ##' plot(res_vec, x_small_ticks_labels = c(5, 50, 500), log = "x") # Tailor the
 ##'   labels for a particular figure
 ##' }
-plot.size_spectrum_numeric <- function(res,
+plot.size_spectrum_numeric <- function(x,
                                        style = "log_y_axis",
-                                       xlim = c(res$x_min,
-                                                res$x_max),
+                                       xlim = c(x$x_min,
+                                                x$x_max),
                                        ylim = NULL,
                                        x_plb = NULL,
                                        y_scaling = 0.75,
@@ -92,16 +92,17 @@ plot.size_spectrum_numeric <- function(res,
                                        legend_label_single = NULL, # for just one
                                        # panel
                                        legend_text_a = paste0("b=",
-                                                              round(res$b_mle,
+                                                              round(x$b_mle,
                                                                     mle_round)),
                                        legend_text_a_n = paste0("n=",
-                                                                round(length(res$x))),
+                                                                round(length(x$x))),
                                        legend_text_b = NULL,
                                        legend_text_b_n = NULL,
                                        par_mai = c(0.4, 0.5, 0.05, 0.3),
                                        par_cex = 0.7,   # only for two panel
                                          # plots, use par() as usual for single plots
                                        ...){
+  res <- x
 
   stopifnot("style must be log_y_axis, linear_y_axis, both_y_axes, biomass, or biomass_and_isd" =
               style %in% c("log_y_axis", "linear_y_axis", "both_y_axes",

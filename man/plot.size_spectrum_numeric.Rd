@@ -6,9 +6,9 @@
 confidence intervals}
 \usage{
 \method{plot}{size_spectrum_numeric}(
-  res,
+  x,
   style = "log_y_axis",
-  xlim = c(res$x_min, res$x_max),
+  xlim = c(x$x_min, x$x_max),
   ylim = NULL,
   x_plb = NULL,
   y_scaling = 0.75,
@@ -18,8 +18,8 @@ confidence intervals}
   legend_label_a = "(a)",
   legend_label_b = "(b)",
   legend_label_single = NULL,
-  legend_text_a = paste0("b=", round(res$b_mle, mle_round)),
-  legend_text_a_n = paste0("n=", round(length(res$x))),
+  legend_text_a = paste0("b=", round(x$b_mle, mle_round)),
+  legend_text_a_n = paste0("n=", round(length(x$x))),
   legend_text_b = NULL,
   legend_text_b_n = NULL,
   par_mai = c(0.4, 0.5, 0.05, 0.3),
@@ -28,7 +28,7 @@ confidence intervals}
 )
 }
 \arguments{
-\item{res}{size_spectrum_numeric object, as output from
+\item{x}{size_spectrum_numeric object, as output from
 \code{\link[=fit_size_spectrum.numeric]{fit_size_spectrum.numeric()}}, which gets called when applying
 \code{\link[=fit_size_spectrum]{fit_size_spectrum()}} to a numeric vector}
 

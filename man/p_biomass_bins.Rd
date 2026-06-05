@@ -11,17 +11,12 @@ bin breaks, with uncertainty if appropriate.}
 \usage{
 p_biomass_bins(res)
 
-\method{p_biomass_bins}{size_spectrum_mlebin}(res_mlebin)
+\method{p_biomass_bins}{size_spectrum_mlebin}(res)
 
-\method{p_biomass_bins}{size_spectrum_numeric}(res_mle)
+\method{p_biomass_bins}{size_spectrum_numeric}(res)
 }
 \arguments{
-\item{res}{results list, of either class \code{size_spectrum_numeric} or
-\code{size_spectrum_mlebin}.}
-
-\item{res_mlebin}{TODO}
-
-\item{res_mle}{TODO}
+\item{res}{TODO}
 }
 \value{
 tibble if \code{res} is of class \code{size_spectrum_numeric} then it is the

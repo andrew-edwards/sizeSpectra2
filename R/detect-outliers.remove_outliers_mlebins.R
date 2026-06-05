@@ -1,6 +1,6 @@
 ##' @rdname detect_outliers
 ##' @export
-detect_outliers.remove_outliers_mlebins <- function(res){
+detect_outliers.remove_outliers_mlebins <- function(res, ...){
 
   dat_to_use <- list()
   dat_to_use$dat <- res$dat_keep

@@ -9,22 +9,20 @@
 \title{Remove outliers (large values with gaps from the subsequent remaining continuous values)
 from MLEbins results object}
 \usage{
-remove_outliers(dat, ...)
+remove_outliers(res, ...)
 
 \method{remove_outliers}{determine_xmin_and_fit_mlebins}(res, ...)
 
-\method{remove_outliers}{size_spectrum_mlebins}(res, number = 1)
+\method{remove_outliers}{size_spectrum_mlebins}(res, number = 1, ...)
 }
 \arguments{
-\item{dat}{TODO}
-
-\item{...}{TODO}
-
 \item{res}{One of:
 \itemize{
 \item \code{size_spectrum_mlebins} object
 \item \code{determine_xmin_and_fit_mlebins} object
 }}
+
+\item{...}{TODO}
 
 \item{number}{numeric value for how many of the top measurements to remove;
 user should determine manually from a plot.}

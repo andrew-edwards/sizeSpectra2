@@ -1,7 +1,8 @@
 ##' @rdname remove_outliers
 ##' @export
 remove_outliers.size_spectrum_mlebins <- function(res,
-                                                  number = 1){
+                                                  number = 1,
+                                                  ...){
   dat_orig <- res$dat
   dat_orig_trimmed <- dplyr::select(dat_orig,
                                     species,

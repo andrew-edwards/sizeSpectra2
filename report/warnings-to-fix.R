@@ -103,6 +103,8 @@ dots_parser(utils::getS3method("plot",
   See section 'Generic functions and methods' in the 'Writing R
   Extensions' manual.
 
+Doing in the commit that adds this line.
+
 3. checking for missing documentation entries ... WARNING
   Undocumented code objects:
     'data_cephsmall_fg' 'mediterranean_data'
@@ -211,9 +213,14 @@ dots_parser(utils::getS3method("plot",
   See chapter 'Writing R documentation files' in the 'Writing R
   Extensions' manual.
 
+Mostly done. Still a few with the latest commit.
+
 5. checking for unstated dependencies in 'tests' ... WARNING
   '::' or ':::' import not declared from: 'tibble'
 Adding tibble to DESCRIPTION (even though dplyr depends on tibble)
+
+Done.
+
 
 Okay, asked ghcp to fix number 4. Going through and checking/fixing them, leaving the
 TODOs (37 across 18 files) for now. Doing in commit that creates this file.

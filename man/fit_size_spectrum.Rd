@@ -28,7 +28,8 @@ fit_size_spectrum(dat, ...)
   x_max = NULL,
   b_vec = NULL,
   b_vec_inc = 1e-05,
-  b_start = NULL
+  b_start = NULL,
+  ...
 )
 }
 \arguments{

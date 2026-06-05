@@ -4,7 +4,8 @@ bin_data.data.frame <- function(dat,
                                 bin_width = NULL,
                                 bin_breaks = NULL,
                                 start_integer = TRUE,
-                                truncate_top_bin = FALSE){
+                                truncate_top_bin = FALSE,
+                                ...){
   if(dim(dat)[2] != 2){
     stop("dat needs two cols in bin_data.data.frame()")
   }

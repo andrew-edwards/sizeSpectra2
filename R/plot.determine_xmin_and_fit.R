@@ -1,7 +1,7 @@
 ##' Plot results from determining x_min by mode method and then fitting use MLE hake spectra results
 ##'
 ##'
-##' @param res list of one of the following classes:
+##' @param x list of one of the following classes:
 ##'   * `determine_xmin_and_fit` as output from `determine_xmin_and_fit()`
 ##'   * `determine_xmin_for_mlebin_and_fit` as output from `determine_xmin_for_mlebin_and_fit()`
 ##' * `determine_xmin_for_mlebins_and_fit` as output from `determine_xmin_for_mlebins_and_fit()`
@@ -21,10 +21,11 @@
 ##' https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data-mlebins.html
 ##' for MLEbins example
 ##' }
-plot.determine_xmin_and_fit <- function(res,
+plot.determine_xmin_and_fit <- function(x,
                                         xlim_hist = NULL,
                                         main_hist = "",
                                         ...){
+  res <- x
 
   # Global xlim, might want to add functionality at some point
   #xlim_global <- c(min(unlist(lapply(res, '[[',

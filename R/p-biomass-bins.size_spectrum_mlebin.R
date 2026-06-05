@@ -1,7 +1,8 @@
 ##' @rdname p_biomass_bins
-##' @param res_mlebin TODO
+##' @param res TODO
 ##' @export
-p_biomass_bins.size_spectrum_mlebin <- function(res_mlebin){   # result from mlebin
+p_biomass_bins.size_spectrum_mlebin <- function(res){
+  res_mlebin <- res
 
   data <- res_mlebin$data %>%
     dplyr::mutate(bin_width = bin_max - bin_min)   # might already exist

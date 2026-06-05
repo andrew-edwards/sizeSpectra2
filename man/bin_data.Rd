@@ -15,7 +15,8 @@ bin_data(dat, ...)
   bin_width = NULL,
   bin_breaks = NULL,
   start_integer = TRUE,
-  truncate_top_bin = FALSE
+  truncate_top_bin = FALSE,
+  ...
 )
 
 \method{bin_data}{numeric}(dat = NULL, ...)

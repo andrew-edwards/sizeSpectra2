@@ -1,6 +1,6 @@
 ##' @rdname detect_outliers
 ##' @export
-detect_outliers.size_spectrum_mlebins <- function(res){
+detect_outliers.size_spectrum_mlebins <- function(res, ...){
 
   dat_orig <- res$dat
   dat_appended <- dplyr::select(dat_orig,

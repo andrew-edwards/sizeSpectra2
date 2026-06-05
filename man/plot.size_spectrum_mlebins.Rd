@@ -4,10 +4,10 @@
 \alias{plot.size_spectrum_mlebins}
 \title{Plot a binned ISD plots similar to MEPS Figure 7 from MLEbins method.}
 \usage{
-\method{plot}{size_spectrum_mlebins}(res_mlebins, seg_col = "green", ...)
+\method{plot}{size_spectrum_mlebins}(x, seg_col = "green", ...)
 }
 \arguments{
-\item{res_mlebins}{size_spectrum_mlebins object resulting from running
+\item{x}{size_spectrum_mlebins object resulting from running
 \code{fit_size_spectrum()} to use the MLEbins method;
 see the \href{https://andrew-edwards.github.io/sizeSpectraFit/vignettes/fit-data-mlebins.html}{fit-data-mlebins.html vignette}.}
 

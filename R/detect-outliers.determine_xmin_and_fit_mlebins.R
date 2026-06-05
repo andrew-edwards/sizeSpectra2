@@ -1,6 +1,6 @@
 ##' @rdname detect_outliers
 ##' @export
-detect_outliers.determine_xmin_and_fit_mlebins <- function(res){
+detect_outliers.determine_xmin_and_fit_mlebins <- function(res, ...){
 
   res_fit_only <- res$mlebins_fit
 
