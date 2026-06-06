@@ -25,9 +25,17 @@ set to the next multiple of \code{bin_width} below \code{min(x)}. If \code{bin_w
 be the integer below \code{min(x)} (i.e. \code{min(x) \%/\% 1}). If,
 say, \code{min(x) = 10.6} and \code{bin_width = 0.5} then \code{bin_start = 10.5}.}
 
-\item{x_min}{TODO}
+\item{x_min}{minimum value of data to fit the PLB distribution to. If \code{NULL}
+(the default) then it is determined by the histogram method (see Quevedo
+et al. 2026), by binning the data (based on each \code{bin_min}) in
+\code{\link[=make_hist_for_binned_counts]{make_hist_for_binned_counts()}}, determining the mode in
+\code{\link[=determine_xmin_based_on_hist]{determine_xmin_based_on_hist()}}, and setting \code{x_min} to be the minimum
+\code{bin_min} that is above the minimum of that modal bin. If not \code{NULL}
+then the fitting is restricted to values greater than or equal to
+\code{x_min}, which for the MLEbins method is the first full bin equal to or above \code{x_min}
+(i.e. first bin with \code{bin_min >= x_min}).}
 
-\item{...}{TODO}
+\item{...}{arguments passed onto \code{\link[=fit_size_spectrum_mlebins]{fit_size_spectrum_mlebins()}}}
 }
 \value{
 list of class \code{determine_xmin_and_fit_mlebins} for plotting, containing

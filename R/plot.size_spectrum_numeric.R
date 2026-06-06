@@ -36,7 +36,9 @@
 ##'   * `"biomass"` or `"biomass_and_log"` - from using the MLEbin method,
 ##'   whether to plot just a normalised biomass plot or a normalised biomass plot
 ##'   plus the binned data and fit of the PLB.
-##'
+##' @param x_plb vector of values to use to plot the fitted PLB curve; if NA then
+##'   automatically calculated (sometimes need to manually extend it to hit the
+##'   x-axis, but tricky to automate that on a log-scale)
 ##' @param y_scaling numeric scaling of y-minimum of y-axis. Axis can't go to zero on
 ##'   log-log plot, but goes to the proportion `y_scaling` (<1)
 ##'   of the minimum value of counts greater than the highest `bin_min` value. Do

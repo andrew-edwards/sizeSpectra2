@@ -13,7 +13,7 @@
 ##' @inheritParams plot_isd
 ##' @param res_mlebin object of class `size_spectrum_mlebin` object, as output from
 ##'   [fit_size_spectrum.data.frame()]
-##' @param y_plb vector of values corresponding to the MLE fit of the PLB
+##' @param x_plb,y_plb vectors of values with `y_plb` corresponding to the MLE fit of the PLB
 ##'   distribution at each value of `x_PLB`
 ##' @param plot_conf_ints logical whether to plot confidence intervals or not
 ##' @param xlab,ylab x/y labels, explicitly given default values here which can

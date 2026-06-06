@@ -20,7 +20,7 @@ neg_ll_mlebin_method(b, x_min, x_max, w, d, J, n)
 
 \item{J}{number of bins (length of \code{d})}
 
-\item{n}{TODO}
+\item{n}{sample size (sum of the bin counts) to avoid repeatedly calculating}
 }
 \value{
 negative log-likelihood of the parameters given the data

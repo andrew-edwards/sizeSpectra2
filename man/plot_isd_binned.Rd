@@ -54,15 +54,9 @@ plot_isd_binned(
 \item{log}{Which axes to log, for \code{plot(..., log = log)}. So "xy" for
 log-log axes, "x" for only x-axis logged.}
 
-\item{xlim}{TODO}
+\item{xlim, ylim}{two-component vector passed onto \code{xlim/ylim} arguments to \code{\link[base:plot]{base::plot()}}}
 
-\item{ylim}{TODO}
-
-\item{x_plb}{vector of values to use to plot the fitted PLB curve; if NA then
-automatically calculated (sometimes need to manually extend it to hit the
-x-axis, but tricky to automate that on a log-scale)}
-
-\item{y_plb}{vector of values corresponding to the MLE fit of the PLB
+\item{x_plb, y_plb}{vectors of values with \code{y_plb} corresponding to the MLE fit of the PLB
 distribution at each value of \code{x_PLB}}
 
 \item{y_plb_conf_min, y_plb_conf_max}{vector of values corresponding to the fit, using the
@@ -79,16 +73,14 @@ be modified as required; the usual argument to \code{plot()}}
 \item{tcl_small}{passed on as the \code{tcl} argument to \code{\link[=axis]{axis()}} for tick
 direction and length for small tickmarks}
 
-\item{inset_label}{TODO}
+\item{inset_label, inset_text}{get used as the \code{inset} argument in \code{\link[=legend]{legend()}}}
 
-\item{inset_text}{TODO}
-
-\item{legend_label}{TODO}
+\item{legend_label}{label for legend, such as \code{(a)}}
 
 \item{legend_text}{text to put in the corner, defaults to \verb{b = <value>}. Set to
 \code{NA} to have none, and modify default if needed.}
 
-\item{legend_text_n}{TODO}
+\item{legend_text_n}{gets used as the \code{legend} argument in \verb{legend()] for a second row to give sample size, }legend_text_a_n` in \code{\link[=plot.size_spectrum_numeric]{plot.size_spectrum_numeric()}}}
 
 \item{legend_text_second_row_multiplier}{numeric multiplier of the second
 row of legend text to space it out, especially for smaller panel plots.}

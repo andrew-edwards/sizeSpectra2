@@ -11,9 +11,17 @@ determine_xmin_and_fit_mlebin(dat, x_min = NULL, ...)
 \item{dat}{tibble of data in the format required for fitting
 using MLEbin method; see \code{\link[=fit_size_spectrum]{fit_size_spectrum()}}.}
 
-\item{x_min}{TODO}
+\item{x_min}{minimum value of data to fit the PLB distribution to. If \code{NULL}
+(the default) then it is determined by the histogram method (see Quevedo
+et al. 2026), by binning the data using the bins in the data in
+\code{\link[=make_hist_for_binned_counts]{make_hist_for_binned_counts()}}, determining the mode in
+\code{\link[=determine_xmin_based_on_hist]{determine_xmin_based_on_hist()}}, and setting \code{x_min} to be the \code{bin_min} of
+the modal bin. If not \code{NULL}
+then the fitting is restricted to values greater than or equal to
+\code{x_min}, which for the MLEbin method is the first full bin equal to or above \code{x_min}
+(i.e. first bin with \code{bin_min >= x_min}).}
 
-\item{...}{TODO}
+\item{...}{arguments passed onto \code{\link[=fit_size_spectrum_mlebin]{fit_size_spectrum_mlebin()}}}
 }
 \value{
 object of class \code{determine_xmin_and_fit_mlebin}, such that

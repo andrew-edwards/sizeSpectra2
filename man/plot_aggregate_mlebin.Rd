@@ -47,7 +47,10 @@ how the figure looks; hard to fully automate.}
 
 \item{ylim_global}{as \code{ylim_global} for the global \code{ylim}}
 
-\item{y_scaling}{TODO}
+\item{y_scaling}{numeric scaling of y-minimum of y-axis. Axis can't go to zero on
+log-log plot, but goes to the proportion \code{y_scaling} (<1)
+of the minimum value of counts greater than the highest \code{bin_min} value. Do
+such that can see the right-most or point bin in all plots.}
 
 \item{return_agg_x_y}{logical, whether to return the aggregated x and y for plotting
 values of the aggregated fit}

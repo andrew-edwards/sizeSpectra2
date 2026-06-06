@@ -72,9 +72,9 @@ used as the \code{vec} argument of \code{calc_mle_conf()}}
 \item{b_vec_inc}{increment value for the confidence interval calculation, to be
 used as the \code{vec_inc} argument of \code{calc_mle_conf()}}
 
-\item{...}{TODO}
+\item{...}{arguments passed onto the relevant function \verb{fit_size_spectrum.<class>()}}
 
-\item{strata}{TODO}
+\item{strata}{possible future option for fitting data.frame; see Issue #10.}
 }
 \value{
 \itemize{

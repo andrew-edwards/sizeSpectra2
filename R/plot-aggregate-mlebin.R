@@ -12,7 +12,7 @@
 ##' makes the subsequent rectangles and lines here.
 ##'
 ##' @inheritParams plot_aggregate
-##' @inheritParams plot.size_spectrum.numeric
+##' @inheritParams plot.size_spectrum_numeric
 ##' @param rect_shading_equal_col_vec logical, if TRUE then shade in the
 ##' rectangles with the colour for that group, else if FALSE stick with grey. Will depend
 ##' how the figure looks (sometimes you cannot see the fitted curve if the

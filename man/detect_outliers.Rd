@@ -27,7 +27,7 @@ detect_outliers(res, ...)
 \item \code{remove_outliers_mlebins} object
 }}
 
-\item{...}{TODO}
+\item{...}{arguments passed onto the respective \verb{detect_outliers.<class>} function}
 }
 \value{
 tibble containing just the data values needed for

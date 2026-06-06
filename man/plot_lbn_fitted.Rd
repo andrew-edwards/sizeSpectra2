@@ -25,7 +25,7 @@ normalised biomass in each bin}
 \item{rect_shading}{colour for shading of rectangles corresponding to the
 normalised biomasses estimated from confidence intervals of \code{b}}
 
-\item{rect_border}{TODO}
+\item{rect_border}{colour of the borders for the rectangles}
 
 \item{shorter}{fraction shorter to make the rectangles, so can see them
 overlapping with grey rectangles; may not work exacly as planned (won't be symmetric) when x-axis

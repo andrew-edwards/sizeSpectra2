@@ -9,7 +9,7 @@ yet; see Issue 12.}
 \usage{
 summary_mle_table(obj, ...)
 
-summary_mle_table.determine_xmin_and_fit(res, dig = 2)
+summary_mle_table.determine_xmin_and_fit(obj, dig = 2)
 }
 \arguments{
 \item{obj}{result from ..., either with class
@@ -18,9 +18,7 @@ class \code{intervals_density_list} if ...  was applied to a data
 frame; the respective function ...  or
 gets automatically used.}
 
-\item{...}{TODO}
-
-\item{res}{TODO}
+\item{...}{function not operational yet}
 
 \item{dig}{number of decimal places to show}
 }

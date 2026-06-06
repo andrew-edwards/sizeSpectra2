@@ -50,20 +50,19 @@ whether to plot just a normalised biomass plot or a normalised biomass plot
 plus the binned data and fit of the PLB.
 }}
 
-\item{xlim}{TODO}
+\item{xlim, ylim}{two-component vector passed onto \code{xlim/ylim} arguments to \code{\link[base:plot]{base::plot()}}}
 
-\item{ylim}{TODO}
-
-\item{x_plb}{TODO}
+\item{x_plb}{vector of values to use to plot the fitted PLB curve; if NA then
+automatically calculated (sometimes need to manually extend it to hit the
+x-axis, but tricky to automate that on a log-scale)}
 
 \item{y_scaling}{numeric scaling of y-minimum of y-axis. Axis can't go to zero on
 log-log plot, but goes to the proportion \code{y_scaling} (<1)
 of the minimum value of counts greater than the highest \code{bin_min} value. Do
 such that can see the right-most or point bin in all plots.}
 
-\item{mle_round}{TODO}
-
-\item{inset_label}{TODO}
+\item{mle_round}{number of decimal places to round the MLE estimate of \code{b}
+to; passed on as \code{digits} argument to \code{\link[=round]{round()}}}
 
 \item{xlab}{x label, explicitly given default value here which can
 be modified as required; the usual argument to \code{plot()}}

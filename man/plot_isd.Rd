@@ -50,15 +50,13 @@ plot_isd(
 \item{log}{Which axes to log, for \code{plot(..., log = log)}. So "xy" for
 log-log axes, "x" for only x-axis logged.}
 
-\item{xlim}{TODO}
+\item{xlim, ylim}{two-component vector passed onto \code{xlim/ylim} arguments to \code{\link[base:plot]{base::plot()}}}
 
-\item{ylim}{TODO}
+\item{x_plb, y_plb}{vectors of x and y values to plot the PLB fit}
 
-\item{x_plb}{TODO}
-
-\item{y_plb}{TODO}
-
-\item{y_plb_conf_min, y_plb_conf_max}{TODO}
+\item{y_plb_conf_min, y_plb_conf_max}{vector of values corresponding to the fit, using the
+minimum/maximum value confidence interval for exponent b, of the PLB
+distribution at each value of \code{x_PLB}}
 
 \item{plot_conf_ints}{logical whether to plot PLB fit for confidence
 intervals or not}
@@ -70,18 +68,17 @@ be modified as required; the usual argument to \code{plot()}}
 
 \item{tcl_small}{Length of small tickmarks; see \code{\link[graphics:axis]{graphics::axis()}}.}
 
-\item{inset_label}{TODO}
+\item{inset_label, inset_text}{get used as the \code{inset} argument in \code{\link[=legend]{legend()}}}
 
-\item{inset_text}{TODO}
-
-\item{legend_label}{TODO}
+\item{legend_label}{label for legend, such as \code{(a)}}
 
 \item{legend_text}{text to put in the corner, defaults to \verb{b = <value>}. Set to
 \code{NA} to have none, and modify default if needed.}
 
-\item{legend_text_n}{TODO}
+\item{legend_text_n}{gets used as the \code{legend} argument in \verb{legend()] for a second row to give sample size, }legend_text_a_n` in \code{\link[=plot.size_spectrum_numeric]{plot.size_spectrum_numeric()}}}
 
-\item{legend_text_second_row_multiplier}{TODO}
+\item{legend_text_second_row_multiplier}{how far down to put the second row;
+tweak for your particular figure}
 
 \item{legend_position}{where to place legend, gets used as the first
 argument in \code{\link[=legend]{legend()}}.}
@@ -116,11 +113,11 @@ if that does not look good then define explicitly here. Note that these
 labels get created here also (but usually you would base this on the
 existing ones).}
 
-\item{fit_col}{TODO}
+\item{fit_col}{colour to use for fitted curves}
 
-\item{fit_lwd}{TODO}
+\item{fit_lwd}{line thickness to use for fitted curves}
 
-\item{conf_lty}{TODO}
+\item{conf_lty}{line type to use for confidence intervals}
 
 \item{...}{Further arguments for \code{plot()}}
 }

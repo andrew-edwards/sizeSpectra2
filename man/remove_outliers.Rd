@@ -22,7 +22,7 @@ remove_outliers(res, ...)
 \item \code{determine_xmin_and_fit_mlebins} object
 }}
 
-\item{...}{TODO}
+\item{...}{arguments to pass onto the function \verb{remove_outliers.<class>()}}
 
 \item{number}{numeric value for how many of the top measurements to remove;
 user should determine manually from a plot.}

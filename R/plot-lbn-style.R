@@ -21,9 +21,11 @@
 ##' `style == "biomass"` or `style == `"biomass_and_log"`
 ##' @param res results of class `size_spectrum_numeric` or
 ##' `size_spectrum_mlebin`
+##' @param x_plb vector of values to calculate MLE fit of the PLB
+##'   distribution
 ##' @inheritParams plot_isd
 ##' @inheritParams plot_isd_binned
-##' @inheritParams plot.size_spectrum.numeric
+##' @inheritParams plot.size_spectrum_numeric
 ##' @param plot_binned_fitted logical, whether to plot the binned version of the
 ##' fitted PLB (to more accurately compare with the data if the data are binned)
 ##' @param ... further arguments to be passed to `plot()` and

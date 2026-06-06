@@ -53,7 +53,7 @@ refine \code{ylim} to celarly show the aymptotes).}
 \item{legend_text_second_row_multiplier}{numeric multiplier of the second
 row of legend text to space it out, especially for smaller panel plots.}
 
-\item{xlab}{TODO}
+\item{xlab}{passed on as \code{xlab} argument to \code{\link[=plot]{plot()}}, given a sensible default here}
 
 \item{...}{additional arguments passed onto \code{\link[=plot]{plot()}}}
 }

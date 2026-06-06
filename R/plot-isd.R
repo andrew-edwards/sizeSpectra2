@@ -4,15 +4,13 @@
 ##' Is called from `plot.size_spectrum_numeric()` with logarithmic or linear
 ##' y-axis.
 ##'
-##' @inheritParams base::plot
 ##' @param res `size_spectrum_numeric` object, as output from
 ##'   [fit_size_spectrum.numeric()], which gets called when applying
 ##'   [fit_size_spectrum()] to a numeric vector.
 ##' @param log Which axes to log, for `plot(..., log = log)`. So "xy" for
 ##'   log-log axes, "x" for only x-axis logged.
-##' @param x_plb vector of values to use to plot the fitted PLB curve; if NA then
-##'   automatically calculated (sometimes need to manually extend it to hit the
-##'   x-axis, but tricky to automate that on a log-scale)
+##' @param xlim,ylim two-component vector passed onto `xlim/ylim` arguments to [base::plot()]
+##' @param x_plb,y_plb vectors of x and y values to plot the PLB fit
 ##' @param y_plb_conf_min,y_plb_conf_max vector of values corresponding to the fit, using the
 ##'   minimum/maximum value confidence interval for exponent b, of the PLB
 ##'   distribution at each value of `x_PLB`
