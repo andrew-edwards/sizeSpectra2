@@ -115,13 +115,21 @@ plot.size_spectrum_numeric <- function(x,
     stop("Cannot specify argument `log`, since it gets overridden within plot.size_spectrum_numeric().")
   }
 
-
   # par_orig <- par(no.readonly = TRUE)
 
   # Work out calculations needed for both types of plot and then pass them on to
   # plot_isd() (and plot_isd_binned() for `both`).:
 
-  x <- res$x
+  # These default arguments reference `x` (the size_spectrum_numeric list), so
+  # they must be evaluated before x is reassigned to the numeric vector below.
+  force(xlim)
+  force(legend_text_a)
+  force(legend_text_a_n)
+
+  x <- res$x                # I originally had 'res' as the main argument, but
+                            # had to change it to x as that's what plot.default() has. So not ideal
+                            # notation, but is behind the scenes, though
+                            # requires the above force fudge.
 
   x_min <- res$x_min
   x_max <- res$x_max
