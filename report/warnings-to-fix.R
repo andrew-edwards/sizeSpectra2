@@ -11,7 +11,9 @@ This is only in ./plot.determine_xmin_and_fit_mlebins.R:69:
                   dots_parser(graphics:::plot.histogram, (twice)
 Replacing with
 dots_parser(utils::getS3method("plot",
-                                   "histogram"),
+                                   "histogram"))
+
+Done.
 
 2. checking S3 generic/method consistency ... WARNING
   fit_size_spectrum:
@@ -103,7 +105,7 @@ dots_parser(utils::getS3method("plot",
   See section 'Generic functions and methods' in the 'Writing R
   Extensions' manual.
 
-Doing in the commit that adds this line.
+Done in the original commit that added this line.
 
 3. checking for missing documentation entries ... WARNING
   Undocumented code objects:
@@ -234,3 +236,4 @@ Done.
 
 Okay, asked ghcp to fix number 4. Going through and checking/fixing them, leaving the
 TODOs (37 across 18 files) for now. Doing in commit that creates this file.
+Done those.
