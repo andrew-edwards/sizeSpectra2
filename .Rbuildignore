@@ -12,3 +12,9 @@ data-raw/*
 vignettes/
 
 report/
+
+README.html
+coverage-report.html
+index.Rmd
+index.html
+lib/
