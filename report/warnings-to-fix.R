@@ -118,6 +118,8 @@ Doing in the commit that adds this line.
   See chapter 'Writing R documentation files' in the 'Writing R
   Extensions' manual.
 
+TODO
+
 4. checking Rd \usage sections ... WARNING
   Undocumented arguments in Rd file 'add_ticks.Rd'
     'log' 'tcl_small' 'mgp_val' 'x_big_ticks' 'x_big_ticks_labels'
@@ -221,7 +223,7 @@ Mostly done. Still a few with the latest commit.
 
 Still seemed to give warnings, so copied xlab in a few places.
 
-D check_man() passes now!
+Done. check_man() passes now!
 
 5. checking for unstated dependencies in 'tests' ... WARNING
   '::' or ':::' import not declared from: 'tibble'

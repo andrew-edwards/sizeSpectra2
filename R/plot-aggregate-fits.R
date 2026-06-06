@@ -18,7 +18,6 @@
 ##'   it's maximum, so that all fits are on the same scale
 ##' @param col_strata vector of strings, each being a colour to use for each strata
 ##' @param lty_strata vector of `lty` values for line type for each strata, see [par()].
-##' @param ... additional arguments passed onto [plot()]
 ##' @param xlim,ylim vectors for axes limits; if NULL (the default) they get
 ##'   calculated automatically, but users likely want to then manually adjust
 ##'   them, especially `ylim` to be able to see all fits asymptoting at their
@@ -28,7 +27,8 @@
 ##' @param inset_text passed onto [legend()]
 ##' @param legend_text_second_row_multiplier numeric multiplier of the second
 ##'   row of legend text to space it out, especially for smaller panel plots.
-##' @param xlab TODO
+##' @param xlab passed on as `xlab` argument to [plot()], given a sensible default here
+##' @param ... additional arguments passed onto [plot()]
 ##'
 ##' @return NULL
 ##' @export

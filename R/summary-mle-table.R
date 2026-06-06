@@ -15,7 +15,7 @@
 ##' frame; the respective function ...  or
 ##'  gets automatically used.
 ##' @param dig number of decimal places to show
-##' @param ... TODO
+##' @param ... function not operational yet
 ##' @return Markdown code (for automatic use straight in an R Markdown document, for instance)
 ##' @export
 ##' @author Andrew Edwards

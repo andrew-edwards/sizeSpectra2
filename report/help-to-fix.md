@@ -3,17 +3,12 @@
 Each entry below was added as `@param <arg> TODO` in the corresponding R file.
 Replace `TODO` with a proper description.
 
+Andy removing them as I do them. It got a bit overzealous.
 ---
 
 ## R/plot-isd.R
 
 ```
-@param xlim
-@param ylim
-@param x_plb
-@param y_plb
-@param y_plb_conf_min
-@param y_plb_conf_max
 @param inset_label
 @param inset_text
 @param legend_label

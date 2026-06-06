@@ -4,29 +4,32 @@
 ##' Is called from `plot.size_spectrum_numeric()` with logarithmic or linear
 ##' y-axis.
 ##'
+##' @inheritParams base::plot
 ##' @param res `size_spectrum_numeric` object, as output from
 ##'   [fit_size_spectrum.numeric()], which gets called when applying
 ##'   [fit_size_spectrum()] to a numeric vector.
 ##' @param log Which axes to log, for `plot(..., log = log)`. So "xy" for
 ##'   log-log axes, "x" for only x-axis logged.
-##' @param xlim TODO
-##' @param ylim TODO
-##' @param x_plb TODO
-##' @param y_plb TODO
-##' @param y_plb_conf_min,y_plb_conf_max TODO
+##' @param x_plb vector of values to use to plot the fitted PLB curve; if NA then
+##'   automatically calculated (sometimes need to manually extend it to hit the
+##'   x-axis, but tricky to automate that on a log-scale)
+##' @param y_plb_conf_min,y_plb_conf_max vector of values corresponding to the fit, using the
+##'   minimum/maximum value confidence interval for exponent b, of the PLB
+##'   distribution at each value of `x_PLB`
 ##' @param plot_conf_ints logical whether to plot PLB fit for confidence
 ##'   intervals or not
 ##' @param xlab,ylab x/y labels, explicitly given default values here which can
 ##'   be modified as required; the usual argument to `plot()`
 ##' @param mgp_val mgp values to use, as in `plot(..., mgp = mgp_vals)`; see [graphics::par()].
 ##' @param tcl_small Length of small tickmarks; see [graphics::axis()].
-##' @param inset_label TODO
-##' @param inset_text TODO
-##' @param legend_label TODO
+##' @param inset_label,inset_text get used as the `inset` argument in [legend()]
+##' @param legend_label label for legend, such as `(a)`
 ##' @param legend_text text to put in the corner, defaults to `b = <value>`. Set to
 ##'   `NA` to have none, and modify default if needed.
-##' @param legend_text_n TODO
-##' @param legend_text_second_row_multiplier TODO
+##' @param legend_text_n gets used as the `legend` argument in `legend()] for a
+##' second row to give sample size, `legend_text_a_n` in [plot.size_spectrum_numeric()]
+##' @param legend_text_second_row_multiplier how far down to put the second row;
+##' tweak for your particular figure
 ##' @param legend_position where to place legend, gets used as the first
 ##'   argument in [legend()].
 ##' @param x_big_ticks,y_big_ticks numeric vector of big tick marks on
@@ -54,9 +57,9 @@
 ##'   if that does not look good then define explicitly here. Note that these
 ##'   labels get created here also (but usually you would base this on the
 ##'   existing ones).
-##' @param fit_col TODO
-##' @param fit_lwd TODO
-##' @param conf_lty TODO
+##' @param fit_col colour to use for fitted curves
+##' @param fit_lwd line thickness to use for fitted curves
+##' @param conf_lty line type to use for confidence intervals
 ##' @param ... Further arguments for `plot()`
 ##' @return Single figure of ISD on log-log plot (or log-linear depending on the
 ##'   options given), with values as points or normalised binned biomass and PLB

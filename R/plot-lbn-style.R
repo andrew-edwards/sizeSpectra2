@@ -23,12 +23,12 @@
 ##' `size_spectrum_mlebin`
 ##' @inheritParams plot_isd
 ##' @inheritParams plot_isd_binned
+##' @inheritParams plot.size_spectrum.numeric
 ##' @param plot_binned_fitted logical, whether to plot the binned version of the
 ##' fitted PLB (to more accurately compare with the data if the data are binned)
 ##' @param ... further arguments to be passed to `plot()` and
 ##'   `plot_binned_fitted()`
-##' @param y_scaling TODO
-##' @param rect_col TODO
+##' @param rect_col colour to shade in the rectangles
 ##' @return invisible
 ##'
 ##' @export

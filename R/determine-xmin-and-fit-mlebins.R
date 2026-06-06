@@ -9,8 +9,16 @@
 ##' @param dat_for_mlebins tibble of data in the format required for fitting
 ##'   using MLEbins method; see [fit_size_spectrum_mlebins()].
 ##' @inheritParams make_hist
-##' @param x_min TODO
-##' @param ... TODO
+##' @param x_min minimum value of data to fit the PLB distribution to. If `NULL`
+##'   (the default) then it is determined by the histogram method (see Quevedo
+##' et al. 2026), by binning the data (based on each `bin_min`) in
+##' [make_hist_for_binned_counts()], determining the mode in
+##' [determine_xmin_based_on_hist()], and setting `x_min` to be the minimum
+##' `bin_min` that is above the minimum of that modal bin. If not `NULL`
+##'   then the fitting is restricted to values greater than or equal to
+##'   `x_min`, which for the MLEbins method is the first full bin equal to or above `x_min`
+##'   (i.e. first bin with `bin_min >= x_min`).
+##' @param ... arguments passed onto [fit_size_spectrum_mlebins()]
 ##' @return list of class `determine_xmin_and_fit_mlebins` for plotting, containing
 ##' * `mlebins_fit` object of class `size_spectrum_mlebins` from using MLEbins
 ##' method; see [fit_size_spectrum_mlebins()]

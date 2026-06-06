@@ -12,6 +12,7 @@
 ##' makes the subsequent rectangles and lines here.
 ##'
 ##' @inheritParams plot_aggregate
+##' @inheritParams plot.size_spectrum.numeric
 ##' @param rect_shading_equal_col_vec logical, if TRUE then shade in the
 ##' rectangles with the colour for that group, else if FALSE stick with grey. Will depend
 ##' how the figure looks (sometimes you cannot see the fitted curve if the
@@ -19,7 +20,6 @@
 ##' @param rect_border_equal_col_vec logical, if TRUE then colour the borders of the
 ##' rectangles with the colour for that group, else stick with black. Will depend
 ##' how the figure looks; hard to fully automate.
-##' @param y_scaling TODO
 ##' @export
 ##' @author Andrew Edwards
 ##' @examples

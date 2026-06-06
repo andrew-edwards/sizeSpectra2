@@ -17,7 +17,7 @@
 ##' @param J number of bins (length of `d`)
 ##' @param x_min minimum value of bins, as an input to avoid repeatedly calculating
 ##' @param x_max maximum value of bins, as an input to avoid repeatedly calculating
-##' @param n TODO
+##' @param n sample size (sum of the bin counts) to avoid repeatedly calculating
 ##' @return negative log-likelihood of the parameters given the data
 ##' @export
 ##' @author Andrew Edwards

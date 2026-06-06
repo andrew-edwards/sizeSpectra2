@@ -9,7 +9,7 @@
 ##' @param res One of:
 ##' * `size_spectrum_mlebins` object
 ##' * `determine_xmin_and_fit_mlebins` object
-##' @param ... TODO
+##' @param ... arguments to pass onto the function `remove_outliers.<class>()`
 ##' @param number numeric value for how many of the top measurements to remove;
 ##'   user should determine manually from a plot.
 ##' @return list containing two tibbles plus two numerics. Each tibble contains just the data values needed for

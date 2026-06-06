@@ -18,7 +18,6 @@
 ##'   arguments defined below.
 ##'
 ##' @inheritParams plot_isd
-##' @inheritParams base::plot
 ##' @param x `size_spectrum_numeric` object, as output from
 ##'   [fit_size_spectrum.numeric()], which gets called when applying
 ##'   [fit_size_spectrum()] to a numeric vector. Has to be called `x` to match
@@ -58,10 +57,8 @@
 ##'   <sample size>` as in Fig. 7a of MEPS paper.
 ##' @param ... Further arguments for `plot_isd()` and then `plot()`, except
 ##'   cannot have `log` as that gets overridden.
-##' @param xlim TODO
-##' @param ylim TODO
-##' @param x_plb TODO
-##' @param mle_round TODO
+##' @param mle_round number of decimal places to round the MLE estimate of `b`
+##' to; passed on as `digits` argument to [round()]
 ##' @param par_mai vector of values to use for `par(mai)`
 ##' @param par_cex numeric value to use for `par(cex)` (font size)
 ##' @return One- or two-panel plot of raw data and PLB distribution (and fits of

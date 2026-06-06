@@ -13,13 +13,7 @@
 ##' @inheritParams plot_isd
 ##' @param res_mlebin object of class `size_spectrum_mlebin` object, as output from
 ##'   [fit_size_spectrum.data.frame()]
-##' @param x_plb vector of values to use to plot the fitted PLB curve; if NA then
-##'   automatically calculated (sometimes need to manually extend it to hit the
-##'   x-axis, but tricky to automate that on a log-scale)
 ##' @param y_plb vector of values corresponding to the MLE fit of the PLB
-##'   distribution at each value of `x_PLB`
-##' @param y_plb_conf_min,y_plb_conf_max vector of values corresponding to the fit, using the
-##'   minimum/maximum value confidence interval for exponent b, of the PLB
 ##'   distribution at each value of `x_PLB`
 ##' @param plot_conf_ints logical whether to plot confidence intervals or not
 ##' @param xlab,ylab x/y labels, explicitly given default values here which can
@@ -32,9 +26,6 @@
 ##' @param rect_shading_col colour to use for the shading of the boxes
 ##' @param rect_border_col colour to use for the borders of the boxes; can be
 ##' `NA` to omit (see `border` arg of [rect()]).
-##' @param fit_col colour to use for fitted curves
-##' @param fit_lwd line thickness to use for fitted curves
-##' @param conf_lty line type to use for confidence intervals
 ##' @param legend_text_second_row_multiplier numeric multiplier of the second
 ##'   row of legend text to space it out, especially for smaller panel plots.
 ##' @param show_fit_on_top logical, whether to plot the fitted PLB curve on top of the

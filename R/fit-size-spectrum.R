@@ -35,8 +35,8 @@
 ##'   used as the `vec_inc` argument of `calc_mle_conf()`
 ##' @param b_start for the MLEbin method, the starting estimate for numerical
 ##'   search for the MLE, since there is no analytical value.
-##' @param ... TODO
-##' @param strata TODO
+##' @param strata possible future option for fitting data.frame; see Issue #10.
+##' @param ... arguments passed onto the relevant function `fit_size_spectrum.<class>()`
 ##' @return
 ##' * If `dat` is numeric then returns a list object of class
 ##'   `size_spectrum_numeric` (such that we can plot it
