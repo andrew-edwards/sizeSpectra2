@@ -1,4 +1,4 @@
-Warnings from running check() on 4/6/26.
+Warnings from running check() on 4/6/26. All done now (8/6/26).
 
 1. checking dependencies in R code ... WARNING
   '::' or ':::' import not declared from: 'tibble'
@@ -120,7 +120,9 @@ Done in the original commit that added this line.
   See chapter 'Writing R documentation files' in the 'Writing R
   Extensions' manual.
 
-TODO
+Removed dataBinForLike. Wrote help for the rest.
+
+Done.
 
 4. checking Rd \usage sections ... WARNING
   Undocumented arguments in Rd file 'add_ticks.Rd'
@@ -234,6 +236,10 @@ Adding tibble to DESCRIPTION (even though dplyr depends on tibble)
 Done.
 
 
-Okay, asked ghcp to fix number 4. Going through and checking/fixing them, leaving the
+Okay, asked ghcp to highlight what was needed to fix number 4. Going through and checking/fixing them, leaving the
 TODOs (37 across 18 files) for now. Doing in commit that creates this file.
 Done those.
+
+check_man() works, flags two `inset-label` as missing, but they're done as
+./plot-isd.R:23:##' @param inset_label,inset_text
+so I think the , just messes up check_man().

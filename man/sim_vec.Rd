@@ -3,24 +3,38 @@
 \docType{data}
 \name{sim_vec}
 \alias{sim_vec}
+\alias{sim_vec_binned}
 \title{Simulated vector of 1000 simulated values from a power-law distribution}
 \format{
-numeric
+\code{sim_vec} is numeric, \code{sim_vec_binned} is a tibble
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 9 rows and 3 columns.
 }
 \source{
-Generated from \code{data-raw/sim_vec.R}.
+Generated from \code{data-raw/sim_vec.R} and \code{data-raw/sim_vec_binned.R}
 }
 \usage{
 sim_vec
+
+sim_vec_binned
 }
 \description{
-As used for Figures 1 and 2 of MEE paper, used as a default set of
-values. Paramaters are \code{b = -2}, \code{x_min = 1}, x_max = 1000`, and the seed was
-set to 42.
+As used for Figures 1 and 2 of \href{http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12641/full}{Edwards et al. (2017)},
+used as a default set of values. Paramaters are \code{b = -2}, \code{x_min = 1}, x_max = 1000`, and the seed was
+set to 42, obviously.
+}
+\details{
+\code{sim_vec} is the raw 1000 values.
+
+\code{sim_vec_binned} takes those values and bins them with bin widths that
+double in size (using \verb{bin_data(sim_vec, bin_width = "2k"}) and just keeps
+the columns \code{bin_min}, \code{bin_max}, \code{bin_count} as you would have for real
+binned data.
 }
 \examples{
 \dontrun{
 head(sim_vec)
+sim_vec_binned
 }
 }
 \author{

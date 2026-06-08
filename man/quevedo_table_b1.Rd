@@ -3,8 +3,8 @@
 \docType{data}
 \name{quevedo_table_b1}
 \alias{quevedo_table_b1}
-\title{Results of the fits as shown in Table B.1 (to use as the example code to
-plot Figure B.20 of Quevedo et al., 2026)}
+\title{Results of the fits as shown in Table B.1, to use as the example code to
+plot Figure B.20 of \href{https://www.sciencedirect.com/science/article/pii/S2351989426001769}{Quevedo et al. (2026)}.}
 \format{
 tibble
 }
@@ -15,8 +15,8 @@ Generated from \code{data-raw/mediterranean-results.R}.
 quevedo_table_b1
 }
 \description{
-Results of the fits as shown in Table B.1 (to use as the example code to
-plot Figure B.20 of Quevedo et al., 2026)
+Results of the fits as shown in Table B.1, to use as the example code to
+plot Figure B.20 of \href{https://www.sciencedirect.com/science/article/pii/S2351989426001769}{Quevedo et al. (2026)}.
 }
 \examples{
 \dontrun{
