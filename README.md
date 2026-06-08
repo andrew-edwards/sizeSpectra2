@@ -27,29 +27,31 @@ coverage](https://codecov.io/gh/andrew-edwards/sizeSpectraFit/branch/main/graph/
 
 A streamlined R package for fitting size spectra to ecological data
 
-**Under development, though functions are all working**
+**Under development, though functions are all working and should remain
+back compatible**
 
-Friday 8th May 2026
+Monday 8th June 2026
 
 Want to fit a size spectrum to your data? This package provides a single
 function for fitting, conveniently called `fit_size_spectrum()`. There
-are standardised `plot()` functions to easily display results. And a lot
-more. Please read on.
+are standardised `plot()` functions to easily display results. And lots
+more.
 
 The first use of sizeSpectraFit is in our new paper ‘No-take reserve
 improves size spectra and community structure of demersal megafauna in
 the Northwestern Mediterranean Sea’ in *Global Ecology and Conservation*
 [\[3\]](https://www.sciencedirect.com/science/article/pii/S2351989426001769).
 
-The package is usable with four complete vignettes, though I am still
-finishing some of the help files. The functions are all working and are
-automatically tested, so feel free to download and use sizeSpectraFit.
+The package is usable, comes with four complete vignettes, and full help
+files for all functions and data sets. (I still need to read through all
+those again though for consistency, so they might get tweaked soon). The
+functions are all working and are automatically tested, so feel free to
+download and use sizeSpectraFit.
 
-But please check back and redownload when there is no ‘under
-development’ badge or warning above. Note that some functions here may
-potentially be improved by then (and so you may have to update any code
-you have written); once no longer ‘under development’ I will ensure full
-back compatibility and will document changes in the NEWS file.
+I expect to NOT have to change any functions in a major way, so from now
+on the package should be back compatible (future changes should not
+affect any code you write based on the current version). I will document
+any such changes in the NEWS file.
 
 Below is some background on size spectra plus simple examples of fitting
 size spectra to different types of data using the package. For more
@@ -148,6 +150,39 @@ res
 #> $method
 #> [1] "MLE"
 ```
+
+If the data represent body masses of individuals, then we can also
+calculate the normalised biomass in the top panel here:
+
+``` r
+plot(res,
+     style = "biomass_and_isd")
+```
+
+<img src="man/figures/README-MLEbiomassisdplot-1.png" alt="" width="80%" />
+
+This is an improved version of the suggested plot in Figure 6 of \[1\];
+the top panel indicates normalised biomass, which is something that
+people have been used to seeing, but we have fit the data using MLE here
+(not regression; see \[1\]).
+
+The black horizontal lines indicate the normalised biomass of the data
+within each bin on the y-axis, and the span on the x-axis shows the
+range of the bin. We use bars, rather than the usual points (e.g. Figure
+6(f) of \[1\]) to emphasise that the actual values of body size in each
+bin span a range.
+
+Successive bins double in size, such that they appear of equal width on
+the log scale. The normalised biomass within each one is calculated as
+the sum of the biomass in the bin divided by the bin width; there is no
+uncertainty in this calculation here because we know the individual body
+sizes (this is not so if the data are already binned, see later).
+
+The horizontal red lines show the estimated normalised biomass in each
+bin based on the MLE of the exponent $b$, and the pink boxes span the
+normalised biomass estimated for all values within the 95% confidence
+interval of $b$. The straight lines are also shown for the MLE of $b$
+(solid line) and the 95% confidence interval estimates (dashed lines).
 
 ### Body sizes that are binned
 
@@ -296,7 +331,7 @@ We can then plot the results:
 plot(res_cephsmall_fg)
 ```
 
-<img src="man/figures/README-plotceph-1.png" alt="" width="60%" />
+<img src="man/figures/README-plotceph-1.png" alt="" width="80%" />
 
 The top panel is a histogram of total counts of minimum body sizes,
 using 1-g body-size bins, used to determine $x_{min}$. The left-most red
