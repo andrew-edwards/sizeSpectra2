@@ -68,7 +68,11 @@ be modified as required; the usual argument to \code{plot()}}
 
 \item{tcl_small}{Length of small tickmarks; see \code{\link[graphics:axis]{graphics::axis()}}.}
 
-\item{inset_label, inset_text}{get used as the \code{inset} argument in \code{\link[=legend]{legend()}}}
+\item{inset_label}{used as the \code{inset} argument in \code{\link[=legend]{legend()}} for where
+to put the label}
+
+\item{inset_text}{used as the \code{inset} argument in \code{\link[=legend]{legend()}} for where to
+put the text}
 
 \item{legend_label}{label for legend, such as \code{(a)}}
 

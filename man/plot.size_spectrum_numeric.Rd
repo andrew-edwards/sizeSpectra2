@@ -64,6 +64,9 @@ such that can see the right-most or point bin in all plots.}
 \item{mle_round}{number of decimal places to round the MLE estimate of \code{b}
 to; passed on as \code{digits} argument to \code{\link[=round]{round()}}}
 
+\item{inset_label}{used as the \code{inset} argument in \code{\link[=legend]{legend()}} for where
+to put the label}
+
 \item{xlab}{x label, explicitly given default value here which can
 be modified as required; the usual argument to \code{plot()}}
 
