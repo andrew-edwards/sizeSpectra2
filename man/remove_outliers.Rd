@@ -45,12 +45,13 @@ removed (total counts removed divided by total counts in original data set).
 If there is a gap between roughly-continuous body sizes and a larger group,
 then it is useful to test if removing the larger group affects the results.
 Used for Sensitivity Example B in Quevedo et al. (2026), see p34 of Supp
-Material B. The relevant code is \href{https://github.com/andrew-edwards/sizeSpectraFit/tree/main/report/mediterranean/mediterranean-analysis-15}{available here}
+Material B. The relevant code is in the mediterranean-analysis-15/ folder
+\href{https://github.com/andrew-edwards/sizeSpectraFit/report/tree/main/mediterranean}{available here}
 }
 \examples{
 \dontrun{
-# See example code at
-# https://github.com/andrew-edwards/sizeSpectraFit/tree/main/report/mediterranean/mediterranean-analysis-15
+# See example code in the mediterranean-analysis-15/ folder at
+# https://github.com/andrew-edwards/sizeSpectraFit/tree/main/report/mediterranean/
 }
 }
 \author{

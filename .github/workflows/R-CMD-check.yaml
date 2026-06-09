@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main, dev-andy]
 
+# Force the entire workflow runner onto Node.js 24
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 name: R-CMD-check
 
 jobs:

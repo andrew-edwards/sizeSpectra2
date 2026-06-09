@@ -56,6 +56,9 @@ plus the binned data and fit of the PLB.
 automatically calculated (sometimes need to manually extend it to hit the
 x-axis, but tricky to automate that on a log-scale)}
 
+\item{inset_label}{used as the \code{inset} argument in \code{\link[=legend]{legend()}} for where
+to put the label}
+
 \item{xlab}{x label, explicitly given default value here which can
 be modified as required; the usual argument to \code{plot()}}
 

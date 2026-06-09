@@ -20,7 +20,10 @@
 ##'   be modified as required; the usual argument to `plot()`
 ##' @param mgp_val mgp values to use, as in `plot(..., mgp = mgp_vals)`; see [graphics::par()].
 ##' @param tcl_small Length of small tickmarks; see [graphics::axis()].
-##' @param inset_label,inset_text get used as the `inset` argument in [legend()]
+##' @param inset_label used as the `inset` argument in [legend()] for where
+##' to put the label
+##' @param inset_text used as the `inset` argument in [legend()] for where to
+##' put the text
 ##' @param legend_label label for legend, such as `(a)`
 ##' @param legend_text text to put in the corner, defaults to `b = <value>`. Set to
 ##'   `NA` to have none, and modify default if needed.

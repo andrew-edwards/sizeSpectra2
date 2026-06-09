@@ -4,7 +4,8 @@
 ##' If there is a gap between roughly-continuous body sizes and a larger group,
 ##' then it is useful to test if removing the larger group affects the results.
 ##' Used for Sensitivity Example B in Quevedo et al. (2026), see p34 of Supp
-##' Material B. The relevant code is [available here](https://github.com/andrew-edwards/sizeSpectraFit/tree/main/report/mediterranean/mediterranean-analysis-15)
+##' Material B. The relevant code is in the mediterranean-analysis-15/ folder
+##' [available here](https://github.com/andrew-edwards/sizeSpectraFit/report/tree/main/mediterranean)
 ##'
 ##' @param res One of:
 ##' * `size_spectrum_mlebins` object
@@ -27,8 +28,8 @@
 ##' @author Andrew Edwards
 ##' @examples
 ##' \dontrun{
-##' # See example code at
-##' # https://github.com/andrew-edwards/sizeSpectraFit/tree/main/report/mediterranean/mediterranean-analysis-15
+##' # See example code in the mediterranean-analysis-15/ folder at
+##' # https://github.com/andrew-edwards/sizeSpectraFit/tree/main/report/mediterranean/
 ##' }
 remove_outliers <- function(res,
                             ...){
